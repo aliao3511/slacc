@@ -6,13 +6,13 @@ class Api::UsersController < ApplicationController
             login!(@user)
             render :show
         else
-            render json: ["Invalid username and/or password"], status: 422
+            render json: ["Invalid email and/or password"], status: 422
         end
     end
 
     private
     def user_params
-        params.require(:user).permit(:email, :password)
+        params.require(:user).permit(:email, :password, :username)
     end
 
 end

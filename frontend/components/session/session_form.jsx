@@ -7,6 +7,7 @@ class SessionForm extends React.Component {
         this.state = {
             email: '',
             password: '',
+            username: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -24,27 +25,36 @@ class SessionForm extends React.Component {
         }
     }
 
-
     render() {
         const { formType, errors } = this.props;
         let otherFormType = formType === 'sign up' ? 'log in' : 'sign up';
-        const errorMessages = errors.length === 0 ? "" : errors.map((error, idx) => <li key={idx}>{error}</li>);
         return (
             <div className="session-form">
                 <h2>{formType}</h2>
-                <ul className="session-errors">
-                    {errorMessages}
-                </ul>
+                { errors.length > 0 && 
+                    <ul className="session-errors">
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                }
                 <form>
                     <label>
-                        email:
+                        Email:
                         <input type="text" value={this.state.email} onChange={this.handleChange('email')}></input>
                     </label>
                     <br />
                     <label>
-                        password:
+                        Password:
                         <input type="password" value={this.state.password} onChange={this.handleChange("password")}></input>
                     </label>
+                    { formType === 'sign up' && 
+                        <>
+                            <br />
+                            <label>
+                                Display Name:
+                            <input type="text" value={this.state.username} onChange={this.handleChange('username')}></input>
+                            </label>
+                        </>
+                    }
                     <button onClick={this.handleSubmit}>{formType}</button>
                 </form>
                 <Link to={`/${otherFormType.split(" ").join("")}`}>or {otherFormType}</Link>
