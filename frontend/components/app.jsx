@@ -16,6 +16,7 @@ const App = () => (
                 <p>stop, collaborate, and listen</p>
                 <Link to='/signup' component={SignupFormContainer} className="button">Try For Free</Link>
                 {/* <Route  exact path='/' component={}/>  */}
+                {/* <Route  exact path='/' component={}/>  */}
             </div>
         )}/>
         <Route exact path='/' render={() => (
