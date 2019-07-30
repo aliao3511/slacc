@@ -1,0 +1,26 @@
+* {
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+.button {
+    background-color: #611F69;
+    color: white;
+    border-radius: 3px;
+    /* padding: 10px 15px; */
+    text-transform: uppercase;
+    font-weight: 700;
+    word-spacing: 5px;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.button:hover {
+    background-color: #4A154B;
+    color: white;
+}
+
+a:hover {
+    color: #4A154B;
+}
+
