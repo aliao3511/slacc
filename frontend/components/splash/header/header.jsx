@@ -15,12 +15,14 @@ class Header extends React.Component {
                 <>
                     <div className="left">
                         <div className="logo">
-                            <img src={'assets/logo.png'} alt="logo" />
+                            {/* <img src={'assets/logo.png'} alt="logo" /> */}
+                            <img src={window.logoURL} alt="logo" />
                             <p>slacc</p>
                         </div>
                         <div className="credits">
                             <a href="https://github.com/aliao3511">
-                                <img src={'assets/github_logo.png'} alt="github"/>
+                                {/* <img src={'assets/github_logo.png'} alt="github"/> */}
+                                <img src={window.githubURL} alt="github"/>
                             </a>
                         </div>
                     </div>
