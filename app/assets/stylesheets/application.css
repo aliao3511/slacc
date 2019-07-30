@@ -17,3 +17,8 @@
  @import "base/reset.css";
 
  @import "base/layout.css";
+
+ /* splash */
+ @import "components/header.css";
+ @import "components/main.css";
+ @import "components/form.css";

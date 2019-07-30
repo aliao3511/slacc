@@ -8,7 +8,8 @@ module.exports = {
         filename: 'bundle.js'
     },
     resolve: {
-        extensions: ['.js', '.jsx', '*']
+        extensions: ['.js', '.jsx', '*'],
+
     },
     module: {
         rules: [
@@ -21,7 +22,20 @@ module.exports = {
                         presets: ['@babel/env', '@babel/react']
                     }
                 },
-            }
+            },
+            // {
+            //     test: /\.css$/,
+            //     use: [
+            //         'style-loader',
+            //         'css-loader'
+            //     ]
+            // },
+            // {
+            //     test: /\.(png|svg|jpg|gif)$/,
+            //     use: [
+            //         'file-loader'
+            //     ]
+            // },
         ]
     },
     devtool: 'source-map'

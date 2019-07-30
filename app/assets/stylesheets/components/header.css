@@ -7,6 +7,11 @@
     padding-right: 40px;
 }
 
+.left {
+    display: flex;
+    align-items: center;
+}
+
 .logo {
     display: flex;  
     justify-content: center;
@@ -15,8 +20,8 @@
 }
 
 .logo img {
-    height: 30px;
-    width: 30px;
+    height: 25px;
+    width: 25px;
 }
 
 .logo p {
@@ -24,6 +29,17 @@
     font-size: 28px;
     padding-bottom: 5px;
     padding-left: 5px;
+}
+
+.credits {
+    height: 30px;
+    width: 30px;
+    padding-top: 2px;
+    /* background-image: url('images/github_logo.png'); */
+}
+
+.credits:hover {
+    /* background-image: url('images/github_logo_hover.png'); */
 }
 
 .header-buttons {
