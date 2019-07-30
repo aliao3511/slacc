@@ -27,19 +27,11 @@ class SessionForm extends React.Component {
 
     render() {
         const { formType, errors } = this.props;
-        let type;
-        let otherType;
-        if (formType === "signup") {
-            type = "sign up";
-            otherType = "log in";
-        } else {
-            type = "log in";
-            otherType = "sign up";
-        }
+        let otherFormType = formType === 'sign up' ? 'log in' : 'sign up';
         const errorMessages = errors.length === 0 ? "" : errors.map((error, idx) => <li key={idx}>{error}</li>);
         return (
             <div className="session-form">
-                <h2>{type}</h2>
+                <h2>{formType}</h2>
                 <ul className="session-errors">
                     {errorMessages}
                 </ul>
@@ -53,9 +45,9 @@ class SessionForm extends React.Component {
                         password:
             <input type="password" value={this.state.password} onChange={this.handleChange("password")}></input>
                     </label>
-                    <button onClick={this.handleSubmit}>{type}</button>
+                    <button onClick={this.handleSubmit}>{formType}</button>
                 </form>
-                <Link to={`/${otherType.split(" ").join("")}`}>or {otherType}</Link>
+                <Link to={`/${otherFormType.split(" ").join("")}`}>or {otherFormType}</Link>
             </div>
         );
     }
