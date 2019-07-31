@@ -1,0 +1,256 @@
+/* component-wide */ 
+
+.splash-container {
+    text-align: center;
+}
+
+.splash-container h1 {
+    font-size: 60px;
+}
+
+.splash-container h2 {
+    font-size: 48px;
+}
+
+/* top */
+
+.splash-top {
+    position: relative;
+    display: flex;
+    height: 400px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    min-height: 200px;
+    margin-top: 70px;
+}
+
+.splash-byline h1 {
+    padding-bottom: 5px;
+}
+
+.splash-text p {
+    font-size: 15px;
+}
+
+.splash-byline p {
+    font-size: 21px;
+}
+
+.splash-link {
+    padding-left: 4px;
+    text-decoration: underline;
+    color: rgb(0, 110, 184);
+    font-weight: 400;
+}
+
+.splash-link:hover {
+    font-weight: 700;
+    color: rgb(0, 110, 184);
+}
+
+.splash-byline {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.splash-text .button {
+    padding: 20px 30px;
+    margin-bottom: 10px;
+}
+
+/* animation */
+
+.splash-animation {
+    float: left;
+}
+
+.splash-animation img {
+    position: absolute;
+    width: auto;
+    height: 24px;
+    z-index: -1;
+}
+
+/* animated icons */
+
+.dropbox {
+    top: 5vh;
+    left: 10vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.googledrive {
+    top: 10vh;
+    left: 50vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.salesforce {
+    top: 40vh;
+    right: 10vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.gotomeeting {
+    top: 5vh;
+    right: 60vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.lattice {
+    top: 5vh;
+    right: 22vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.giphy {
+    top: 30vh;
+    left: 55vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+            }
+            
+.dash {    
+    top: 40vh;
+    left: 30vh;
+    animation: reverseOrbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+.coda {
+    top: 40vh;
+    left: 30vh;
+    animation: reverseOrbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+.cisco {
+    top: 42vh;
+    right: 92vh;
+    animation: reverseOrbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+.asana {
+    top: 20vh;
+    right: 11vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.jira {
+    top: 25vh;
+    right: 37vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.zendesk {
+    top: 40vh;
+    right: 60vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.onedrive {
+    width: 5px;
+    top: 40vh;
+    left: 5vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.zoom {
+    top: 18vh;
+    left: 28vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+            }
+            
+.teamline {
+    top: 23vh;
+    left: 7vh;
+    animation: orbit 5s linear infinite, 
+                fadeIn 3s;
+                
+            }
+            
+.outlook {            
+    top: 18vh;
+    left: 72vh;
+    animation: orbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+.loom {            
+    top: -2vh;
+    left: 80vh;
+    animation: orbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+@keyframes orbit {
+    from { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@keyframes reverseOrbit {
+    from { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { transform: rotate(-360deg) translateX(10px) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0 }
+    to   { opacity: 1 }
+}
+
+/* slideshow */
+
+.splash-slideshow {
+    display: flex;
+    justify-content: center;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    padding-top: 5vh;
+
+}
+
+.splash-slideshow img {
+    height: 100%;
+    width: 100%;
+}
+
+.splash-slideshow .slide {
+    height: auto;
+    width: 75%;
+    box-shadow: 0 1px 5px rgba(77, 75, 75, 0.25);
+    background-image: asset-url('slacc_homepage.png');
+}
+
+/* slideshow nav bar */
+
+.splash-slideshow nav {
+    margin-left: 35px;
+}
+
+.splash-slideshow li {
+    min-width: 190px;
+    background-color: blue;
+    border: 1px solid black;
+    min-height: 70px;
+    text-align: center;
+}

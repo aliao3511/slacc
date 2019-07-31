@@ -14,11 +14,12 @@
  *= require_self
  */
 
- @import "base/reset.css";
+ @import "base/reset.scss";
 
- @import "base/layout.css";
+ @import "base/layout.scss";
 
  /* splash */
- @import "components/header.css";
- @import "components/main.css";
- @import "components/form.css";
+ @import "components/header.scss";
+ @import "components/splash_container.scss";
+ @import "components/form.scss";
+ 
