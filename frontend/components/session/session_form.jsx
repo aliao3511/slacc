@@ -10,19 +10,26 @@ class SessionForm extends React.Component {
             username: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.demoLogin = this.demoLogin.bind(this);
     }
 
     handleSubmit(e) {
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+        }
         this.props.clearErrors();
         const user = Object.assign({}, this.state);
-        this.props.processForm(user).then(() => this.props.history.push("/"));
+        this.props.processForm(user).then(() => this.props.history.push('/'));
     }
 
     handleChange(field) {
         return e => {
             this.setState({ [field]: e.currentTarget.value })
         }
+    }
+
+    demoLogin() {
+        this.setState({ email: 'demo@slacc.com', password: 'password' }, this.handleSubmit);
     }
 
     render() {
@@ -44,10 +51,8 @@ class SessionForm extends React.Component {
                     </ul>
                 }
                 <form>
-                    {/* {/* <div className="form-header"> */}
-                        <h1>{formType}</h1>
-                        {formDescription}
-                    {/* </div> */}
+                    <h1>{formType}</h1>
+                    {formDescription}
                     <div className="form-content">
                         <div className="form-inputs">
                             <input type="text" placeholder="you@example.com" value={this.state.email} onChange={this.handleChange('email')}></input>
@@ -60,12 +65,9 @@ class SessionForm extends React.Component {
                         </div>
                         <div className="form-submit">
                             <button onClick={this.handleSubmit}>{formType}</button>
-                            {/* <Link to={`/${otherFormType.split(" ").join("")}`}>
-                        
-                        </Link> */}
                             {formType === 'log in' &&
                                 <>
-                                    <button>try demo</button>
+                                    <button onClick={this.demoLogin}>try demo</button>
                                 </>
                             }
                         </div>
