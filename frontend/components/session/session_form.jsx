@@ -5,8 +5,8 @@ class SessionForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
+            email: 'you@examplecom',
+            password: 'password',
             username: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,36 +29,40 @@ class SessionForm extends React.Component {
         const { formType, errors } = this.props;
         let otherFormType = formType === 'sign up' ? 'log in' : 'sign up';
         return (
-            <div className="session-form">
-                <h2>{formType}</h2>
+            <>
                 { errors.length > 0 && 
                     <ul className="session-errors">
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                     </ul>
                 }
                 <form>
-                    <label>
-                        Email:
+                    {/* {/* <div className="form-header"> */}
+                        <h1>{formType}</h1>
+                        <p>
+                            Enter your <strong>email address</strong> and <strong>password</strong>
+                        </p>
+                    {/* </div> */}
+                    <div className="form-inputs">
                         <input type="text" value={this.state.email} onChange={this.handleChange('email')}></input>
-                    </label>
-                    <br />
-                    <label>
-                        Password:
+                        <br />
                         <input type="password" value={this.state.password} onChange={this.handleChange("password")}></input>
-                    </label>
-                    { formType === 'sign up' && 
-                        <>
-                            <br />
-                            <label>
-                                Display Name:
-                            <input type="text" value={this.state.username} onChange={this.handleChange('username')}></input>
-                            </label>
-                        </>
-                    }
-                    <button onClick={this.handleSubmit}>{formType}</button>
+                        { formType === 'sign up' && 
+                            <>
+                                <br />
+                                <input type="text" value={this.state.username} onChange={this.handleChange('username')}></input>
+                            </>
+                        }
+                    </div>
+                    <div className="form-submit">
+                        <button onClick={this.handleSubmit}>{formType}</button>
+                        <Link to={`/${otherFormType.split(" ").join("")}`}>
+                            {/* {otherFormType.split(" ").map(word => word[0].toUpperCase() + word.slice(1)).join(" ")} */}
+                            {/* {otherFormType} */}
+                        </Link>
+                    </div>
                 </form>
                 <Link to={`/${otherFormType.split(" ").join("")}`}>or {otherFormType}</Link>
-            </div>
+            </>
         );
     }
 }
