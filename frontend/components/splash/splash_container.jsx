@@ -1,20 +1,45 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import SignupFormContainer from '../session/signup_form_container';
 import { Link } from 'react-router-dom';
 
-class SplashContainer extends React.Component {
+const mapStateToProps = state => ({
+    currentUser: state.entities.users[state.session.id],
+});
+
+class Splash extends React.Component {
 
     render() {
+        const { currentUser } = this.props;
+        console.log(currentUser);
+        const splashText = currentUser ? (
+            <>
+                <div className="splash-byline">
+                    <h1>Welcome back, {currentUser.username}</h1>
+                </div>
+                <Link to='/'
+                    className="button">
+                    Launch Slacc
+                </Link>
+            </>
+        ) : (
+            <>
+                <div className="splash-byline">
+                    <h1>Where Work Happens</h1>
+                    <p>stop, collaborate, and listen</p>
+                </div>
+                <Link to='/signup'
+                    className="button">
+                    Try For Free
+                </Link>
+            </>
+        );
+
+        console.log(splashText);
         return (
             <div className="splash-container">
                 <div className="splash-text">
-                    <h1>Where Work Happens</h1>
-                    <p>stop, collaborate, and listen</p>
-                    <Link to='/signup' 
-                        component={SignupFormContainer} 
-                        className="button">
-                        Try For Free
-                    </Link>
+                    {splashText}
                 </div>
                 <div className="splash-animation">
                     <img className="dropbox" src={'assets/dropbox.png'} alt="dropbox"/>
@@ -40,4 +65,5 @@ class SplashContainer extends React.Component {
    
 }
 
-export default SplashContainer;
+// export default SplashContainer;
+export default connect(mapStateToProps)(Splash);

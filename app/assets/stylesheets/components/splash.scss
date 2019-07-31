@@ -1,0 +1,184 @@
+.splash-container {
+    position: relative;
+}
+
+.splash-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 350px;
+}
+
+.splash-byline h1 {
+    font-size: 54px;
+    padding-bottom: 5px;
+}
+
+.splash-line p {
+    font-size: 21px;
+}
+
+.splash-byline {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.splash-text .button {
+    padding: 20px 30px;
+}
+
+.splash-animation {
+    float: left;
+}
+
+.splash-animation img {
+    position: absolute;
+    width: auto;
+    height: 24px;
+    z-index: -1;
+}
+
+/* orbit */
+
+.dropbox {
+    top: 5vh;
+    left: 10vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.googledrive {
+    top: 10vh;
+    left: 50vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.salesforce {
+    top: 40vh;
+    right: 10vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.gotomeeting {
+    top: 5vh;
+    right: 60vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.lattice {
+    top: 5vh;
+    right: 22vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.giphy {
+    top: 30vh;
+    left: 55vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+            }
+            
+.dash {    
+    top: 40vh;
+    left: 30vh;
+    animation: reverseOrbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+.coda {
+    top: 40vh;
+    left: 30vh;
+    animation: reverseOrbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+.cisco {
+    top: 42vh;
+    right: 92vh;
+    animation: reverseOrbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+/* reverseOrbit */
+
+.asana {
+    top: 20vh;
+    right: 11vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.jira {
+    top: 25vh;
+    right: 37vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.zendesk {
+    top: 40vh;
+    right: 60vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.onedrive {
+    width: 5px;
+    top: 45vh;
+    left: 5vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.zoom {
+    top: 18vh;
+    left: 28vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+            }
+            
+.teamline {
+    top: 23vh;
+    left: 7vh;
+    animation: orbit 5s linear infinite, 
+                fadeIn 3s;
+                
+            }
+            
+.outlook {            
+    top: 18vh;
+    left: 72vh;
+    animation: orbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+.loom {            
+    top: -2vh;
+    left: 80vh;
+    animation: orbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+/* animations */
+
+@keyframes orbit {
+    from { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@keyframes reverseOrbit {
+    from { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { transform: rotate(-360deg) translateX(10px) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0 }
+    to   { opacity: 1 }
+}
