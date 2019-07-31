@@ -46,7 +46,24 @@ class Splash extends React.Component {
                     </div>
 
                     <div className="splash-animation">
-                        <img className="dropbox" src={'assets/dropbox.png'} alt="dropbox"/>
+                        <img className="dropbox" src={window.dropbox_URL} alt="dropbox"/>
+                        <img className="asana" src={window.asana_URL} alt="asana"/>
+                        <img className="googledrive" src={window.googledrive_URL} alt="google"/>
+                        <img className="salesforce" src={window.salesforce_URL} alt="salesforce"/>
+                        <img className="jira" src={window.jira_URL} alt="jira"/>
+                        <img className="zendesk" src={window.zendesk_URL} alt="zendesk"/>
+                        <img className="gotomeeting" src={window.gotomeeting_URL} alt="gotomeeting"/>
+                        <img className="onedrive" src={window.onedrive_URL} alt="onedrive"/>
+                        <img className="zoom" src={window.zoom_URL} alt="zoom"/>
+                        <img className="giphy" src={window.giphy_URL} alt="giphy"/>
+                        <img className="lattice" src={window.lattice_URL} alt="lattice"/>
+                        <img className="teamline" src={window.teamline_URL} alt="teamline"/>
+                        <img className="dash" src={window.dash_URL} alt="dash"/>
+                        <img className="outlook" src={window.outlook_URL} alt="outlook"/>
+                        <img className="cisco" src={window.cisco_URL} alt="cisco"/>
+                        <img className="loom" src={window.loom_URL} alt="loom"/>
+
+                        {/* <img className="dropbox" src={'assets/dropbox.png'} alt="dropbox"/>
                         <img className="asana" src={'assets/asana.png'} alt="asana"/>
                         <img className="googledrive" src={'assets/googledrive.png'} alt="google"/>
                         <img className="salesforce" src={'assets/salesforce.png'} alt="salesforce"/>
@@ -61,7 +78,7 @@ class Splash extends React.Component {
                         <img className="dash" src={'assets/dash.png'} alt="dash"/>
                         <img className="outlook" src={'assets/outlook.png'} alt="outlook"/>
                         <img className="cisco" src={'assets/cisco.png'} alt="cisco"/>
-                        <img className="loom" src={'assets/loom.png'} alt="loom"/>
+                        <img className="loom" src={'assets/loom.png'} alt="loom"/> */}
                     </div>
 
                 </div>

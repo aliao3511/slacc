@@ -6,14 +6,21 @@ class Slideshow extends React.Component {
     constructor(props) {
         super(props);
 
+        // images: {
+        //     '0': {
+        //         'slacc_homepage.png',
+        //         },
+        //     '1'
+        //     'slacc_file_sharing.png',
+        //     }
+
         this.state = {
             // replace with screenshots once functional
             images: [
-                'slacc_homepage.png',
-                'slacc_file_sharing.png',
-            ],
-            currentIdx: 0,
-        }
+                window.slide1_URL,
+                window.slide2_URL,
+            ]
+        };
     }
 
     selectIdx(idx) {
