@@ -220,4 +220,37 @@
 
 /* slideshow */
 
-.splash
+.splash-slideshow {
+    display: flex;
+    justify-content: center;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    padding-top: 5vh;
+
+}
+
+.splash-slideshow img {
+    height: 100%;
+    width: 100%;
+}
+
+.splash-slideshow .slide {
+    height: auto;
+    width: 75%;
+    box-shadow: 0 1px 5px rgba(77, 75, 75, 0.25);
+    background-image: asset-url('slacc_homepage.png');
+}
+
+/* slideshow nav bar */
+
+.splash-slideshow nav {
+    margin-left: 35px;
+}
+
+.splash-slideshow li {
+    min-width: 190px;
+    background-color: blue;
+    border: 1px solid black;
+    min-height: 70px;
+    text-align: center;
+}
