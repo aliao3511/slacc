@@ -1,4 +1,8 @@
-.splash-main {
+.splash-container {
+    position: relative;
+}
+
+.splash-text {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -8,16 +12,122 @@
     height: 350px;
 }
 
-.splash-main h1 {
+.splash-text h1 {
     font-size: 54px;
     padding-bottom: 5px;
 }
 
-.splash-main p {
+.splash-text p {
     font-size: 21px;
     padding-bottom: 20px;
 }
 
-.splash-main .button {
+.splash-text .button {
     padding: 20px 30px;
+}
+
+.splash-animation {
+    float: left;
+}
+
+.splash-animation img {
+    position: absolute;
+    width: auto;
+    height: 24px;
+    z-index: -1;
+}
+
+/* orbit */
+
+.dropbox {
+    top: 5vh;
+    left: 10vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.googledrive {
+    top: 10vh;
+    left: 50vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.salesforce {
+    top: 40vh;
+    right: 10vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.gotomeeting {
+    top: 5vh;
+    right: 22vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.giphy {
+    top: 30vh;
+    left: 55vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+/* reverseOrbit */
+
+.asana {
+    top: 10vh;
+    right: 5vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.jira {
+    top: 25vh;
+    right: 40vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.zendesk {
+    top: 40vh;
+    right: 60vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.onedrive {
+    width: 5px;
+    top: 45vh;
+    left: 5vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.zoom {
+    width: 5px;
+    top: 25vh;
+    left: 25vh;
+    animation: orbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+
+
+/* animations */
+
+@keyframes orbit {
+    from { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@keyframes reverseOrbit {
+    from { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { transform: rotate(-360deg) translateX(10px) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0 }
+    to   { opacity: 1 }
 }

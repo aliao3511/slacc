@@ -5,8 +5,8 @@ class SessionForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: 'you@examplecom',
-            password: 'password',
+            email: '',
+            password: '',
             username: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,25 +43,23 @@ class SessionForm extends React.Component {
                         </p>
                     {/* </div> */}
                     <div className="form-inputs">
-                        <input type="text" value={this.state.email} onChange={this.handleChange('email')}></input>
+                        <input type="text" placeholder="you@example.com" value={this.state.email} onChange={this.handleChange('email')}></input>
                         <br />
-                        <input type="password" value={this.state.password} onChange={this.handleChange("password")}></input>
+                        <input type="password" placeholder="password" value={this.state.password} onChange={this.handleChange("password")}></input>
                         { formType === 'sign up' && 
                             <>
                                 <br />
-                                <input type="text" value={this.state.username} onChange={this.handleChange('username')}></input>
+                                <input type="text" placeholder="your name" value={this.state.username} onChange={this.handleChange('username')}></input>
                             </>
                         }
                     </div>
                     <div className="form-submit">
                         <button onClick={this.handleSubmit}>{formType}</button>
                         <Link to={`/${otherFormType.split(" ").join("")}`}>
-                            {/* {otherFormType.split(" ").map(word => word[0].toUpperCase() + word.slice(1)).join(" ")} */}
-                            {/* {otherFormType} */}
                         </Link>
                     </div>
                 </form>
-                <Link to={`/${otherFormType.split(" ").join("")}`}>or {otherFormType}</Link>
+                {/* <Link to={`/${otherFormType.split(" ").join("")}`}>or {otherFormType}</Link> */}
             </>
         );
     }
