@@ -26,12 +26,14 @@ class Splash extends React.Component {
             <>
                 <div className="splash-byline">
                     <h1>Where Work Happens</h1>
-                    <p>stop, collaborate, and listen</p>
+                    <p>Stop, collaborate, and listen.</p>
                 </div>
                 <Link to='/signup'
                     className="button">
                     Try For Free
                 </Link>
+                <p>Already using Slacc?
+                <Link to='/login' className="splash-link">Sign in</Link></p>
             </>
         );
 

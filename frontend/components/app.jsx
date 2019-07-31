@@ -14,6 +14,9 @@ const App = () => (
         <Route exact path='/' component={SplashContainer}/>
         <AuthRoute path='/login' component={LoginFormContainer} />
         <AuthRoute path='/signup' component={SignupFormContainer} />
+        <footer>
+            <p>This web app is a clone of Slack</p>
+        </footer>
     </>
 );
 
