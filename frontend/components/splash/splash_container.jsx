@@ -27,6 +27,12 @@ class SplashContainer extends React.Component {
                     <img className="onedrive" src={'assets/onedrive.png'} alt="onedrive"/>
                     <img className="zoom" src={'assets/zoom.png'} alt="zoom"/>
                     <img className="giphy" src={'assets/giphy.png'} alt="giphy"/>
+                    <img className="lattice" src={'assets/lattice.png'} alt="lattice"/>
+                    <img className="teamline" src={'assets/teamline.png'} alt="teamline"/>
+                    <img className="dash" src={'assets/dash.png'} alt="dash"/>
+                    <img className="outlook" src={'assets/outlook.png'} alt="outlook"/>
+                    <img className="cisco" src={'assets/cisco.png'} alt="cisco"/>
+                    <img className="loom" src={'assets/loom.png'} alt="loom"/>
                 </div>
             </div>
         )

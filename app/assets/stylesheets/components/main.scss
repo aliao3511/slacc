@@ -62,6 +62,13 @@
 
 .gotomeeting {
     top: 5vh;
+    right: 60vh;
+    animation: reverseOrbit 5s linear infinite, 
+               fadeIn 3s;
+}
+
+.lattice {
+    top: 5vh;
     right: 22vh;
     animation: reverseOrbit 5s linear infinite, 
                fadeIn 3s;
@@ -72,20 +79,41 @@
     left: 55vh;
     animation: reverseOrbit 5s linear infinite, 
                fadeIn 3s;
+            }
+            
+.dash {    
+    top: 40vh;
+    left: 30vh;
+    animation: reverseOrbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+.coda {
+    top: 40vh;
+    left: 30vh;
+    animation: reverseOrbit 5s linear infinite, 
+                fadeIn 3s;
+}
+
+.cisco {
+    top: 42vh;
+    right: 92vh;
+    animation: reverseOrbit 5s linear infinite, 
+                fadeIn 3s;
 }
 
 /* reverseOrbit */
 
 .asana {
-    top: 10vh;
-    right: 5vh;
+    top: 20vh;
+    right: 11vh;
     animation: orbit 5s linear infinite, 
                fadeIn 3s;
 }
 
 .jira {
     top: 25vh;
-    right: 40vh;
+    right: 37vh;
     animation: orbit 5s linear infinite, 
                fadeIn 3s;
 }
@@ -106,14 +134,33 @@
 }
 
 .zoom {
-    width: 5px;
-    top: 25vh;
-    left: 25vh;
+    top: 18vh;
+    left: 28vh;
     animation: orbit 5s linear infinite, 
                fadeIn 3s;
+            }
+            
+.teamline {
+    top: 23vh;
+    left: 7vh;
+    animation: orbit 5s linear infinite, 
+                fadeIn 3s;
+                
+            }
+            
+.outlook {            
+    top: 18vh;
+    left: 72vh;
+    animation: orbit 5s linear infinite, 
+                fadeIn 3s;
 }
 
-
+.loom {            
+    top: -2vh;
+    left: 80vh;
+    animation: orbit 5s linear infinite, 
+                fadeIn 3s;
+}
 
 /* animations */
 
