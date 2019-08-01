@@ -34,7 +34,8 @@ class SessionForm extends React.Component {
     }
 
     demoLogin() {
-        this.props.processForm({ email: 'demo@slacc.com', password: 'password' }).then(() => this.props.history.push('/'));
+        this.props.processForm({ email: 'demo@slacc.com', password: 'password' })
+            .then(() => this.props.history.push('/'));
     }
 
     render() {
