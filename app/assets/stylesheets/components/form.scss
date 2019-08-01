@@ -14,7 +14,7 @@
     box-shadow: 0 1px 0 rgba(77, 75, 75, 0.25);
     border: 1px solid #ddd;
     width: 40%;
-    height: 45%;
+    height: 55%;
     margin-top: 8%;
     border-radius: 7px;
     display: flex;
@@ -22,6 +22,7 @@
     align-items: center;
     justify-content: space-evenly;
     text-transform: capitalize;
+    position: relative;
 }
 
 .form-main p {
@@ -43,11 +44,11 @@
 }
 
 .form-inputs input {
-    border: 0.8px solid rgb(77, 76, 76);
+    border: 0.8px solid rgb(114, 114, 114);
     border-radius: 5px;
-    font-size: 22px;
-    margin-bottom: 5px;
-    padding: 8px;
+    font-size: 19px;
+    margin-bottom: 7px;
+    padding: 12px;
 }
 
 .form-inputs input:last-of-type {
@@ -68,12 +69,39 @@
     letter-spacing: 1px;
     font-size: 18px;
     text-transform: capitalize;
-    padding: 10px 20px;
+    padding: 15px 20px;
     box-shadow: none;
     margin: 2px 0;
 }
 
 .form-submit button:hover {
-    box-shadow: 0 2px rgba(0,0,0,.25);
+    box-shadow: 0 2px rgba(88, 87, 87, 0.25);
+}
+
+/* errors */
+ul.session-errors {
+    background-color: white;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: 100px;
+    border-radius: 7px;
+    padding: 12px;
+    width: 40%;
+}
+
+ul.session-errors li {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.error-icon {
+    background-image: image-url('error.png');
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    margin-left: 3px;
+    margin-right: 8px;
 }
 

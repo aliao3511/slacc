@@ -47,7 +47,10 @@ class SessionForm extends React.Component {
             <div className="form-main">
                 { errors.length > 0 && 
                     <ul className="session-errors">
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        {errors.map((error, idx) => <li key={idx}>
+                                                        <div className="error-icon"></div>
+                                                        <p>{error}</p>
+                                                    </li>)}
                     </ul>
                 }
                 <form>
