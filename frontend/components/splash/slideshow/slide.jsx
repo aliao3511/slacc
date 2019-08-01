@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Slide = ({ image }) => (
-
-    <div className="slide">
-        <img src={image} alt=""/> 
-    </div>
-);
+const Slide = ({ image }) => {
+    const { url, description } = image;
+    return (
+        <div className="slide">
+            <img src={url} alt={description}/> 
+        </div>
+    );
+};
 
 export default Slide;

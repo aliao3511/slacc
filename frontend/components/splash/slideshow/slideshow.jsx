@@ -6,20 +6,20 @@ class Slideshow extends React.Component {
     constructor(props) {
         super(props);
 
-        // images: {
-        //     '0': {
-        //         'slacc_homepage.png',
-        //         },
-        //     '1'
-        //     'slacc_file_sharing.png',
-        //     }
-
         this.state = {
             // replace with screenshots once functional
             images: [
-                window.slide1_URL,
-                window.slide2_URL,
-            ]
+                {   
+                    id: 0,
+                    url: window.slide0_URL,
+                    description: 'Organize conversations',
+                },
+                {   id: 1,
+                    url: window.slide1_URL,
+                    description: 'Share files and documents',
+                },
+            ],
+            currentIdx: 0,
         };
     }
 
@@ -36,7 +36,12 @@ class Slideshow extends React.Component {
                 <Slide image={images[currentIdx]}/>
                 <nav>
                     <ul>
-                        {images.map((image, idx) => <li key={idx} onClick={this.selectIdx(idx)}>{idx}</li>)}
+                        {images.map(image => <li key={image.id} 
+                                                onClick={this.selectIdx(image.id)} 
+                                                className={image.id === currentIdx ? 'selected' : ''}>
+                                                    <div className={`slideshow-icon-${image.id}`}></div>
+                                                    <div className='slideshow-caption'>{image.description}</div>
+                                            </li>)}
                     </ul>
                 </nav>
             </div>
