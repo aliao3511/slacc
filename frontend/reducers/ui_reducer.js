@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import emailReducer from './email_reducer';
+import emailFormReducer from './email_reducer';
 
 const uiReducer = combineReducers({
-    email: emailReducer,
+    emailForm: emailFormReducer,
 });
 
 export default uiReducer;

@@ -10,7 +10,7 @@ class SessionForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: this.props.location.state.email || '',
+            email: props.email,
             password: '',
             username: ''
         };
@@ -23,6 +23,7 @@ class SessionForm extends React.Component {
             e.preventDefault();
         }
         this.props.clearErrors();
+        this.props.clearVerifiedUser();
         const user = Object.assign({}, this.state);
         this.props.processForm(user).then(() => this.props.history.push('/'));
     }
@@ -40,19 +41,21 @@ class SessionForm extends React.Component {
 
     render() {
         const { formType, errors } = this.props;
-        console.log(errors);
         let otherFormType;
         let formDescription;
+        let submitText;
         if (formType === 'sign up') {
             otherFormType = 'log in';
             formDescription = (<p>Enter your <strong>email address</strong>, <strong>password</strong>, and <strong>display name</strong></p>);
+            submitText = (<p>Don't have an account?</p>);
         } else {
             otherFormType = 'sign up';
             formDescription = (<p>Enter your <strong>email address</strong> and <strong>password</strong></p>);
+            submitText = (<p>Don't want to sign up?</p>)
         }
         return (
             <div className="form-main">
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     {errors.length > 0 &&
                         <ul className="session-errors">
                             {errors.map((error, idx) => <li key={idx}>
@@ -61,8 +64,10 @@ class SessionForm extends React.Component {
                             </li>)}
                         </ul>
                     }
-                    <h1>{formType}</h1>
-                    {formDescription}
+                    <div className="form-header">
+                        <h1>{formType}</h1>
+                        {formDescription}
+                    </div>
                     <div className="form-content">
                         <div className="form-inputs">
                             <input type="email" placeholder="you@example.com" value={this.state.email} onChange={this.handleChange('email')} required></input>
@@ -74,12 +79,11 @@ class SessionForm extends React.Component {
                             }
                         </div>
                         <div className="form-submit">
-                            <button onClick={this.handleSubmit}>{formType}</button>
-                            {formType === 'log in' &&
-                                <>
-                                    <button onClick={this.demoLogin}>try demo</button>
-                                </>
-                            }
+                            <input className="submit" type="submit" value={formType}></input>
+                            <div className="demo-login">
+                                {submitText}
+                                <button className="demo-login-button" onClick={this.demoLogin}>Try the demo!</button>
+                            </div>
                         </div>
                     </div>
                 </form>

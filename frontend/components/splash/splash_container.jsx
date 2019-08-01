@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import SignupFormContainer from '../session/signup_form_container';
 import { Link } from 'react-router-dom';
 import Slideshow from './slideshow/slideshow';
+import EmailFormContainer from './email_form';
 
 const mapStateToProps = state => ({
     currentUser: state.entities.users[state.session.id],
@@ -28,16 +29,7 @@ class Splash extends React.Component {
                     <h1>Where Work Happens</h1>
                     <p>Stop, collaborate, and listen.</p>
                 </div>
-                {/* <input id="splash-form" type="email" placeholder="you@example.com"></input>
-                <Link to={{
-                    pathname: '/signup',
-                    state: {
-                        email: document.getElementbyId('splash-form')
-                    }
-                }} */}
-                {/* className="button">
-                    Try For Free
-                </Link> */}
+                <EmailFormContainer />
                 <p>Already using Slacc?
                 <Link to='/login' className="splash-link">Sign in</Link></p>
             </>

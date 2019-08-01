@@ -10,7 +10,7 @@ class Header extends React.Component {
             </>
         ) : (
             <>
-                <Link to="/login">Sign in</Link>
+                <Link to="/login" className="sign-in">Sign in</Link>
                 <Link to="/signup" className="button">Get Started</Link>
             </>
         );

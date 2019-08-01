@@ -5,6 +5,7 @@ export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const VERIFY_USER = 'VERIFY_USER';
+export const CLEAR_VERIFIED_USER = 'CLEAR_VERIFIED_USER';
 
 // action creators
 const receiveCurrentUser = user => ({
@@ -29,6 +30,10 @@ export const clearErrors = errors => ({
 const verifyUser = user => ({
     type: VERIFY_USER,
     user
+})
+
+export const clearVerifiedUser = user => ({
+    type: CLEAR_VERIFIED_USER,
 })
 
 // thunk action creators

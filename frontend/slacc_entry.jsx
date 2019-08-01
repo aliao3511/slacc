@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 //testing
-import { signup, login, logout, verifyEmail } from './actions/session_actions';
+import { signup, login, logout, verifyEmail, clearVerifiedUser } from './actions/session_actions';
 //testing
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // window.login = login;
     // window.logout = logout;
     window.verifyEmail = verifyEmail;
+    window.clearVerifiedUser = clearVerifiedUser;
     //testing
 
     ReactDOM.render(<Root store={ store }/>, document.getElementById('root'));
