@@ -3,16 +3,16 @@ class Api::ChannelsController < ApplicationController
     before_action :ensure_logged_in
     
     def index
-        @channels = Channel.all
+        @channels = Channel.all.includes(:members).includes(:messages)
         render :index
     end
 
     def create
-        @channel = Channel.new(channel_params)
+        @channel = current_user.channels.new(channel_params)
         if @channel.save
             render :show
         else
-            render json: ["Invalid channel name"], status: 422
+            render json: @channel.errors.full_messages, status: 422
         end
     end
 
@@ -38,6 +38,7 @@ class Api::ChannelsController < ApplicationController
         channel = current_user.channels.find_by(id: params[:id])
         if channel 
             channel.destroy!
+            render :show
         else
             render json: ["Not authorized to delete channel"], status: 401
         end
