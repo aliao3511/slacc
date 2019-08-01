@@ -1,4 +1,6 @@
 class Api::ChannelsController < ApplicationController
+
+    before_action :ensure_logged_in
     
     def index
         @channels = Channel.all
@@ -44,6 +46,10 @@ class Api::ChannelsController < ApplicationController
     private
     def channel_params
         params.require(:channel).permit(:name, :is_private)
+    end
+
+    def filter
+        params[:current_user]
     end
 
 end

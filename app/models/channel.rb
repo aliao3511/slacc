@@ -20,5 +20,6 @@ class Channel < ApplicationRecord
     class_name: :User
 
     # has_many :messages, dependent: :destroy
+    # has_many :members
 
 end
