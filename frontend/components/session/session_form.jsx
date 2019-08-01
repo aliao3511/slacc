@@ -79,10 +79,10 @@ class SessionForm extends React.Component {
                     <div className="form-content">
                         <div className="form-inputs">
                             <input type="email" placeholder="you@example.com" value={this.state.email} onChange={this.handleChange('email')} required></input>
-                            <input type="password" placeholder="password" value={this.state.password} onChange={this.handleChange("password")}></input>
+                            <input type="password" placeholder="password" value={this.state.password} onChange={this.handleChange("password")} required></input>
                             { formType === 'sign up' && 
                                 <>
-                                    <input type="text" placeholder="your name" value={this.state.username} onChange={this.handleChange('username')}></input>
+                                    <input type="text" placeholder="your name" value={this.state.username} onChange={this.handleChange('username')} required></input>
                                 </>
                             }
                         </div>
