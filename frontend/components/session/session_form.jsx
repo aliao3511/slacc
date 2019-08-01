@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.state.value != nextState.value;
-    }
-
     componentDidMount() {
         this.props.clearErrors();
     }
@@ -32,8 +28,12 @@ class SessionForm extends React.Component {
     }
 
     handleChange(field) {
+        debugger
         return e => {
-            this.setState({ [field]: e.currentTarget.value })
+            debugger
+            this.setState({ [field]: e.currentTarget.value }, () => {
+                debugger
+            });
         }
     }
 
@@ -53,6 +53,7 @@ class SessionForm extends React.Component {
             otherFormType = 'sign up';
             formDescription = (<p>Enter your <strong>email address</strong> and <strong>password</strong></p>);
         }
+        debugger
         return (
             <div className="form-main">
                 <form>
@@ -68,7 +69,7 @@ class SessionForm extends React.Component {
                     {formDescription}
                     <div className="form-content">
                         <div className="form-inputs">
-                            <input type="text" placeholder="you@example.com" value={this.state.email} onChange={this.handleChange('email')}></input>
+                            <input type="email" placeholder="" value={this.state.email} onChange={this.handleChange('email')} required></input>
                             <input type="password" placeholder="password" value={this.state.password} onChange={this.handleChange("password")}></input>
                             { formType === 'sign up' && 
                                 <>
