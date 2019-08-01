@@ -23,6 +23,6 @@ class Channel < ApplicationRecord
     has_many :channel_members
     has_many :members, through: :channel_members, dependent: :destroy
 
-    # has_many :messages, dependent: :destroy
+    has_many :messages, as: :messageable, dependent: :destroy
 
 end
