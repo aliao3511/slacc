@@ -13,10 +13,10 @@ demo_user = User.create!(username: 'Demo User', email: 'demo@slacc.com', passwor
 user2 = User.create!(username: 'alpalca', email: 'alpal@gmail.com', password: 'alpaca')
 user3 = User.create!(username: 'russel sprouts', email: 'rt@yahoo.com', password: 'russelin')
 
-channel1 = Channel.create!(name: '~hot takes~', owner: demo_user, is_private: 'false')
-channel2 = Channel.create!(name: 'the ~hottest~ takes', owner: user2, is_private: 'true')
-channel3 = Channel.create!(name: 'mildly hot takes', owner: user3, is_private: 'false')
-channel4 = Channel.create!(name: 'HOTTER than the HOTTEST takes', owner: user3, is_private: 'true')
+channel1 = Channel.create!(name: '~hot takes~', owner_id: 1, is_private: false)
+channel2 = Channel.create!(name: 'the ~hottest~ takes', owner_id: 2, is_private: true)
+channel3 = Channel.create!(name: 'mildly hot takes', owner_id: 3, is_private: false)
+channel4 = Channel.create!(name: 'HOTTER than the HOTTEST takes', owner_id: 3, is_private: true)
 
 message1 = Message.create!(body: 'burn notice is actually pretty good', author: user_2, messageable: channel_1)
 message2 = Message.create!(body: 'ranch sux', author: user_2, messageable: channel_3)

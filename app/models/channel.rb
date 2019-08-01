@@ -12,7 +12,7 @@
 
 class Channel < ApplicationRecord
 
-    validates :name, :is_private, presence: :true
+    validates :name, presence: :true
     validates :name, uniqueness: true
     validates :is_private, inclusion: { in: [true, false] }
     
@@ -21,7 +21,10 @@ class Channel < ApplicationRecord
     class_name: :User
 
     has_many :channel_members
-    has_many :members, through: :channel_members, dependent: :destroy
+    has_many :members, 
+    through: :channel_members, 
+    source: :user,
+    dependent: :destroy
 
     has_many :messages, as: :messageable, dependent: :destroy
 
