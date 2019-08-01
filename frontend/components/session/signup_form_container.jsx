@@ -6,7 +6,7 @@ import { login, signup, clearErrors, clearVerifiedUser } from '../../actions/ses
 const mapStateToProps = state => ({
     errors: state.errors.session,
     formType: 'sign up',
-    user: state.ui.emailForm.email || '',
+    email: state.ui.emailForm.email || '',
 });
 
 const mapDispatchToProps = dispatch => ({
