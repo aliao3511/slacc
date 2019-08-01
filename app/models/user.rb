@@ -13,7 +13,7 @@
 
 class User < ApplicationRecord
     validates :username, :email, :password_digest, :session_token, presence: {message: 'must not be blank'} 
-    validates :username, :email, uniqueness: {message: 'email already registered'}
+    validates :username, :email, uniqueness: {message: 'already registered'}
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'must be email address' }
     validates :password, length: { minimum: 6, allow_nil: true, message: 'must be greater than 6 characters' }
 
