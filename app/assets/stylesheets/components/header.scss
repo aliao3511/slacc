@@ -38,13 +38,13 @@
     height: 30px;
     width: 30px;
     padding-top: 2px;
-    background-image: url('github_logo.png');
+    background-image: image-url('github_logo.png');
     background-position: center;
     background-size: cover;
 }
 
 .credits:hover {
-    background: url('github_logo_hover.png');
+    background-image: image-url('github_logo_hover.png');
     background-position: center;
     background-size: cover;
     height: 30px;
