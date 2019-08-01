@@ -28,10 +28,16 @@ class Splash extends React.Component {
                     <h1>Where Work Happens</h1>
                     <p>Stop, collaborate, and listen.</p>
                 </div>
-                <Link to='/signup'
-                    className="button">
+                {/* <input id="splash-form" type="email" placeholder="you@example.com"></input>
+                <Link to={{
+                    pathname: '/signup',
+                    state: {
+                        email: document.getElementbyId('splash-form')
+                    }
+                }} */}
+                {/* className="button">
                     Try For Free
-                </Link>
+                </Link> */}
                 <p>Already using Slacc?
                 <Link to='/login' className="splash-link">Sign in</Link></p>
             </>

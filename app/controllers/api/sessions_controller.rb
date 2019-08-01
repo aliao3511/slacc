@@ -19,4 +19,13 @@ class Api::SessionsController < ApplicationController
         end
     end
 
+    def verify_email
+        @user = User.find_by(email: params[:email])
+        if @user
+            render json: { email: params[:email], exists: true }
+        else
+            render json: { email: params[:email], exists: false }
+        end
+    end
+
 end

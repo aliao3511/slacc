@@ -4,6 +4,7 @@ export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const VERIFY_USER = 'VERIFY_USER';
 
 // action creators
 const receiveCurrentUser = user => ({
@@ -23,6 +24,11 @@ const receiveErrors = errors => ({
 export const clearErrors = errors => ({
     type: CLEAR_ERRORS,
     errors,
+});
+
+const verifyUser = user => ({
+    type: VERIFY_USER,
+    user
 })
 
 // thunk action creators
@@ -45,3 +51,8 @@ export const signup = formUser => dispatch => {
         .then(currentUser => dispatch(receiveCurrentUser(currentUser)),
             errors => dispatch(receiveErrors(errors.responseJSON)));
 }
+
+export const verifyEmail = email => dispatch => {
+    return SessionAPIUtil.verifyEmail(email)
+        .then(user => dispatch(verifyUser(user)))
+};

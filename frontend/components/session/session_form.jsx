@@ -10,7 +10,7 @@ class SessionForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            email: this.props.location.state.email || '',
             password: '',
             username: ''
         };
@@ -29,8 +29,7 @@ class SessionForm extends React.Component {
 
     handleChange(field) {
         return e => {
-            this.setState({ [field]: e.currentTarget.value }, () => {
-            });
+            this.setState({ [field]: e.currentTarget.value });
         }
     }
 
