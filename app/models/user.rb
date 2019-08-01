@@ -12,9 +12,10 @@
 #
 
 class User < ApplicationRecord
-    validates :username, :email, :password_digest, :session_token, presence: true
-    validates :username, :email, uniqueness: true
-    validates :password, length: { minimum: 6, allow_nil: true }
+    validates :username, :email, :password_digest, :session_token, presence: {message: 'must not be blank'} 
+    validates :username, :email, uniqueness: {message: 'email already registered'}
+    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: 'must be email address' }
+    validates :password, length: { minimum: 6, allow_nil: true, message: 'password must be greater than 6 characters' }
 
     after_initialize :ensure_session_token
 

@@ -28,11 +28,8 @@ class SessionForm extends React.Component {
     }
 
     handleChange(field) {
-        debugger
         return e => {
-            debugger
             this.setState({ [field]: e.currentTarget.value }, () => {
-                debugger
             });
         }
     }
@@ -44,6 +41,7 @@ class SessionForm extends React.Component {
 
     render() {
         const { formType, errors } = this.props;
+        console.log(errors);
         let otherFormType;
         let formDescription;
         if (formType === 'sign up') {
@@ -53,7 +51,6 @@ class SessionForm extends React.Component {
             otherFormType = 'sign up';
             formDescription = (<p>Enter your <strong>email address</strong> and <strong>password</strong></p>);
         }
-        debugger
         return (
             <div className="form-main">
                 <form>
@@ -69,7 +66,7 @@ class SessionForm extends React.Component {
                     {formDescription}
                     <div className="form-content">
                         <div className="form-inputs">
-                            <input type="email" placeholder="" value={this.state.email} onChange={this.handleChange('email')} required></input>
+                            <input type="email" placeholder="you@example.com" value={this.state.email} onChange={this.handleChange('email')} required></input>
                             <input type="password" placeholder="password" value={this.state.password} onChange={this.handleChange("password")}></input>
                             { formType === 'sign up' && 
                                 <>
