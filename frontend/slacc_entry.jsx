@@ -9,12 +9,14 @@ import { signup, login, logout } from './actions/session_actions';
 document.addEventListener('DOMContentLoaded', () => {
     let store;
     if (window.currentUser) {
+        debugger
         const preloadedState = {
             entities: {
                 users: { [window.currentUser.id]: window.currentUser }
             },
             session: { id: window.currentUser.id }
         };
+        debugger
         store = configureStore(preloadedState);
         delete window.currentUser;
     } else {

@@ -28,7 +28,10 @@ export const clearErrors = errors => ({
 // thunk action creators
 export const login = formUser => dispatch => {
     return SessionAPIUtil.login(formUser)
-        .then(currentUser => dispatch(receiveCurrentUser(currentUser)),
+        .then(currentUser => {
+            debugger
+            dispatch(receiveCurrentUser(currentUser))
+        },
             errors => dispatch(receiveErrors(errors.responseJSON)));
 };
 

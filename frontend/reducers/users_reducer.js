@@ -4,6 +4,7 @@ import { merge } from 'lodash';
 const usersReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
+    debugger
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
             newState = merge({}, state, { [action.user.id]: action.user });
