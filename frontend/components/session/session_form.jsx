@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.value != nextState.value;
+    }
+
     componentDidMount() {
         this.props.clearErrors();
     }
