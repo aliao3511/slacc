@@ -29,7 +29,6 @@ export const clearErrors = errors => ({
 export const login = formUser => dispatch => {
     return SessionAPIUtil.login(formUser)
         .then(currentUser => {
-            debugger
             dispatch(receiveCurrentUser(currentUser))
         },
             errors => dispatch(receiveErrors(errors.responseJSON)));
