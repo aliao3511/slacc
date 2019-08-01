@@ -19,7 +19,7 @@ class Channel < ApplicationRecord
     foreign_key: :owner_id,
     class_name: :User
 
+    has_many :members
     # has_many :messages, dependent: :destroy
-    # has_many :members
 
 end
