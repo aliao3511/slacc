@@ -16,7 +16,7 @@ class Channel < ApplicationRecord
     validates :name, uniqueness: true
     validates :is_private, inclusion: { in: [true, false] }
     
-    belongs_to :owner,
+    belongs_to :owner, 
     foreign_key: :owner_id,
     class_name: :User
 
