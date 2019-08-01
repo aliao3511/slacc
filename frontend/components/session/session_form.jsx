@@ -2,6 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class SessionForm extends React.Component {
+
+    componentDidMount() {
+        this.props.clearErrors();
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -45,15 +50,15 @@ class SessionForm extends React.Component {
         }
         return (
             <div className="form-main">
-                { errors.length > 0 && 
-                    <ul className="session-errors">
-                        {errors.map((error, idx) => <li key={idx}>
-                                                        <div className="error-icon"></div>
-                                                        <p>{error}</p>
-                                                    </li>)}
-                    </ul>
-                }
                 <form>
+                    {errors.length > 0 &&
+                        <ul className="session-errors">
+                            {errors.map((error, idx) => <li key={idx}>
+                                <div className="error-icon"></div>
+                                <p>{error}</p>
+                            </li>)}
+                        </ul>
+                    }
                     <h1>{formType}</h1>
                     {formDescription}
                     <div className="form-content">
