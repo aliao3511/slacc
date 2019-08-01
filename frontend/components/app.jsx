@@ -15,7 +15,7 @@ const App = () => (
         <AuthRoute exact path='/login' component={LoginFormContainer} />
         <AuthRoute exact path='/signup' component={SignupFormContainer} />
         <footer>
-            <p>This web app is a clone of Slack</p>
+            <a className="credits" href="https://github.com/aliao3511"/>
         </footer>
     </>
 );

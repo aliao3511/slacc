@@ -24,7 +24,6 @@ class Header extends React.Component {
                                 <p>slacc</p>
                             </div>
                         </Link>
-                <a className="credits" href="https://github.com/aliao3511"/>
                 </div>
                 <div className="header-buttons">
                     {display}       

@@ -30,6 +30,28 @@ button {
 
 footer {
     background-color: #f8f8f8;
-    height: 200px;
+    height: 80px;
     border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 13vh;
+}
+
+footer a.credits {
+    background-image: image-url('github_logo.png');
+    background-position: center;
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    margin-bottom: 3px;
+}
+
+footer a.credits:hover {
+    background-image: image-url('github_logo_hover.png');
+    background-position: center;
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    margin-bottom: 3px;
 }
