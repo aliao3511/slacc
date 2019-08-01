@@ -1,4 +1,4 @@
-class Model < ApplicationRecord
+class Message < ApplicationRecord
 
     validates :is_dm, inclusion: { in: [true, false] }
 
