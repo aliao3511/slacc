@@ -4,21 +4,26 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import SplashContainer from './splash/splash_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util'; 
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import HomepageContainer from './homepage/homepage_container';
 
 const App = () => (
     <>
         <header>
-            <HeaderContainer />
+            <Route exact path={['/', '/login', '/signup']} component={HeaderContainer}/>
         </header>
+
         <Route exact path='/' component={SplashContainer}/>
-        <AuthRoute exact path='/login' component={LoginFormContainer} />
-        <AuthRoute exact path='/signup' component={SignupFormContainer} />
+        <AuthRoute exact path='/login' component={LoginFormContainer}/>
+        <AuthRoute exact path='/signup' component={SignupFormContainer}/>
         <ProtectedRoute exact path='/home' component={HomepageContainer}/>
-        <footer>
-            <a className="credits" href="https://github.com/aliao3511"/>
-        </footer>
+    
+        <Route exact path={['/', '/login', '/signup']} render={() => 
+            <footer>
+                <a className="credits" href="https://github.com/aliao3511" />
+            </footer>
+        } />
+        
     </>
 );
 
