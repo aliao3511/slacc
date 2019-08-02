@@ -10,31 +10,27 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-        // App.cable.subscriptions.create(
-        //     { channel: 'ChatChannel' },
-        //     {
-        //         received: data => {
-        //             // replace with dispatching action to update redux store
-        //             // may put in own component
-        //             this.setState({
-        //                 messages: this.state.messages.concat(data.message)
-        //             });
-        //         },
-        //         speak: function(data) {
-        //             return this.perform('speak', data);
-        //         }
-        //     }
-        // );
+        // const messageReceived = data => {
+        //     this.setState({
+        //         messages: this.state.messages.concat(data.message)
+        //     });
+        // };
+
+        debugger
         App.cable.subscriptions.create(
             { channel: "ChatChannel", id: 1 },
             // { channel: "ChatChannel" },
             {
                 received: data => {
+                    debugger
                     switch (data.type) {
                         case "message":
                             this.setState({
+                                // need to change to only get this channels specific messages
+                                // on componentDidMount, fill this.state.messages with this specific channel's messages
                                 messages: this.state.messages.concat(data.message)
                             });
+                            // messageReceived(data);
                             break;
                         case "messages":
                             this.setState({ messages: data.messages });
