@@ -26,6 +26,10 @@ class User < ApplicationRecord
     has_many :channel_members, dependent: :destroy
     has_many :channels, through: :channel_members
 
+    has_many :messages,
+    foreign_key: :author_id,
+    class_name: :Message
+
     attr_reader :password
 
     def self.find_by_credentials(email, password)
