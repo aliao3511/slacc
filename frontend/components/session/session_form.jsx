@@ -51,11 +51,11 @@ class SessionForm extends React.Component {
         if (formType === 'sign up') {
             otherFormType = 'log in';
             formDescription = (<p>Enter your <strong>email address</strong>, <strong>password</strong>, and <strong>display name</strong></p>);
-            submitText = (<p>Don't have an account?</p>);
+            submitText = (<p>Don't want to sign up?</p>); 
         } else {
             otherFormType = 'sign up';
             formDescription = (<p>Enter your <strong>email address</strong> and <strong>password</strong></p>);
-            submitText = (<p>Don't want to sign up?</p>)
+            submitText = (<p>Don't have an account?</p>)
         }
         return (
             <div className="form-main">
