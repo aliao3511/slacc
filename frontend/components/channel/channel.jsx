@@ -2,14 +2,17 @@ import React from 'react';
 import MessageForm from './message_form';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => ({
-    channel: state.entities.channels
-});
+const mapStateToProps = state => {
+    debugger
+    return {
+        // channel: state.entities.channels[state.ui.selected.id]
+        id: state.ui.selected.id,
+    }
+};
 
-const mapDispatchToProps = dispatch => ({
+// const mapDispatchToProps = dispatch => ({
 
-});
-
+// });
 
 class Channel extends React.Component {
     
@@ -22,9 +25,9 @@ class Channel extends React.Component {
     componentDidMount() {
         App.cable.subscriptions.create(
             { channel: 'ChatChannel', id: 1 },
+            // { channel: 'ChatChannel', id: this.props.id },
             {
                 received: data => {
-                    debugger
                     switch (data.type) {
                         case 'message':
                             this.setState({
@@ -47,7 +50,6 @@ class Channel extends React.Component {
     loadChat(e) {
         e.preventDefault();
         // may have to change to key into specific index
-        debugger
         App.cable.subscriptions.subscriptions[0].load();
     }
 
@@ -80,3 +82,4 @@ class Channel extends React.Component {
 }
 
 export default Channel;
+// export default connect(mapStateToProps)(Channel);

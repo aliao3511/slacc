@@ -6,7 +6,7 @@ import ChannelsIndexItem from './channels_index_item';
 const mapStateToProps = state => ({
     currentUser: state.entities.users[state.session.id],
     channels: Object.values(state.entities.channels),
-    selected: state.ui.selected.id || 1, 
+    selected: state.ui.selected.id, 
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,9 +22,7 @@ class ChannelsIndex extends React.Component {
     }
 
     componentDidMount() {
-        debugger
         const { currentUser, getChannels } = this.props;
-        debugger
         if (currentUser) {
             getChannels(currentUser.id);
         } else {
@@ -39,7 +37,6 @@ class ChannelsIndex extends React.Component {
     }
 
     render() {
-        debugger
         const { selectChannel, selected } = this.props;
         return (
             <ul>

@@ -1,15 +1,21 @@
 import React from 'react';
 import Sidebar from '../sidebar';
-import Channel from '../channel/channel';
+import ChannelContainer from '../channel/channel';
 import ChannelsIndexContainer from '../channel/channels_index';
 
 class Homepage extends React.Component {
+
+    componentDidMount() {
+        // debugger
+        // this.props.getChannels();
+    }
+
     render() {
         return (
             <div className="home-container">
                 {/* <Sidebar/> */}
-                <ChannelsIndexContainer />
-                <Channel />
+                <ChannelsIndexContainer/>
+                {/* <ChannelContainer /> */}
             </div>
         );
     }

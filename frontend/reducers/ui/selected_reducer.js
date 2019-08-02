@@ -1,9 +1,8 @@
 import { SELECT_CHANNEL } from './../../actions/channel_actions';
 
-const selectedReducer = (state = {}, action) => {
+const selectedReducer = (state = { id: 1 }, action) => {
     Object.freeze(state);
     let newState;
-    debugger
     switch (action.type) {
         case SELECT_CHANNEL:
             return Object.assign({}, { id: action.id });
