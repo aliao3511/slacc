@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :channels, only: [:index, :create, :show, :update, :destroy]
-    resources :messages, only: [:index, :create, :show, :update, :destroy]
+    resources :messages, only: [:create, :show, :update, :destroy]
 
     get 'session/verify_email', to: 'sessions#verify_email'
   end
