@@ -45,6 +45,7 @@ class Channel extends React.Component {
 
     loadChat(e) {
         e.preventDefault();
+        debugger
         App.cable.subscriptions.subscriptions[0].load();
     }
 
