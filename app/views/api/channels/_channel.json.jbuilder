@@ -4,5 +4,5 @@ json.set! channel.id do
     json.is_private channel.is_private
     json.owner_id channel.owner_id
     json.message_ids channel.messages.map{|message| message.id}
-    json.member_ids channel.members.map{|member| member.id}
+    # json.member_ids channel.members.map{|member| member.id}
 end

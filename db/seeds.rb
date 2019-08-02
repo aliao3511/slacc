@@ -22,3 +22,7 @@ message1 = Message.create!(body: 'burn notice is actually pretty good', author: 
 message2 = Message.create!(body: 'ranch sux', author: user2, messageable: channel3)
 message3 = Message.create!(body: 'ranch really sucks', author: user3, messageable: channel2)
 message4 = Message.create!(body: 'RANCH SUCKS', author: demo_user, messageable: channel4)
+
+channel_member1 = ChannelMember.create!(channel: channel1, user: demo_user)
+channel_member2 = ChannelMember.create!(channel: channel1, user: user2)
+channel_member3 = ChannelMember.create!(channel: channel1, user: user3)
