@@ -26,6 +26,9 @@ class Channel < ApplicationRecord
     source: :user,
     dependent: :destroy
 
-    has_many :messages, as: :messageable, dependent: :destroy
+    has_many :messages, 
+    as: :messageable, 
+    inverse_of: :messageable,
+    dependent: :destroy
 
 end

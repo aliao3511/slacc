@@ -18,10 +18,15 @@ channel2 = Channel.create!(name: 'the ~hottest~ takes', owner: user2, is_private
 channel3 = Channel.create!(name: 'mildly hot takes', owner: user3, is_private: false)
 channel4 = Channel.create!(name: 'HOTTER than the HOTTEST takes', owner: user3, is_private: true)
 
-message1 = Message.create!(body: 'burn notice is actually pretty good', author: user2, messageable: channel1)
-message2 = Message.create!(body: 'ranch sux', author: user2, messageable: channel3)
-message3 = Message.create!(body: 'ranch really sucks', author: user3, messageable: channel2)
-message4 = Message.create!(body: 'RANCH SUCKS', author: demo_user, messageable: channel4)
+message1 = Message.create!(body: 'burn notice is actually pretty good', messageable: channel1)
+message2 = Message.create!(body: 'ranch sux', messageable: channel3)
+message3 = Message.create!(body: 'ranch really sucks', messageable: channel2)
+message4 = Message.create!(body: 'RANCH SUCKS', messageable: channel4)
+
+# message1 = Message.create!(body: 'burn notice is actually pretty good', author: user2, messageable: channel1)
+# message2 = Message.create!(body: 'ranch sux', author: user2, messageable: channel3)
+# message3 = Message.create!(body: 'ranch really sucks', author: user3, messageable: channel2)
+# message4 = Message.create!(body: 'RANCH SUCKS', author: demo_user, messageable: channel4)
 
 channel_member1 = ChannelMember.create!(channel: channel1, user: demo_user)
 channel_member2 = ChannelMember.create!(channel: channel1, user: user2)
