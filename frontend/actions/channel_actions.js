@@ -4,6 +4,7 @@ export const RECEIVE_CHANNELS = 'RECEIVE_CHANNELS';
 export const RECEIVE_CHANNEL = 'RECEIVE_CHANNEL';
 export const RECEIVE_CHANNEL_ERRORS = 'RECEIVE_CHANNEL_ERRORS';
 export const DELETE_CHANNEL = 'DELETE_CHANNEL';
+export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 
 // action creators
 const receiveChannels = channels => ({
@@ -30,6 +31,11 @@ export const clearErrors = errors => ({
     type: CLEAR_ERRORS,
     errors,
 });
+
+export const selectChannel = id => ({
+    type: SELECT_CHANNEL,
+    id
+})
 
 // thunk action creators
 export const getChannels = userId => dispatch => {
@@ -58,4 +64,4 @@ export const destroyChannel = id => dispatch => {
     return ChannelAPIUtil.deleteChannel(id)
         .then(channel => dispatch(deleteChannel(channel.id)),
             errors => dispatch(receiveErrors(errors.responseJSON)));
-}
+};

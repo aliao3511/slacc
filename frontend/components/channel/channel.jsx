@@ -1,5 +1,15 @@
 import React from 'react';
 import MessageForm from './message_form';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => ({
+    channel: state.entities.channels
+});
+
+const mapDispatchToProps = dispatch => ({
+
+});
+
 
 class Channel extends React.Component {
     

@@ -3,20 +3,13 @@ class Api::ChannelsController < ApplicationController
     before_action :ensure_logged_in
     
     def index
-        debugger
         if params[:userId]
             @channels = User.find(params[:userId]).channels.includes(:members).includes(:messages)
         else
             @channels = Channel.all.includes(:members).includes(:messages)
         end
-        debugger
         render :index
     end
-
-    # def index_by_current_user
-    #     @channels = current_user.channels.includes(:members).includes(:messages)
-    #     render :index
-    # end
 
     def create
         @channel = Channel.new(channel_params)
