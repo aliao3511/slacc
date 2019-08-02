@@ -28,7 +28,7 @@ class Api::ChannelsController < ApplicationController
     end
 
     def update
-        @channel = current_user.channels.find_by(id: params[:id])
+        @channel = current_user.owned_channels.find_by(id: params[:id])
         if @channel.update(channel_params)
             render :show
         else
@@ -37,7 +37,8 @@ class Api::ChannelsController < ApplicationController
     end
 
     def destroy
-        channel = current_user.channels.find_by(id: params[:id])
+        channel = current_user.owned_channels.find_by(id: params[:id])
+        debugger
         if channel 
             channel.destroy!
             render :show
