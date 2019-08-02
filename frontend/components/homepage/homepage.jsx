@@ -1,9 +1,13 @@
 import React from 'react';
+import Sidebar from '../sidebar';
 
 class Homepage extends React.Component {
     render() {
         return (
-            <div>INSERT CHANNELS HERE</div>
+            <div className="home-container">
+                <Sidebar/>
+                <div>INSERT CHANNELS HERE</div>
+            </div>
         );
     }
 }

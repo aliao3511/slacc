@@ -4,14 +4,11 @@ import { merge } from 'lodash';
 const channelsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
-    debugger
     switch (action.type) {
         case RECEIVE_CHANNELS:
-            debugger
             newState = merge({}, action.channels);
             return newState;
         case RECEIVE_CHANNEL:
-            debugger
             newState = merge({}, state, { [action.channel.id]: action.channel });
             return newState;
         case DELETE_CHANNEL:
