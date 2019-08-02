@@ -10,41 +10,33 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-        // const messageReceived = data => {
-        //     this.setState({
-        //         messages: this.state.messages.concat(data.message)
-        //     });
-        // };
-
-        debugger
         App.cable.subscriptions.create(
-            { channel: "ChatChannel", id: 1 },
-            // { channel: "ChatChannel" },
+            { channel: 'ChatChannel', id: 1 },
             {
                 received: data => {
                     debugger
                     switch (data.type) {
-                        case "message":
+                        case 'message':
                             this.setState({
-                                // need to change to only get this channels specific messages
+                                // need to change to only get this channels specific messages // done in chat_channel.rb
                                 // on componentDidMount, fill this.state.messages with this specific channel's messages
                                 messages: this.state.messages.concat(data.message)
                             });
-                            // messageReceived(data);
                             break;
-                        case "messages":
+                        case 'messages':
                             this.setState({ messages: data.messages });
                             break;
                     }
                 },
-                speak: function (data) { return this.perform("speak", data) },
-                load: function () { return this.perform("load") }
+                speak: function (data) { return this.perform('speak', data) },
+                load: function () { return this.perform('load') }
             }
         );
     }
 
     loadChat(e) {
         e.preventDefault();
+        // may have to change to key into specific index
         debugger
         App.cable.subscriptions.subscriptions[0].load();
     }

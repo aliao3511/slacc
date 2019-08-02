@@ -1,7 +1,10 @@
-export const getChannels = () => (
+export const getChannels = userId => (
     $.ajax({
         method: 'GET',
         url: 'api/channels',
+        data: {
+            userId
+        }
     })
 );
 

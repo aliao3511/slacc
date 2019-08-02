@@ -32,8 +32,8 @@ export const clearErrors = errors => ({
 });
 
 // thunk action creators
-export const getChannels = () => dispatch => {
-    return ChannelAPIUtil.getChannels()
+export const getChannels = userId => dispatch => {
+    return ChannelAPIUtil.getChannels(userId)
         .then(channels => {
             dispatch(receiveChannels(channels))
         },

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:show, :update, :destroy]
 
     get 'session/verify_email', to: 'sessions#verify_email'
+    get 'channels/subscribed_channels', to: 'channels#index_by_current_user'
   end
 
   root to: 'static_pages#root'

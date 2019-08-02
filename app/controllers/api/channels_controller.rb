@@ -3,9 +3,20 @@ class Api::ChannelsController < ApplicationController
     before_action :ensure_logged_in
     
     def index
-        @channels = Channel.all.includes(:members).includes(:messages)
+        debugger
+        if params[:userId]
+            @channels = User.find(params[:userId]).channels.includes(:members).includes(:messages)
+        else
+            @channels = Channel.all.includes(:members).includes(:messages)
+        end
+        debugger
         render :index
     end
+
+    # def index_by_current_user
+    #     @channels = current_user.channels.includes(:members).includes(:messages)
+    #     render :index
+    # end
 
     def create
         @channel = Channel.new(channel_params)
@@ -50,10 +61,6 @@ class Api::ChannelsController < ApplicationController
     private
     def channel_params
         params.require(:channel).permit(:name, :is_private)
-    end
-
-    def filter
-        params[:current_user]
     end
 
 end
