@@ -19,7 +19,9 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
-    has_many :owned_channels
+    has_many :owned_channels,
+    foreign_key: :owner_id,
+    class_name: :Channel
 
     has_many :channel_members, dependent: :destroy
     has_many :channels, through: :channel_members

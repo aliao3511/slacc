@@ -40,7 +40,8 @@ class Api::ChannelsController < ApplicationController
         channel = current_user.owned_channels.find_by(id: params[:id])
         debugger
         if channel 
-            channel.destroy!
+            @channel = channel
+            channel.destroy
             render :show
         else
             render json: ["Not authorized to delete channel"], status: 401
