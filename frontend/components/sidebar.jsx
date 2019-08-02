@@ -3,15 +3,15 @@ import React from 'react';
 class Sidebar extends React.Component {
     render() {
         return (
-            <div class="sidebar">
-                <div class="header">
+            <div className="sidebar">
+                <div className="header">
                     WORKSPACE
                     CURRENT USER DISPLAY NAME
                 </div>
-                <div class="channels-index">
+                <div className="channels-index">
                     CHANNELS
                 </div>
-                <div class="dms-index">
+                <div className="dms-index">
                     DIRECT MESSAGES
                 </div>
             </div>

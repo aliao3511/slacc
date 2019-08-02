@@ -25,7 +25,7 @@ class SessionForm extends React.Component {
         this.props.clearErrors();
         this.props.clearVerifiedUser();
         const user = Object.assign({}, this.state);
-        this.props.processForm(user).then(() => this.props.history.push('/'));
+        this.props.processForm(user).then(() => this.props.history.push('/home'));
     }
 
     handleChange(field) {
@@ -37,9 +37,9 @@ class SessionForm extends React.Component {
     demoLogin(e) {
         e.preventDefault();
         if (this.props.formType === 'sign up') {
-            this.props.login({ email: 'demo@slacc.com', password: 'password' }).then(() => this.props.history.push('/'));
+            this.props.login({ email: 'demo@slacc.com', password: 'password' }).then(() => this.props.history.push('/home'));
         } else {
-            this.props.processForm({ email: 'demo@slacc.com', password: 'password' }).then(() => this.props.history.push('/'));
+            this.props.processForm({ email: 'demo@slacc.com', password: 'password' }).then(() => this.props.history.push('/home'));
         }
     }
 
