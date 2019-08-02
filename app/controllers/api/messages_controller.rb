@@ -3,15 +3,15 @@ class Api::MessagesController < ApplicationController
     before_action :ensure_logged_in
 
     def create
-        @message = Message.new(message_params)
-        @message.author_id = current_user.id
-        @message.messageable_id = params[:channel_id]
-        @message.messageable_type = 'Channel'
-        if @message.save
-            render :show
-        else
-            render json: @message.errors.full_messages, status: 422
-        end
+        # @message = Message.new(message_params)
+        # @message.author_id = current_user.id
+        # @message.messageable_id = params[:channel_id]
+        # @message.messageable_type = 'Channel'
+        # if @message.save
+        #     render :show
+        # else
+        #     render json: @message.errors.full_messages, status: 422
+        # end
     end
 
     def destroy
@@ -37,5 +37,6 @@ class Api::MessagesController < ApplicationController
     private
     def message_params
         params.require(:message).permit(:body)
+        # params.permit(body)
     end
 end
