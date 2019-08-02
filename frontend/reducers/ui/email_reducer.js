@@ -1,4 +1,4 @@
-import { VERIFY_USER, CLEAR_USER, CLEAR_VERIFIED_USER } from '../actions/session_actions';
+import { VERIFY_USER, CLEAR_USER, CLEAR_VERIFIED_USER } from '../../actions/session_actions';
 
 const emailFormReducer = (state = {}, action) => {
     Object.freeze(state);

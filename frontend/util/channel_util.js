@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const getChannels = () => (
     $.ajax({
         method: 'GET',

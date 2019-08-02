@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import emailFormReducer from './email_reducer';
+import emailFormReducer from './ui/email_reducer';
 
 const uiReducer = combineReducers({
     emailForm: emailFormReducer,
