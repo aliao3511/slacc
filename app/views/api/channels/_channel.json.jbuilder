@@ -1,11 +1,8 @@
-json.extract! channel, :id, :name, :is_private, :owner_id
-# json.member_ids do
-#     json.array! channel.members.each do |member|
-#         member.id
-#     end
-# end
-json.message_ids do
-    json.array! channel.messages.each do |message|
-        message.id
-    end
+json.set! channel.id do
+    json.id channel.id
+    json.name channel.name
+    json.is_private channel.is_private
+    json.owner_id channel.owner_id
+    json.message_ids channel.messages.map{|message| message.id}
+    json.member_ids channel.members.map{|member| member.id}
 end
