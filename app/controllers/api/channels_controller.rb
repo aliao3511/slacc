@@ -8,7 +8,9 @@ class Api::ChannelsController < ApplicationController
     end
 
     def create
-        @channel = current_user.channels.new(channel_params)
+        @channel = Channel.new(channel_params)
+        @channel.owner_id = current_user.id
+        @channel.member_ids << current_user.id
         if @channel.save
             render :show
         else
