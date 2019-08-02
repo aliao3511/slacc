@@ -10,40 +10,40 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-        App.cable.subscriptions.create(
-            { channel: 'ChatChannel' },
-            {
-                received: data => {
-                    // replace with dispatching action to update redux store
-                    // may put in own component
-                    this.setState({
-                        messages: this.state.messages.concat(data.message)
-                    });
-                },
-                speak: function(data) {
-                    return this.perform('speak', data);
-                }
-            }
-        );
         // App.cable.subscriptions.create(
-        //     { channel: "ChatChannel" },
+        //     { channel: 'ChatChannel' },
         //     {
         //         received: data => {
-        //             switch (data.type) {
-        //                 case "message":
-        //                     this.setState({
-        //                         messages: this.state.messages.concat(data.message)
-        //                     });
-        //                     break;
-        //                 case "messages":
-        //                     this.setState({ messages: data.messages });
-        //                     break;
-        //             }
+        //             // replace with dispatching action to update redux store
+        //             // may put in own component
+        //             this.setState({
+        //                 messages: this.state.messages.concat(data.message)
+        //             });
         //         },
-        //         speak: function (data) { return this.perform("speak", data) },
-        //         load: function () { return this.perform("load") }
+        //         speak: function(data) {
+        //             return this.perform('speak', data);
+        //         }
         //     }
         // );
+        App.cable.subscriptions.create(
+            { channel: "ChatChannel" },
+            {
+                received: data => {
+                    switch (data.type) {
+                        case "message":
+                            this.setState({
+                                messages: this.state.messages.concat(data.message)
+                            });
+                            break;
+                        case "messages":
+                            this.setState({ messages: data.messages });
+                            break;
+                    }
+                },
+                speak: function (data) { return this.perform("speak", data) },
+                load: function () { return this.perform("load") }
+            }
+        );
     }
 
     loadChat(e) {
@@ -67,10 +67,10 @@ class Channel extends React.Component {
         return (
             <div className="channel-container">
                 <div>CHANNEL</div>
-                {/* <button className="load-button"
+                <button className="load-button"
                     onClick={this.loadChat.bind(this)}>
                     Load Chat History
-                </button> */}
+                </button>
                 <div className="message-list">{messageList}</div>
                 <MessageForm />
             </div>
