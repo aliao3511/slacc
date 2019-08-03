@@ -14,7 +14,7 @@ const mapStateToProps = state => {
         currentUser: state.entities.users[state.session.id],
         // channels: Object.values(state.entities.channels),
         channels: Object.values(subscribedChannels),
-        selected: state.ui.selected.id || 1, 
+        selected: state.ui.selected.id, 
     }
 };
 
@@ -34,7 +34,7 @@ class ChannelsIndex extends React.Component {
         // if (currentUser) {
         //     getChannels(currentUser.id);
         // } else {
-            getChannels().then(selectChannel(selected));
+            getChannels().then(() => selectChannel(1));
         // }
     }
 

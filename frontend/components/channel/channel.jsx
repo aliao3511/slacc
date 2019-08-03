@@ -2,13 +2,12 @@ import React from 'react';
 import MessageForm from './message_form';
 import { connect } from 'react-redux';
 
-// const mapStateToProps = state => {
-//     debugger
-//     return {
-//         // channel: state.entities.channels[state.ui.selected.id]
-//         id: state.ui.selected.id,
-//     }
-// };
+const mapStateToProps = state => {
+    debugger
+    return {
+        id: state.ui.selected.id,
+    }
+};
 
 // const mapDispatchToProps = dispatch => ({
 
@@ -17,14 +16,17 @@ import { connect } from 'react-redux';
 class Channel extends React.Component {
     
     constructor(props) {
+        debugger
         super(props);
         this.state = { messages: [] };
         this.bottom = React.createRef();
     }
 
     componentDidMount() {
+        debugger
+        const { id } = this.props;
         App.cable.subscriptions.create(
-            { channel: 'ChatChannel', id: 1 },
+            { channel: 'ChatChannel', id: id },
             // { channel: 'ChatChannel', id: this.props.id },
             {
                 received: data => {
@@ -60,7 +62,10 @@ class Channel extends React.Component {
     }
 
     render() {
+        debugger
         const messageList = this.state.messages.map(message => {
+            // console.log(message.id) 
+            // message.id undefined
             return (
                 <li key={message.id}>
                     {message}
@@ -83,5 +88,5 @@ class Channel extends React.Component {
 
 }
 
-export default Channel;
-// export default connect(mapStateToProps)(Channel);
+// export default Channel;
+export default connect(mapStateToProps)(Channel);
