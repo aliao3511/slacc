@@ -3,6 +3,7 @@ import MessageForm from './message_form';
 import MessageContainer from '../messages/message';
 import { connect } from 'react-redux';
 import { getChannelMessages, receiveMessage } from '../../actions/message_actions';
+import { getChannelMembers } from '../../actions/session_actions';
 
 const mapStateToProps = state => ({
     id: state.ui.selected.id,
@@ -12,6 +13,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
+    getChannelMembers: channelId => dispatch(getChannelMembers(channelId)),
     getChannelMessages: channelId => dispatch(getChannelMessages(channelId)),
     receiveMessage: message => dispatch(receiveMessage(message))
 });
@@ -52,10 +54,10 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-        const { id, getChannelMessages } = this.props;
+        const { id, getChannelMembers, getChannelMessages } = this.props;
         debugger
         this.getCurrentChannel();
-        getChannelMessages(id);
+        getChannelMembers(id).then(() => getChannelMessages(id));
     }
 
     // loadChat(e) {

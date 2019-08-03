@@ -65,3 +65,4 @@ export const destroyChannel = id => dispatch => {
         .then(channel => dispatch(deleteChannel(channel.id)),
             errors => dispatch(receiveErrors(errors.responseJSON)));
 };
+

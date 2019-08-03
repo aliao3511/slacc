@@ -6,6 +6,7 @@ export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const VERIFY_USER = 'VERIFY_USER';
 export const CLEAR_VERIFIED_USER = 'CLEAR_VERIFIED_USER';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
 
 // action creators
 const receiveCurrentUser = user => ({
@@ -36,6 +37,11 @@ export const clearVerifiedUser = user => ({
     type: CLEAR_VERIFIED_USER,
 })
 
+const receiveUsers = users => ({
+    type: RECEIVE_USERS,
+    users
+})
+
 // thunk action creators
 export const login = formUser => dispatch => {
     return SessionAPIUtil.login(formUser)
@@ -60,4 +66,9 @@ export const signup = formUser => dispatch => {
 export const verifyEmail = email => dispatch => {
     return SessionAPIUtil.verifyEmail(email)
         .then(user => dispatch(verifyUser(user)))
+};
+
+export const getChannelMembers = channelId => dispatch => {
+    return SessionAPIUtil.getChannelMembers(channelId)
+        .then(users => dispatch(receiveUsers(users)))
 };

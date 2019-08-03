@@ -12,7 +12,6 @@ const mapStateToProps = state => {
     });
     return {
         currentUser: state.entities.users[state.session.id],
-        // channels: Object.values(state.entities.channels),
         channels: Object.values(subscribedChannels),
         selected: state.ui.selected.id, 
     }

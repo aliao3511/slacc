@@ -34,3 +34,10 @@ export const verifyEmail = email => (
         },
     })
 );
+
+export const getChannelMembers = channelId => (
+    $.ajax({
+        method: 'GET',
+        url: `api/channels/${channelId}/users`
+    })
+);

@@ -10,6 +10,11 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    def index
+        @users = Channel.find(params[:channel_id]).members
+        render :index
+    end
+
     private
     def user_params
         params.require(:user).permit(:email, :password, :username)
