@@ -49,7 +49,7 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-        this.getCurrentChannel();
+        this.getCurrentChannel().then();
     }
 
     // loadChat(e) {

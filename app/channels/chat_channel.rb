@@ -12,11 +12,11 @@ class ChatChannel < ApplicationCable::Channel
     end
   end
 
-  def load
-    messages = @chat_channel.messages.all.collect(&:body)
-    socket = { messages: messages, type: 'messages' }
-    ChatChannel.broadcast_to(@chat_channel, socket)
-  end
+  # def load
+  #   messages = @chat_channel.messages.all.collect(&:body)
+  #   socket = { messages: messages, type: 'messages' }
+  #   ChatChannel.broadcast_to(@chat_channel, socket)
+  # end
 
   def unsubscribed; end
 end
