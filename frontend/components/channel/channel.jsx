@@ -20,21 +20,22 @@ class Channel extends React.Component {
         super(props);
         this.state = { messages: [] };
         this.bottom = React.createRef();
+        this.getCurrentChannel = this.getCurrentChannel.bind(this);
     }
 
-    componentDidMount() {
+    getCurrentChannel() {
         debugger
-        const { id } = this.props;
+        if (App.cable.subscriptions.subscriptions.length > 0) {
+            App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
+        }
+        debugger
         App.cable.subscriptions.create(
-            { channel: 'ChatChannel', id: id },
-            // { channel: 'ChatChannel', id: this.props.id },
+            { channel: 'ChatChannel', id: this.props.id },
             {
                 received: data => {
                     switch (data.type) {
                         case 'message':
                             this.setState({
-                                // need to change to only get this channels specific messages // done in chat_channel.rb
-                                // on componentDidMount, fill this.state.messages with this specific channel's messages
                                 messages: this.state.messages.concat(data.message)
                             });
                             break;
@@ -49,15 +50,24 @@ class Channel extends React.Component {
         );
     }
 
-    loadChat(e) {
-        e.preventDefault();
-        // may have to change to key into specific index
-        App.cable.subscriptions.subscriptions[0].load();
+    componentDidMount() {
+        debugger
+        
+        this.getCurrentChannel();
     }
 
-    componentDidUpdate() {
-        if (this.bottom.current) {
-            this.bottom.current.scrollIntoView();
+    // loadChat(e) {
+    //     e.preventDefault();
+    //     // may have to change to key into specific index
+    //     App.cable.subscriptions.subscriptions[0].load();
+    // }
+
+    componentDidUpdate(prevProps) {
+        // if (this.bottom.current) {
+        //     this.bottom.current.scrollIntoView();
+        // }
+        if (this.props.id !== prevProps.id) {
+            this.getCurrentChannel();
         }
     }
 
@@ -76,10 +86,10 @@ class Channel extends React.Component {
         return (
             <div className="channel-container">
                 <div>CHANNEL</div>
-                <button className="load-button"
+                {/* <button className="load-button"
                     onClick={this.loadChat.bind(this)}>
                     Load Chat History
-                </button>
+                </button> */}
                 <div className="message-list">{messageList}</div>
                 <MessageForm />
             </div>
