@@ -1,6 +1,6 @@
 import { SELECT_CHANNEL } from './../../actions/channel_actions';
 
-const selectedReducer = (state = { id: 1 }, action) => {
+const selectedReducer = (state = { id: null }, action) => {
     Object.freeze(state);
     let newState;
     switch (action.type) {

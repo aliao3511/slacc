@@ -2,13 +2,13 @@ import React from 'react';
 import MessageForm from './message_form';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
-    debugger
-    return {
-        // channel: state.entities.channels[state.ui.selected.id]
-        id: state.ui.selected.id,
-    }
-};
+// const mapStateToProps = state => {
+//     debugger
+//     return {
+//         // channel: state.entities.channels[state.ui.selected.id]
+//         id: state.ui.selected.id,
+//     }
+// };
 
 // const mapDispatchToProps = dispatch => ({
 

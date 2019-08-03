@@ -3,11 +3,20 @@ import { connect } from 'react-redux';
 import { getChannels, selectChannel } from '../../actions/channel_actions';
 import ChannelsIndexItem from './channels_index_item';
 
-const mapStateToProps = state => ({
-    currentUser: state.entities.users[state.session.id],
-    channels: Object.values(state.entities.channels),
-    selected: state.ui.selected.id, 
-});
+const mapStateToProps = state => {
+    const subscribedChannels = {};
+    state.entities.users[state.session.id].channel_ids.forEach( id => {
+        if (state.entities.channels[id]) {
+            subscribedChannels[id] = state.entities.channels[id] 
+        }
+    });
+    return {
+        currentUser: state.entities.users[state.session.id],
+        // channels: Object.values(state.entities.channels),
+        channels: Object.values(subscribedChannels),
+        selected: state.ui.selected.id || 1, 
+    }
+};
 
 const mapDispatchToProps = dispatch => ({
     getChannels: userId => dispatch(getChannels(userId)),
@@ -18,16 +27,15 @@ class ChannelsIndex extends React.Component {
 
     constructor(props) {
         super(props);
-        this.selectChannel = this.props.selectChannel;
     }
 
     componentDidMount() {
         const { currentUser, getChannels } = this.props;
-        if (currentUser) {
-            getChannels(currentUser.id);
-        } else {
+        // if (currentUser) {
+        //     getChannels(currentUser.id);
+        // } else {
             getChannels();
-        }
+        // }
     }
 
     select(id) {
