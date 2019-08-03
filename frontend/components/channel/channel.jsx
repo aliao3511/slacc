@@ -1,24 +1,24 @@
 import React from 'react';
 import MessageForm from './message_form';
 import { connect } from 'react-redux';
+import { getChannelMessages } from '../../actions/message_actions';
 
-const mapStateToProps = state => {
-    debugger
-    return {
-        id: state.ui.selected.id,
-    }
-};
+const mapStateToProps = state => ({
+    id: state.ui.selected.id,
+    messages: Object.values(state.entities.messages),
+})
 
-// const mapDispatchToProps = dispatch => ({
 
-// });
+const mapDispatchToProps = dispatch => ({
+    getChannelMessages: channelId => dispatch(getChannelMessages(channelId)),
+});
 
 class Channel extends React.Component {
     
     constructor(props) {
         debugger
         super(props);
-        this.state = { messages: [] };
+        // this.state = { messages: [] };
         this.bottom = React.createRef();
         this.getCurrentChannel = this.getCurrentChannel.bind(this);
     }
@@ -49,7 +49,10 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
+        const { id, getChannelMessages } = this.props;
+        debugger
         this.getCurrentChannel();
+        getChannelMessages(id);
     }
 
     // loadChat(e) {
@@ -62,23 +65,34 @@ class Channel extends React.Component {
         // if (this.bottom.current) {
         //     this.bottom.current.scrollIntoView();
         // }
-        if (this.props.id !== prevProps.id) {
+        const { id, getChannelMessages } = this.props;
+        if (id !== prevProps.id) {
             this.getCurrentChannel();
+            getChannelMessages(id);
         }
     }
 
     render() {
-        debugger
-        const messageList = this.state.messages.map(message => {
-            // console.log(message.id) 
-            // message.id undefined
+        // const messageList = this.state.messages.map(message => {
+        //     // console.log(message.id) 
+        //     // message.id undefined
+        //     return (
+        //         <li key={message.id}>
+        //             {message}
+        //             <div ref={this.bottom} />
+        //         </li>
+        //     );
+        // });
+        const { messages } = this.props;
+        const messageList = messages.map(message => {
             return (
                 <li key={message.id}>
-                    {message}
+                    {message.body}
                     <div ref={this.bottom} />
                 </li>
             );
         });
+        debugger
         return (
             <div className="channel-container">
                 <div>CHANNEL</div>
@@ -95,4 +109,4 @@ class Channel extends React.Component {
 }
 
 // export default Channel;
-export default connect(mapStateToProps)(Channel);
+export default connect(mapStateToProps, mapDispatchToProps)(Channel);
