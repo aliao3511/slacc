@@ -30,11 +30,11 @@ class ChannelsIndex extends React.Component {
     }
 
     componentDidMount() {
-        const { currentUser, getChannels } = this.props;
+        const { currentUser, getChannels, selected, selectChannel } = this.props;
         // if (currentUser) {
         //     getChannels(currentUser.id);
         // } else {
-            getChannels();
+            getChannels().then(selectChannel(selected));
         // }
     }
 
