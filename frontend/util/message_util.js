@@ -4,4 +4,3 @@ export const getChannelMessages = channelId => (
         url: `/api/channels/${channelId}/messages`,
     })
 );
-

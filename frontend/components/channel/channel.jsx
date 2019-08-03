@@ -1,7 +1,7 @@
 import React from 'react';
 import MessageForm from './message_form';
 import { connect } from 'react-redux';
-import { getChannelMessages } from '../../actions/message_actions';
+import { getChannelMessages, receiveMessage } from '../../actions/message_actions';
 
 const mapStateToProps = state => ({
     id: state.ui.selected.id,
@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getChannelMessages: channelId => dispatch(getChannelMessages(channelId)),
+    receiveMessage: message => dispatch(receiveMessage(message))
 });
 
 class Channel extends React.Component {
@@ -24,21 +25,25 @@ class Channel extends React.Component {
     }
 
     getCurrentChannel() {
+        debugger
         if (App.cable.subscriptions.subscriptions.length > 0) {
             App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
         }
+        const { receiveMessage } = this.props;
         App.cable.subscriptions.create(
             { channel: 'ChatChannel', id: this.props.id },
             {
                 received: data => {
+                    debugger
                     switch (data.type) {
                         case 'message':
-                            this.setState({
-                                messages: this.state.messages.concat(data.message)
-                            });
+                            receiveMessage(JSON.parse(data.message));
+                            // this.setState({
+                            //     messages: this.state.messages.concat(data.message)
+                            // });
                             break;
                         case 'messages':
-                            this.setState({ messages: data.messages });
+                            // this.setState({ messages: data.messages });
                             break;
                     }
                 },
@@ -101,7 +106,7 @@ class Channel extends React.Component {
                     Load Chat History
                 </button> */}
                 <div className="message-list">{messageList}</div>
-                <MessageForm />
+                {App.cable.subscriptions.subscriptions.length > 0 && <MessageForm />}
             </div>
         );
     }

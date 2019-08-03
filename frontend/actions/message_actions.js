@@ -1,6 +1,7 @@
 import * as MessageAPIUtil from '../util/message_util';
 
 export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
+export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 
 // action creators
 const receiveMessages = messages => ({
@@ -8,6 +9,10 @@ const receiveMessages = messages => ({
     messages
 })
 
+export const receiveMessage = message => ({
+    type: RECEIVE_MESSAGE,
+    message
+})
 
 // thunk action creators
 export const getChannelMessages = channelId => dispatch => {
