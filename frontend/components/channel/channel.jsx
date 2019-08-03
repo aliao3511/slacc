@@ -54,7 +54,9 @@ class Channel extends React.Component {
     }
 
     componentDidUpdate() {
-        this.bottom.current.scrollIntoView();
+        if (this.bottom.current) {
+            this.bottom.current.scrollIntoView();
+        }
     }
 
     render() {

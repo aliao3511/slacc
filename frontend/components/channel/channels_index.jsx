@@ -39,13 +39,14 @@ class ChannelsIndex extends React.Component {
     }
 
     select(id) {
+        const { selectChannel } = this.props;
         return e => {
-            this.selectChannel(id);
+            selectChannel(id);
         }
     }
 
     render() {
-        const { selectChannel, selected } = this.props;
+        const { selected } = this.props;
         return (
             <ul>
                 {this.props.channels.map(channel => 
