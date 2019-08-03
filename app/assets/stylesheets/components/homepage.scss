@@ -1,6 +1,6 @@
 .channel-container {
     overflow: scroll;
-    padding: 20px;
+    // padding: 20px;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -9,12 +9,22 @@
     max-width: 100%;
 }
 
+.channel-header {
+    background-color: white;
+    position: sticky;
+    top: 0;
+    border-bottom: 0.8px solid rgb(231, 230, 230);
+    padding: 10px;
+}
+
 .message-form {
-    position: absolute;
+    background-color: white;
+    position: sticky;
     bottom: 20px;
-    border: 0.8px solid rgb(172, 172, 172);
+    border: 0.8px solid rgb(168, 168, 168);
     border-radius: 5px;
     width: 97%;
+    margin-left: 18px;
 }
 
 .message-form input {
@@ -24,7 +34,15 @@
 
 .messages li {
     border-bottom: 0.8px solid rgb(172, 172, 172);
-    margin-top: 10px;
-    padding-bottom: 10px;
+    background-color: white;
+}
+
+.messages li:hover {
+    background-color: rgb(243, 243, 243);
+}
+
+div.message {
+    padding: 10px;
+    font-size: 14px;
 }
 

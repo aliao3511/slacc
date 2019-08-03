@@ -1,11 +1,12 @@
 import React from 'react';
 import MessageForm from './message_form';
-import Message from '../messages/message';
+import MessageContainer from '../messages/message';
 import { connect } from 'react-redux';
 import { getChannelMessages, receiveMessage } from '../../actions/message_actions';
 
 const mapStateToProps = state => ({
     id: state.ui.selected.id,
+    channel: state.entities.channels[state.ui.selected.id],
     messages: Object.values(state.entities.messages),
 })
 
@@ -75,11 +76,11 @@ class Channel extends React.Component {
     }
 
     render() {
-        const { messages } = this.props;
+        const { messages, channel } = this.props;
         const messageList = messages.map(message => 
-            <Message key={message.id}
+            <MessageContainer key={message.id}
                     message={message}
-                    ref={this.bottom}/>
+                    />
         );
         return (
             <div className="channel-container">
@@ -87,6 +88,9 @@ class Channel extends React.Component {
                     onClick={this.loadChat.bind(this)}>
                     Load Chat History
                 </button> */}
+                <div className="channel-header">
+                    <h1>{channel.name}</h1>
+                </div>
                 <div className="message-list">
                     <ul className='messages'>
                         {messageList}
