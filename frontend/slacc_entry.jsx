@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 //testing
-import { getChannels, getChannel, createChannel, destroyChannel } from './actions/channel_actions';
+// import { getChannels, getChannel, createChannel, destroyChannel } from './actions/channel_actions';
+import { getChannelMessages } from './actions/message_actions';
 //testing
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,10 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // testing
     window.getState = store.getState;
     window.dispatch = store.dispatch;
-    window.getChannels = getChannels;
-    window.getChannel = getChannel;
-    window.destroyChannel = destroyChannel;
-    window.createChannel = createChannel;
+    // window.getChannels = getChannels;
+    // window.getChannel = getChannel;
+    // window.destroyChannel = destroyChannel;
+    // window.createChannel = createChannel;
+    window.getChannelMessages = getChannelMessages;
     //testing
 
     ReactDOM.render(<Root store={ store }/>, document.getElementById('root'));
