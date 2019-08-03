@@ -2,6 +2,11 @@ class Api::MessagesController < ApplicationController
 
     before_action :ensure_logged_in
 
+    def index
+        @messages = Message.where(messageable_id: params[:channel_id], messageable_type: 'Channel')
+        render :index
+    end
+
     def create
         # @message = Message.new(message_params)
         # @message.author_id = current_user.id
