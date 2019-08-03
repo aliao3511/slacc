@@ -24,11 +24,9 @@ class Channel extends React.Component {
     }
 
     getCurrentChannel() {
-        debugger
         if (App.cable.subscriptions.subscriptions.length > 0) {
             App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
         }
-        debugger
         App.cable.subscriptions.create(
             { channel: 'ChatChannel', id: this.props.id },
             {
@@ -51,8 +49,6 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-        debugger
-        
         this.getCurrentChannel();
     }
 
