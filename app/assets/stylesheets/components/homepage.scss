@@ -1,0 +1,30 @@
+.channel-container {
+    overflow: scroll;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    position: relative;
+    height: 100vh;
+    max-width: 100%;
+}
+
+.message-form {
+    position: absolute;
+    bottom: 20px;
+    border: 0.8px solid rgb(172, 172, 172);
+    border-radius: 5px;
+    width: 97%;
+}
+
+.message-form input {
+    font-size: 16px;
+    width: 100%;
+}
+
+.messages li {
+    border-bottom: 0.8px solid rgb(172, 172, 172);
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+

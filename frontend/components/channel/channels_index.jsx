@@ -48,14 +48,17 @@ class ChannelsIndex extends React.Component {
     render() {
         const { selected } = this.props;
         return (
-            <ul>
-                {this.props.channels.map(channel => 
-                    <ChannelsIndexItem key={channel.id} 
-                        channel={channel}
-                        select={this.select(channel.id)}
-                        className={(channel.id === selected) ? 'selected' : 'unselected'}
-                    />)}
-            </ul>
+            <div className="index-container">
+                <h1>Channels</h1>
+                <ul className="channels-index">
+                    {this.props.channels.map(channel => 
+                        <ChannelsIndexItem key={channel.id} 
+                            channel={channel}
+                            select={this.select(channel.id)}
+                            className={(channel.id === selected) ? 'selected' : 'unselected'}
+                        />)}
+                </ul>
+            </div>
         )
     }
 }

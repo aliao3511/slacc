@@ -15,9 +15,9 @@ class Message < ApplicationRecord
 
     validates :messageable_type, inclusion: { in: ["Channel", "DM"] }
 
-    # belongs_to :author,
-    # foreign_key: :author_id,
-    # class_name: :User
+    belongs_to :author,
+    foreign_key: :author_id,
+    class_name: :User
 
     belongs_to :messageable, polymorphic: true
 

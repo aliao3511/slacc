@@ -1,5 +1,6 @@
 import React from 'react';
 import MessageForm from './message_form';
+import Message from '../messages/message';
 import { connect } from 'react-redux';
 import { getChannelMessages, receiveMessage } from '../../actions/message_actions';
 
@@ -19,7 +20,6 @@ class Channel extends React.Component {
     constructor(props) {
         debugger
         super(props);
-        // this.state = { messages: [] };
         this.bottom = React.createRef();
         this.getCurrentChannel = this.getCurrentChannel.bind(this);
     }
@@ -75,34 +75,23 @@ class Channel extends React.Component {
     }
 
     render() {
-        // const messageList = this.state.messages.map(message => {
-        //     // console.log(message.id) 
-        //     // message.id undefined
-        //     return (
-        //         <li key={message.id}>
-        //             {message}
-        //             <div ref={this.bottom} />
-        //         </li>
-        //     );
-        // });
         const { messages } = this.props;
-        const messageList = messages.map(message => {
-            return (
-                <li key={message.id}>
-                    {message.body}
-                    <div ref={this.bottom} />
-                </li>
-            );
-        });
-        debugger
+        const messageList = messages.map(message => 
+            <Message key={message.id}
+                    message={message}
+                    ref={this.bottom}/>
+        );
         return (
             <div className="channel-container">
-                <div>CHANNEL</div>
                 {/* <button className="load-button"
                     onClick={this.loadChat.bind(this)}>
                     Load Chat History
                 </button> */}
-                <div className="message-list">{messageList}</div>
+                <div className="message-list">
+                    <ul className='messages'>
+                        {messageList}
+                    </ul>
+                </div>
                 {App.cable.subscriptions.subscriptions.length > 0 && <MessageForm />}
             </div>
         );
