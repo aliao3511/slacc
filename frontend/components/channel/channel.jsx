@@ -38,9 +38,6 @@ class Channel extends React.Component {
                     switch (data.type) {
                         case 'message':
                             receiveMessage(JSON.parse(data.message));
-                            // this.setState({
-                            //     messages: this.state.messages.concat(data.message)
-                            // });
                             break;
                         case 'messages':
                             // this.setState({ messages: data.messages });

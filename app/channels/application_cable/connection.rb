@@ -1,8 +1,16 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
-    # def connect
-    # end
+    identified_by :current_user
 
-    #request.session => can access session
+    def connect
+      self.current_user = find_verified_user
+      reject_unauthorized_connection unless self.current_user
+    end
+
+    private
+    def find_verified_user
+      verified_user = User.find_by(session_token: request.session.fetch('session_token', nil))
+    end
+
   end
 end
