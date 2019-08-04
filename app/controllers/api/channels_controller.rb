@@ -14,7 +14,7 @@ class Api::ChannelsController < ApplicationController
     def create
         @channel = Channel.new(channel_params)
         @channel.owner_id = current_user.id
-        @channel.member_ids << current_user.id
+        @channel.member_ids <<= current_user.id
         if @channel.save
             render :show
         else
@@ -53,7 +53,7 @@ class Api::ChannelsController < ApplicationController
 
     private
     def channel_params
-        params.require(:channel).permit(:name, :is_private)
+        params.require(:channel).permit(:name, :is_private, :purpose)
     end
 
 end

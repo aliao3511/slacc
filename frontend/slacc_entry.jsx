@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 //testing
-// import { getChannels, getChannel, createChannel, destroyChannel } from './actions/channel_actions';
-import { getChannelMessages } from './actions/message_actions';
-import { getChannelMembers } from './actions/session_actions';
+import { getChannels, getChannel, createChannel, destroyChannel } from './actions/channel_actions';
+// import { getChannelMessages } from './actions/message_actions';
+// import { getChannelMembers } from './actions/session_actions';
 //testing
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // window.getChannels = getChannels;
     // window.getChannel = getChannel;
     // window.destroyChannel = destroyChannel;
-    // window.createChannel = createChannel;
-    window.getChannelMessages = getChannelMessages;
-    window.getChannelMembers = getChannelMembers;
+    window.createChannel = createChannel;
+    // window.getChannelMessages = getChannelMessages;
+    // window.getChannelMembers = getChannelMembers;
     //testing
 
     ReactDOM.render(<Root store={ store }/>, document.getElementById('root'));

@@ -6,6 +6,7 @@ import SplashContainer from './splash/splash_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util'; 
 import { Route, Switch } from 'react-router-dom';
 import HomepageContainer from './homepage/homepage_container';
+import NewChannelFormContainer from './channel/new_channel_form_container';
 
 const App = () => (
     <>
@@ -16,9 +17,10 @@ const App = () => (
         <Route exact path='/' component={SplashContainer}/>
         <AuthRoute exact path='/login' component={LoginFormContainer}/>
         <AuthRoute exact path='/signup' component={SignupFormContainer}/>
-
+        
         <ProtectedRoute exact path='/home' component={HomepageContainer}/>
-    
+        <ProtectedRoute exact path='/create-channel' component={NewChannelFormContainer}/>
+
         <Route exact path={['/', '/login', '/signup']} render={() => 
             <footer>
                 <a className="credits" href="https://github.com/aliao3511" />

@@ -17,23 +17,30 @@
     padding: 10px;
 }
 
+/* message form */
+
 .message-form {
     background-color: white;
-    position: sticky;
+    position: fixed;
     bottom: 20px;
-    border: 0.8px solid rgb(168, 168, 168);
-    border-radius: 5px;
-    width: 97%;
-    margin-left: 18px;
+    left: 242px;
+    width: 80%;
 }
 
-.message-form input {
+.message-form textarea {
+    box-sizing: border-box;
+    padding: 10px;
     font-size: 16px;
     width: 100%;
+    min-height: 45px;
+    resize: none;
+    border: 0.8px solid rgb(168, 168, 168);
+    border-radius: 5px;
+    background-color: white;
+    position: sticky;
 }
 
 .messages li {
-    border-bottom: 0.8px solid rgb(172, 172, 172);
     background-color: white;
 }
 

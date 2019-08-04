@@ -15,22 +15,23 @@ class MessageForm extends React.Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault();
-        App.cable.subscriptions.subscriptions[0].speak({ message: this.state.body });
-        this.setState({ body: '' });
+        if (e.keyCode == 13 && e.shiftKey == false) {
+            e.preventDefault();
+            App.cable.subscriptions.subscriptions[0].speak({ message: this.state.body });
+            this.setState({ body: '' });
+        }
     }
 
     render() {
         return (
             <div className='message-form'>
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <input
-                        type="text"
+                <form>
+                    <textarea
                         value={this.state.body}
                         onChange={this.update('body')}
                         placeholder='Type message here'
+                        onKeyDown={this.handleSubmit.bind(this)}
                     />
-                    <input type="submit" />
                 </form>
             </div>
         );

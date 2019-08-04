@@ -21,14 +21,12 @@ const mapDispatchToProps = dispatch => ({
 class Channel extends React.Component {
     
     constructor(props) {
-        debugger
         super(props);
         this.bottom = React.createRef();
         this.getCurrentChannel = this.getCurrentChannel.bind(this);
     }
 
     getCurrentChannel() {
-        debugger
         if (App.cable.subscriptions.subscriptions.length > 0) {
             App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
         }
@@ -37,7 +35,6 @@ class Channel extends React.Component {
             { channel: 'ChatChannel', id: this.props.id },
             {
                 received: data => {
-                    debugger
                     switch (data.type) {
                         case 'message':
                             receiveMessage(JSON.parse(data.message));

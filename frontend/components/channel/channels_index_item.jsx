@@ -5,7 +5,9 @@ class ChannelsIndexItem extends React.Component {
         const { channel, select, className } = this.props;
         return (
             <li onClick={select} className={className}>
-                { channel.name }
+                <div className="channel-info">
+                    {channel.name}
+                </div>
             </li>
         )
     }

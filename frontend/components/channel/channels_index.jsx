@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getChannels, selectChannel } from '../../actions/channel_actions';
 import ChannelsIndexItem from './channels_index_item';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
     const subscribedChannels = {};
+    debugger;
     state.entities.users[state.session.id].channel_ids.forEach( id => {
         if (state.entities.channels[id]) {
             subscribedChannels[id] = state.entities.channels[id] 
@@ -13,7 +15,7 @@ const mapStateToProps = state => {
     return {
         currentUser: state.entities.users[state.session.id],
         channels: Object.values(subscribedChannels),
-        selected: state.ui.selected.id, 
+        selected: state.ui.selected.id || 1, 
     }
 };
 
@@ -33,7 +35,7 @@ class ChannelsIndex extends React.Component {
         // if (currentUser) {
         //     getChannels(currentUser.id);
         // } else {
-            getChannels().then(() => selectChannel(1));
+            getChannels().then(() => selectChannel(selected));
         // }
     }
 
@@ -49,12 +51,13 @@ class ChannelsIndex extends React.Component {
         return (
             <div className="index-container">
                 <h1>Channels</h1>
+                <Link className="create-channel" to='/create-channel'>Create Channel</Link>
                 <ul className="channels-index">
                     {this.props.channels.map(channel => 
                         <ChannelsIndexItem key={channel.id} 
                             channel={channel}
                             select={this.select(channel.id)}
-                            className={(channel.id === selected) ? 'selected' : 'unselected'}
+                            className={(channel.id === selected) ? 'selected-channel' : 'unselected'}
                         />)}
                 </ul>
             </div>
