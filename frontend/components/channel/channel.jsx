@@ -86,15 +86,19 @@ class Channel extends React.Component {
                     Load Chat History
                 </button> */}
                 <div className="channel-header">
-                    <h1>{channel.name}</h1>
+                    <h1>#{channel.name}</h1>
+                    <div className="members"></div>
+                    <a>{channel.member_ids.length}</a>
                 </div>
                 <div className="message-list">
                     <ul className='messages'>
                         {messageList}
                     </ul>
                 </div>
-                {App.cable.subscriptions.subscriptions.length > 0 && <MessageForm />}
                 <div ref={this.bottom}></div>
+                <div className='channel-bottom'>
+                    {App.cable.subscriptions.subscriptions.length > 0 && <MessageForm />}
+                </div>
             </div>
         );
     }

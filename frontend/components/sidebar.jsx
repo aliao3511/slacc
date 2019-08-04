@@ -1,15 +1,22 @@
 import React from 'react';
+import ChannelsIndexContainer from './channel/channels_index';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => ({
+    currentUser: state.entities.users[state.session.id],
+})
 
 class Sidebar extends React.Component {
     render() {
+        const { currentUser } = this.props;
         return (
             <div className="sidebar">
                 <div className="header">
-                    WORKSPACE
-                    CURRENT USER DISPLAY NAME
+                    <h1>WORKSPACE</h1>
+                    <p>{currentUser.username}</p>
                 </div>
                 <div className="channels-index">
-                    CHANNELS
+                    <ChannelsIndexContainer/>
                 </div>
                 <div className="dms-index">
                     DIRECT MESSAGES
@@ -19,4 +26,4 @@ class Sidebar extends React.Component {
     }
 }
 
-export default Sidebar;
+export default connect(mapStateToProps)(Sidebar);

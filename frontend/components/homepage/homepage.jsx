@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from '../sidebar';
 import ChannelContainer from '../channel/channel';
-import ChannelsIndexContainer from '../channel/channels_index';
+import SideBar from '../channel/channels_index';
 
 class Homepage extends React.Component {
 
@@ -9,10 +9,7 @@ class Homepage extends React.Component {
         document.body.classList.add("no-scroll")
         return (
             <div className="home-container">
-                <div className="sidebar">
-                    <ChannelsIndexContainer/>
-                </div>
-                {/* <Sidebar/> */}
+                <Sidebar />
                 {this.props.selected && <ChannelContainer />}
             </div>
         );

@@ -3,15 +3,20 @@ import { connect } from 'react-redux';
 import { getChannels, selectChannel } from '../../actions/channel_actions';
 import ChannelsIndexItem from './channels_index_item';
 import { Link } from 'react-router-dom';
+import { merge } from 'lodash';
 
 const mapStateToProps = state => {
-    const subscribedChannels = {};
+    let subscribedChannels = {};
     debugger
     state.entities.users[state.session.id].channel_ids.forEach( id => {
         if (state.entities.channels[id]) {
-            subscribedChannels[id] = state.entities.channels[id] 
+            subscribedChannels[id] = state.entities.channels[id];
         }
     });
+    if (state.ui.selected.id) {
+        const previewedChannels = { [state.ui.selected.id]: state.entities.channels[state.ui.selected.id]};
+        subscribedChannels = merge(previewedChannels, subscribedChannels);
+    }
     return {
         currentUser: state.entities.users[state.session.id],
         channels: Object.values(subscribedChannels),
@@ -48,10 +53,11 @@ class ChannelsIndex extends React.Component {
 
     render() {
         const { selected } = this.props;
+        debugger
         return (
             <div className="index-container">
-                <Link to='/add-channel'>Channel</Link>
-                <Link className="create-channel" to='/create-channel'>Create Channel</Link>
+                <Link to='/add-channel'>Channels</Link>
+                <Link className="create-channel" to='/create-channel'></Link>
                 <ul className="channels-index">
                     {this.props.channels.map(channel => 
                         <ChannelsIndexItem key={channel.id} 

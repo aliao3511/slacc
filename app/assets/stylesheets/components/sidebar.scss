@@ -7,15 +7,22 @@
     display: float;
     float: left;
     /* for text */
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 100;
+    font-size: 15px;
+    position: relative;
 }
 
 .sidebar h1 {
-    font-size: 15px;
-    padding-left: 10px;
+    font-size: 18px;
     padding-bottom: 3px;
+    color: white;
 }
+
+.sidebar div.header {
+    padding: 10px 10px;
+}
+
+/* channel-index */
 
 .selected-channel {
     background-color: #1164A3;
@@ -25,3 +32,33 @@
 .channel-info {
     padding: 3px 10px;
 }
+
+.channels-index {
+    padding-top: 4px;
+    position: relative;
+}
+
+.create-channel {
+    background-image: image-url('plus.png');
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 3.5px;
+    height: 19px;
+    width: 19px;
+    right: 12px;
+}
+
+.create-channel:hover {
+    background-image: image-url('plus_hover.png');
+}
+
+.index-container a {
+    padding-left: 10px;
+    font-weight: 700;
+}
+
+.index-container a:hover {
+    color: white;
+}
+

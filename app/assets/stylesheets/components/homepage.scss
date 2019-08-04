@@ -15,6 +15,11 @@
     top: 0;
     border-bottom: 0.8px solid rgb(231, 230, 230);
     padding: 10px;
+    padding-left: 20px;
+}
+
+.channel-header h1 {
+    font-size: 16px;
 }
 
 /* message form */
@@ -22,9 +27,9 @@
 .message-form {
     background-color: white;
     position: fixed;
-    bottom: 20px;
+    bottom: 80px;
     left: 242px;
-    width: 80%;
+    width: 82%;
 }
 
 .message-form textarea {
@@ -33,11 +38,12 @@
     font-size: 16px;
     width: 100%;
     min-height: 45px;
-    resize: none;
+    top: auto;
+    resize: vertical;
     border: 0.8px solid rgb(168, 168, 168);
     border-radius: 5px;
     background-color: white;
-    position: sticky;
+    position: absolute;
 }
 
 .messages li {
@@ -51,5 +57,130 @@
 div.message {
     padding: 10px;
     font-size: 14px;
+}
+
+.channel-bottom {
+    background-color: white;
+    position: fixed;
+    min-height: 80px;
+    bottom: 0px;
+    top: auto;
+    width: 100%;
+}
+
+/* create channel */
+.new-channel-form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    position: relative;
+}
+
+.new-channel-form-container a.escape {
+    position: absolute;
+    right: 50px;
+    top: 40px;
+    background-image: image-url('x.png');
+    background-position: center;
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.new-channel-form-container a.escape:hover {
+    background-image: image-url('x_hover.png');
+    background-color: rgb(224, 224, 224);
+    box-shadow: 0 0 0 20px rgb(224, 224, 224);
+}
+
+.new-channel-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    height: 87%;
+}
+
+.channel-form-header h1 {
+    font-weight: 900;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.new-channel-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 90%;
+    margin-top: 20px;
+}
+
+.new-channel-form input {
+    background-color: white;
+    border: 1px solid rgb(116, 115, 115);
+    border-radius: 5px;
+    padding: 18px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    width: 100%;
+}
+
+.new-channel-form input:focus {
+    border: 0.8px solid rgb(18, 18, 128);
+    box-shadow: 0 0 0 3px lightblue;
+}
+
+.channel-input-caption strong {
+    margin-bottom: 8px;
+    margin-right: 5px;
+    font-size: 14px;
+}
+
+.channel-input-caption {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.channel-input-caption p {
+    color: rgb(116, 115, 115);
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+    font-weight: 700;
+    margin-top: 22px;
+    height: 38px;
+}
+
+.buttons a {
+    border: 0.8px solid rgb(168, 168, 168);
+    border-radius: 5px;
+    padding: 5px;
+    padding-top: 7.5px;
+    text-align: center;
+    width: 80px;
+    margin-right: 10px;    
+}
+
+.buttons a:hover {
+    box-shadow: 0.5px 1px 3px rgba(121, 120, 120, 0.25);
+    color: black;
+}
+
+
+.buttons input.create {
+    border: none;
+    border-radius: 5px;
+    width: 80px;
+    padding: 5px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding-top: 2.5px;
+    background-color: rgb(224, 224, 224);
+    color: rgb(68, 68, 68);
 }
 
