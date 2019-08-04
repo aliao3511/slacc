@@ -22,6 +22,12 @@ class Api::ChannelsController < ApplicationController
         end
     end
 
+    def add_channel
+        @channel = Channel.find_by(id: params[:channel_id])
+        @channel.member_ids <<= current_user.id unless @channel.member_ids.include?(current_user.id)
+        render :show
+    end
+
     def show
         @channel = Channel.find_by(id: params[:id])
         if @channel

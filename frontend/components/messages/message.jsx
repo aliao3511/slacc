@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
 class Message extends React.Component {
 
     render() {
-        const { message, bottom, username } = this.props;
+        const { message, username } = this.props;
         const time = (new Date(message.created_at)).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         debugger
         return (

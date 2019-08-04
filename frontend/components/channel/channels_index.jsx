@@ -60,6 +60,7 @@ class ChannelsIndex extends React.Component {
                             className={(channel.id === selected) ? 'selected-channel' : 'unselected'}
                         />)}
                 </ul>
+                
             </div>
         )
     }

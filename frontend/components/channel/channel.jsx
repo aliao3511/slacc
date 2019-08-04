@@ -64,9 +64,7 @@ class Channel extends React.Component {
     // }
 
     componentDidUpdate(prevProps) {
-        // if (this.bottom.current) {
-        //     this.bottom.current.scrollIntoView();
-        // }
+        this.bottom.current.scrollIntoView();
         const { id, getChannelMessages } = this.props;
         if (id !== prevProps.id) {
             this.getCurrentChannel();
@@ -96,6 +94,7 @@ class Channel extends React.Component {
                     </ul>
                 </div>
                 {App.cable.subscriptions.subscriptions.length > 0 && <MessageForm />}
+                <div ref={this.bottom}></div>
             </div>
         );
     }

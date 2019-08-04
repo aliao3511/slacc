@@ -5,6 +5,7 @@ export const RECEIVE_CHANNEL = 'RECEIVE_CHANNEL';
 export const RECEIVE_CHANNEL_ERRORS = 'RECEIVE_CHANNEL_ERRORS';
 export const DELETE_CHANNEL = 'DELETE_CHANNEL';
 export const SELECT_CHANNEL = 'SELECT_CHANNEL';
+export const ADD_CHANNEL = 'ADD_CHANNEL';
 
 // action creators
 const receiveChannels = channels => ({
@@ -68,4 +69,10 @@ export const destroyChannel = id => dispatch => {
         .then(channel => dispatch(deleteChannel(channel.id)),
             errors => dispatch(receiveErrors(errors.responseJSON)));
 };
+
+export const addChannel = id => dispatch => {
+    return ChannelAPIUtil.addChannel(id)
+        .then(channel => dispatch(receiveChannel(channel.id)),
+            errors => dispatch(receiveErrors(errors.responseJSON)))
+}
 
