@@ -65,10 +65,10 @@ class Channel extends React.Component {
 
     componentDidUpdate(prevProps) {
         this.bottom.current.scrollIntoView();
-        const { id, getChannelMessages } = this.props;
+        const { id, getChannelMembers, getChannelMessages } = this.props;
         if (id !== prevProps.id) {
             this.getCurrentChannel();
-            getChannelMessages(id);
+            getChannelMembers(id).then(() => getChannelMessages(id));
         }
     }
 

@@ -7,6 +7,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Route, Switch } from 'react-router-dom';
 import HomepageContainer from './homepage/homepage_container';
 import NewChannelFormContainer from './channel/new_channel_form_container';
+import BrowseChannelsContainer from './channel/browse_channels';
 
 const App = () => (
     <>
@@ -20,6 +21,8 @@ const App = () => (
         
         <ProtectedRoute exact path='/home' component={HomepageContainer}/>
         <ProtectedRoute exact path='/create-channel' component={NewChannelFormContainer}/>
+        <ProtectedRoute exact path='/add-channel' component={BrowseChannelsContainer}/>
+
 
         <Route exact path={['/', '/login', '/signup']} render={() => 
             <footer>

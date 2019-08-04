@@ -21,7 +21,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     getChannels: userId => dispatch(getChannels(userId)),
-    selectChannel: id => dispatch(selectChannel(id)),
+    selectChannel: channelId => dispatch(selectChannel(channelId)),
 });
 
 class ChannelsIndex extends React.Component {
@@ -50,7 +50,7 @@ class ChannelsIndex extends React.Component {
         const { selected } = this.props;
         return (
             <div className="index-container">
-                <h1>Channels</h1>
+                <Link to='/add-channel'>Channel</Link>
                 <Link className="create-channel" to='/create-channel'>Create Channel</Link>
                 <ul className="channels-index">
                     {this.props.channels.map(channel => 
@@ -60,7 +60,7 @@ class ChannelsIndex extends React.Component {
                             className={(channel.id === selected) ? 'selected-channel' : 'unselected'}
                         />)}
                 </ul>
-                
+
             </div>
         )
     }
