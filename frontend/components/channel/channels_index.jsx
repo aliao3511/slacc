@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
     const subscribedChannels = {};
-    debugger;
+    debugger
     state.entities.users[state.session.id].channel_ids.forEach( id => {
         if (state.entities.channels[id]) {
             subscribedChannels[id] = state.entities.channels[id] 

@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     getChannelMembers: channelId => dispatch(getChannelMembers(channelId)),
     getChannelMessages: channelId => dispatch(getChannelMessages(channelId)),
-    receiveMessage: message => dispatch(receiveMessage(message))
+    receiveMessage: message => dispatch(receiveMessage(message)),
 });
 
 class Channel extends React.Component {

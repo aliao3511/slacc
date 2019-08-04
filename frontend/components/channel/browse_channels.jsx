@@ -1,6 +1,7 @@
 import React from 'react';
-import { addChannel, selectChannel } from '../../actions/channel_actions';
+import { addChannel, selectChannel, getChannels } from '../../actions/channel_actions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => ({
     channels: Object.values(state.entities.channels),
@@ -9,18 +10,21 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     // addChannel: channelId => dispatch(addChannel(channelId)),
     selectChannel: channelId => dispatch(selectChannel(channelId)),
+    getChannels: () => dispatch(getChannels()),
 });
 
 class BrowseChannels extends React.Component {
 
     constructor(props) {
+        debugger
         super(props);
         this.state = { filtered: [] }
         this.handleChange = this.handleChange.bind(this);
+        this.select = this.select.bind(this);
     }
 
     componentDidMount() {
-        this.setState({ filtered: this.props.channels });
+        this.props.getChannels().then(() => this.setState({ filtered: this.props.channels }));
     }
 
     componentWillReceiveProps(nextProps) {
@@ -28,6 +32,7 @@ class BrowseChannels extends React.Component {
     }
 
     handleChange(e) {
+        debugger
         const currentList = this.props.channels;
         let newList = [];
         if (e.target.value !== '') {
@@ -40,15 +45,25 @@ class BrowseChannels extends React.Component {
         }
         this.setState({ filtered: newList });
     }
+
+    select(id) {
+        const { selectChannel } = this.props;
+        return e => {
+            selectChannel(id);
+        }
+    }
     
     render() {
-        const { channels } = this.props;
         return (
             <div className="add-channel">
                 <h1>Browse Channels</h1>
                 <input type="text" placeholder="Search channels" onChange={this.handleChange}/>
                 <ul className="add-channels-index">
-                    {channels.map(channel => <li key={channel.id}>{channel.name}</li>)}
+                    {this.state.filtered.map(channel => 
+                        <li key={channel.id} onClick={this.select(channel.id)}>
+                            <Link to='/home'>{channel.name}</Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         )
