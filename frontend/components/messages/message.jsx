@@ -2,25 +2,43 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => ({
-    username: state.entities.users[ownProps.message.author_id] ? state.entities.users[ownProps.message.author_id].username : '',
+    user: state.entities.users[ownProps.message.author_id],
 })
 
 class Message extends React.Component {
 
     render() {
-        const { message, username } = this.props;
-        const time = (new Date(message.created_at)).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        debugger
-        return (
-            <li>
-                <div className="message">
-                    <p><strong>{username}</strong></p>
-                    <p>{time}</p>
-                    <p>{message.body}</p>
-                    {/* <div ref={bottom} /> */}
-                </div>
-            </li>
-        );
+        const { message, user } = this.props;
+        if (user) {
+            const image_url = user.avatar_url.includes("avatar_1") ? avatar1_url : avatar2_url;
+            debugger
+            const avatar = {
+                backgroundImage: `url(${image_url})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+            };
+            let time = (new Date(message.created_at)).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            if (time[0] === "0") {
+                time = time.slice(1);
+            }
+            debugger
+            return (
+                <li>
+                    <div className="message">
+                        <div className="avatar" style={avatar}></div>
+                        <div className="message-content">
+                            <div className="message-header"> 
+                                <p><strong>{user.username}</strong></p>
+                                <p className="time">{time}</p>
+                            </div>
+                            <p>{message.body}</p>
+                        </div>
+                    </div>
+                </li>
+            );
+        } else {
+            return (<></>);
+        }
     };
 }
 

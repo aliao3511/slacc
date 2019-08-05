@@ -1,9 +1,10 @@
 class Api::UsersController < ApplicationController
 
-    AVATARS = []
+    AVATARS = ['avatar_1.png', 'avatar_2.png']
 
     def create
         @user = User.new(user_params)
+        @user.avatar_url = AVATARS[rand(0..1)]
         if @user.save
             login!(@user)
             render :show

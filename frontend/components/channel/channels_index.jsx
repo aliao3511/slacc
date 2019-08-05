@@ -56,7 +56,7 @@ class ChannelsIndex extends React.Component {
         debugger
         return (
             <div className="index-container">
-                <Link to='/add-channel'>Channels</Link>
+                <Link to='/add-channel' className="tooltip">Channels</Link>
                 <Link className="create-channel" to='/create-channel'></Link>
                 <ul className="channels-index">
                     {this.props.channels.map(channel => 

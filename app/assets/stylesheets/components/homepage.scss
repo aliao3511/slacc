@@ -1,17 +1,16 @@
 .channel-container {
-    overflow: scroll;
     // padding: 20px;
     display: flex;
     flex-direction: column;
     align-content: center;
-    position: relative;
+    // position: relative;
     height: 100vh;
     max-width: 100%;
 }
 
 .channel-header {
     background-color: white;
-    position: sticky;
+    // position: sticky;
     top: 0;
     border-bottom: 0.8px solid rgb(231, 230, 230);
     padding: 10px;
@@ -24,11 +23,17 @@
 
 /* message form */
 
+.message-list {
+    // overflow: scroll;
+    max-height: 754px;
+    // position: fixed;
+}
+
 .message-form {
     background-color: white;
-    position: fixed;
-    bottom: 80px;
-    left: 242px;
+    // position: fixed;
+    // bottom: 148px;
+    // left: 242px;
     width: 82%;
 }
 
@@ -43,8 +48,10 @@
     border: 0.8px solid rgb(168, 168, 168);
     border-radius: 5px;
     background-color: white;
-    position: absolute;
+    // position: absolute;
 }
+
+/* messages */
 
 .messages li {
     background-color: white;
@@ -54,16 +61,43 @@
     background-color: rgb(243, 243, 243);
 }
 
+div.avatar {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 10%;
+    box-sizing: content-box;
+}
+
 div.message {
     padding: 10px;
     font-size: 14px;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 15px;
+}
+
+.message-header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 6px;
+}
+
+.message-header p.time {
+    color: rgb(124, 123, 123);
+    padding-left: 5px;
+    font-size: 12px;
+    padding-top: 3px;
+}
+
+.message-content {
+    margin-left: 8px;
 }
 
 .channel-bottom {
     background-color: white;
-    position: fixed;
+    // position: fixed;
     min-height: 80px;
-    bottom: 0px;
+    bottom: 68px;
     top: auto;
     width: 100%;
 }

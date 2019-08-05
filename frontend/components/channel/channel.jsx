@@ -81,10 +81,6 @@ class Channel extends React.Component {
         );
         return (
             <div className="channel-container">
-                {/* <button className="load-button"
-                    onClick={this.loadChat.bind(this)}>
-                    Load Chat History
-                </button> */}
                 <div className="channel-header">
                     <h1>#{channel.name}</h1>
                     <div className="members"></div>
@@ -92,10 +88,10 @@ class Channel extends React.Component {
                 </div>
                 <div className="message-list">
                     <ul className='messages'>
-                        {messageList}
+                        {/* {messageList} */}
                     </ul>
-                </div>
                 <div ref={this.bottom}></div>
+                </div>
                 <div className='channel-bottom'>
                     {App.cable.subscriptions.subscriptions.length > 0 && <MessageForm />}
                 </div>

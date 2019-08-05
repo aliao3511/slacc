@@ -58,4 +58,14 @@ footer a.credits:hover {
 
 .no-scroll {
     overflow: hidden;
+    overflow-y: hidden;
+    margin-bottom: 0;
+    max-height: 754px;
+    position: relative;
+}
+
+/* fix scrolling */
+
+.home-container {
+    max-height: 754px;
 }
