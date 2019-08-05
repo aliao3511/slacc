@@ -19,6 +19,7 @@
 
 .channel-header h1 {
     font-size: 20px;
+    padding-bottom: 1px;
 }
 
 .member-info {
@@ -26,16 +27,16 @@
     justify-content: flex-start;
     color: rgba(29,28,29,.7);
     font-size: 15px;
-    width: 26px;
+    width: 28px;
 }
 
 .member-info a {
     padding-top: 2px;
 }
 
-.member-info:hover {
-    color: rgb(0, 110, 184);
-}
+div.member-info:hover > div.member-icon { background-image: image-url('member_hover.png'); }
+    
+div.member-info:hover > a { color: rgb(0, 110, 184); }
 
 div.member-icon {
     background-image: image-url('member.png');
@@ -54,7 +55,7 @@ div.member-icon:hover {
 /* message form */
 
 .message-list {
-    height: 681px;
+    height: 679px;
     position: fixed;
     bottom: 76px;
     overflow: scroll;
@@ -63,7 +64,7 @@ div.member-icon:hover {
 .message-form {
     background-color: white;
     position: fixed;
-    left: 242px;
+    left: 239px;
     width: 82%;
 }
 
@@ -73,13 +74,14 @@ div.member-icon:hover {
     font-size: 16px;
     width: 100%;
     height: 44px;
+    max-height: 100px;
     top: auto;
-    resize: vertical;
     border: 0.8px solid rgb(168, 168, 168);
     border-radius: 5px;
     background-color: white;
     position: absolute;
     padding-left: 20px;
+    resize: vertical;
 }
 
 /* messages */
@@ -94,7 +96,7 @@ div.member-icon:hover {
 }
 
 div.avatar {
-    min-width: 40px;
+    width: 40px;
     height: 40px;
     border-radius: 10%;
     box-sizing: content-box;
@@ -129,7 +131,7 @@ div.message {
 .channel-bottom {
     background-color: white;
     position: fixed;
-    min-height: 8px;
+    min-height: 9px;
     bottom: 68px;
     top: auto;
     width: 100%;

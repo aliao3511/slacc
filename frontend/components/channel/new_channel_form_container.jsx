@@ -45,7 +45,9 @@ class NewChannelForm extends React.Component {
             updateCurrentUser(currentUser.id)
         })
         .then(() => {
-            this.props.history.push(`/home/channels/${newChannelId}`)
+            debugger
+            // this.props.history.push(`/home/channels/${newChannelId}`)
+            this.props.history.push(`/home/channels/1`)
         });
     }
 

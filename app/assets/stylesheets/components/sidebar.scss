@@ -22,6 +22,65 @@
     padding: 10px 10px;
 }
 
+/* workspace/user */
+
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-dropdown > p:hover {
+    color: white;
+}
+
+.user-dropdown-content- {
+    display: none;
+}
+
+.user-dropdown-content-visible {
+    display: block;
+    position: absolute;
+    top: 23px;
+    left: -2px;
+    background-color: white;
+    border-radius: 3%;
+    border: 0.5px solid rgb(207, 207, 207);
+    min-width: 275px;
+    min-height: 137px;
+    z-index: 5;
+}
+
+.dropdown-info {
+    display: flex;
+    color: black;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 20px 20px;
+    padding-bottom: 20px;
+}
+
+.dropdown-info strong {
+    padding-top: 6px;
+}
+
+.dropdown-buttons {
+    width: 100%;
+    padding-left: 105px;
+    padding-top: 5px;
+    padding-bottom: 5px; 
+    color: black;
+    font-size: 16px;
+}
+
+.dropdown-buttons:hover {
+    background-color: #1164A3;
+    color: white;
+}
+
+// div.user-dropdown: > div.user-dropdown-content {
+//     display: block;
+// }
+
 /* channel-index */
 
 .selected-channel {
@@ -34,13 +93,26 @@
     font-weight: 100;
 }
 
-.channels-index {
-    padding-top: 4px;
+div.channels-index {
+    padding-top: 5px;
     position: relative;
 }
 
+ul.channels-index {
+    max-height: 200px;
+    overflow: scroll;
+    min-height: 209px;
+    max-height: 200px;
+    margin-top: 5px;
+}
+
+
 .channels-index li.unselected:hover {
     background-color: #350e36;
+}
+
+div.index-container {
+    margin-bottom: 20px;
 }
 
 .create-channel {

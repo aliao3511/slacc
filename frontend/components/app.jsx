@@ -9,15 +9,16 @@ import HomepageContainer from './homepage/homepage_container';
 import NewChannelFormContainer from './channel/new_channel_form_container';
 import BrowseChannelsContainer from './channel/browse_channels';
 
-const App = () => (
-    <>
+const App = () => {
+    debugger
+    return (<>
         <header>
             <Route exact path={['/', '/login', '/signup']} component={HeaderContainer}/>
         </header>
         
-        <Route exact path='/' component={SplashContainer}/>
         <AuthRoute exact path='/login' component={LoginFormContainer}/>
         <AuthRoute exact path='/signup' component={SignupFormContainer}/>
+        <Route exact path='/' component={SplashContainer}/>
         
         <ProtectedRoute path={['/home/channels/:channelId', '/preview/:channelId']} component={HomepageContainer}/>
         <ProtectedRoute exact path='/create-channel' component={NewChannelFormContainer}/>
@@ -30,7 +31,7 @@ const App = () => (
             </footer>
         } />
         
-    </>
-);
+    </>)
+};
 
 export default App;
