@@ -75,7 +75,7 @@ class BrowseChannels extends React.Component {
             if (currentUser.channel_ids.includes(id)) {
                 this.props.history.push('/home');
             } else {
-                this.props.history.push('/preview');
+                this.props.history.push(`/preview/${id}`);
             }
         }
     }

@@ -43,7 +43,7 @@ class ChannelsIndex extends React.Component {
         const { selectChannel } = this.props;
         return e => {
             selectChannel(id);
-            if (this.props.location.pathname === '/preview') {
+            if (this.props.location.pathname === `/preview/${id}`) {
                 this.props.history.push('/home');
             }
         }

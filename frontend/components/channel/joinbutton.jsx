@@ -9,19 +9,22 @@ const mapStateToProps = (state, ownProps) => ({
 class JoinButton extends React.Component {
 
     constructor(props) {
+        debugger
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
+        debugger
         this.props.joinChannel()
-        .then(() => this.props.updateUser())
         .then(() => this.props.history.push('/home'));
+        // .then(() => this.props.updateUser())
     }
 
     render() {
         const { channel, owner } = this.props;
         const time = (new Date(channel.created_at)).toLocaleDateString([],{ year: 'numeric', month: 'long', day: 'numeric'});
+        debugger
         if (owner) {
             return (
                 <div className="preview-footer">

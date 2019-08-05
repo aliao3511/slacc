@@ -119,7 +119,7 @@ class Channel extends React.Component {
                 <div className='channel-bottom'>
                     {(this.props.location.pathname === '/home' && App.cable.subscriptions.subscriptions.length > 0) 
                         && <MessageForm />}
-                    {(this.props.location.pathname === '/preview' && App.cable.subscriptions.subscriptions.length > 0) 
+                    {(this.props.location.pathname === `/preview/${channel.id}` && App.cable.subscriptions.subscriptions.length > 0) 
                         && <JoinButton channel={channel} 
                                     joinChannel={this.joinChannel(channel.id)}
                                     updateUser={this.updateUser()}/>}
