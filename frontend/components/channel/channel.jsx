@@ -3,12 +3,16 @@ import MessageForm from './message_form';
 import MessageContainer from '../messages/message';
 import { connect } from 'react-redux';
 import { getChannelMessages, receiveMessage } from '../../actions/message_actions';
-import { getChannelMembers } from '../../actions/session_actions';
+import { getChannelMembers, updateCurrentUser } from '../../actions/session_actions';
+import { addChannel } from '../../actions/channel_actions';
+import { withRouter } from 'react-router-dom';
+import JoinButton from './joinbutton';
 
 const mapStateToProps = state => ({
     id: state.ui.selected.id,
     channel: state.entities.channels[state.ui.selected.id],
     messages: Object.values(state.entities.messages),
+    currentUser: state.entities.users[state.session.id],
 })
 
 
@@ -16,6 +20,8 @@ const mapDispatchToProps = dispatch => ({
     getChannelMembers: channelId => dispatch(getChannelMembers(channelId)),
     getChannelMessages: channelId => dispatch(getChannelMessages(channelId)),
     receiveMessage: message => dispatch(receiveMessage(message)),
+    addChannel: channelId => dispatch(addChannel(channelId)),
+    updateCurrentUser: id => dispatch(updateCurrentUser(id)),
 });
 
 class Channel extends React.Component {
@@ -24,6 +30,8 @@ class Channel extends React.Component {
         super(props);
         this.bottom = React.createRef();
         this.getCurrentChannel = this.getCurrentChannel.bind(this);
+        this.joinChannel = this.joinChannel.bind(this);
+        this.updateUser = this.updateUser.bind(this);
     }
 
     getCurrentChannel() {
@@ -72,13 +80,29 @@ class Channel extends React.Component {
         }
     }
 
+    joinChannel(id) {
+        const { addChannel } = this.props;
+        return e => {
+            return addChannel(id);
+        }
+    }
+
+    updateUser() {
+        const { currentUser, updateCurrentUser } = this.props;
+        return e => {
+            return updateCurrentUser(currentUser.id);
+        };
+    }
+
     render() {
-        const { messages, channel } = this.props;
+        debugger
+        const { messages, channel, updateCurrentUser } = this.props;
         const messageList = messages.map(message => 
             <MessageContainer key={message.id}
                     message={message}
                     />
         );
+        debugger
         return (
             <div className="channel-container">
                 <div className="channel-header">
@@ -93,7 +117,12 @@ class Channel extends React.Component {
                 <div ref={this.bottom}></div>
                 </div>
                 <div className='channel-bottom'>
-                    {App.cable.subscriptions.subscriptions.length > 0 && <MessageForm />}
+                    {(this.props.location.pathname === '/home' && App.cable.subscriptions.subscriptions.length > 0) 
+                        && <MessageForm />}
+                    {(this.props.location.pathname === '/preview' && App.cable.subscriptions.subscriptions.length > 0) 
+                        && <JoinButton channel={channel} 
+                                    joinChannel={this.joinChannel(channel.id)}
+                                    updateUser={this.updateUser()}/>}
                 </div>
             </div>
         );
@@ -101,5 +130,4 @@ class Channel extends React.Component {
 
 }
 
-// export default Channel;
-export default connect(mapStateToProps, mapDispatchToProps)(Channel);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Channel));

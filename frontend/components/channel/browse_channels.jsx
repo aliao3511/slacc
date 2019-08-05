@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => ({
+    currentUser: state.entities.users[state.session.id],
     channels: Object.values(state.entities.channels),
 });
 
@@ -16,23 +17,45 @@ const mapDispatchToProps = dispatch => ({
 class BrowseChannels extends React.Component {
 
     constructor(props) {
-        debugger
         super(props);
-        this.state = { filtered: [] }
+        this.state = { filtered: [], subscribed: [] }
         this.handleChange = this.handleChange.bind(this);
         this.select = this.select.bind(this);
+        this.handleKeypress = this.handleKeypress.bind(this);
     }
 
     componentDidMount() {
-        this.props.getChannels().then(() => this.setState({ filtered: this.props.channels }));
+        const { currentUser, getChannels } = this.props;
+        this.props.getChannels().then(() => {
+            const channels = [];
+            const subscribedChannels = [];
+            debugger
+            this.props.channels.forEach(channel => {
+                if (!currentUser.channel_ids.includes(channel.id)) {
+                    channels.push(channel);
+                } else {
+                    subscribedChannels.push(channel);
+                }
+            });
+            this.setState({ filtered: channels, subscribed: subscribedChannels })
+        });
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ filtered: nextProps.channels });
+        const { currentUser } = this.props;
+        const channels = [];
+        const subscribedChannels = [];
+        nextProps.channels.forEach(channel => {
+            if (!currentUser.channel_ids.includes(channel.id)) {
+                channels.push(channel);
+            } else {
+                subscribedChannels.push(channel);
+            }
+        });
+        this.setState({ filtered: channels, subscribed: subscribedChannels });
     }
 
     handleChange(e) {
-        debugger
         const currentList = this.props.channels;
         let newList = [];
         if (e.target.value !== '') {
@@ -47,24 +70,55 @@ class BrowseChannels extends React.Component {
     }
 
     select(id) {
-        const { selectChannel } = this.props;
+        debugger
+        const { currentUser, selectChannel } = this.props;
         return e => {
-            selectChannel(id);
+            selectChannel(id)
+            if (currentUser.channel_ids.includes(id)) {
+                this.props.history.push('/home');
+            } else {
+                this.props.history.push('/preview');
+            }
+        }
+    }
+
+    handleKeypress(e) {
+        if (e.keyCode === 27) {
+            this.props.history.push("/home");
         }
     }
     
     render() {
         return (
-            <div className="add-channel">
-                <h1>Browse Channels</h1>
-                <input type="text" placeholder="Search channels" onChange={this.handleChange}/>
-                <ul className="add-channels-index">
-                    {this.state.filtered.map(channel => 
-                        <li key={channel.id} onClick={this.select(channel.id)}>
-                            <Link to='/home'>{channel.name}</Link>
-                        </li>
-                    )}
-                </ul>
+            <div className="add-channel-container" tabIndex="1" onKeyDown={this.handleKeypress}>
+                <Link to="/home" className="escape"></Link>
+                <div className="add-channel">
+                    <h1>Browse Channels</h1>
+                    <input type="text" placeholder="Search channels" onChange={this.handleChange}/>
+                    <div className="channels-list">
+                        <ul className="add-channels-index">
+                            {this.state.filtered.map(channel => 
+                                <li key={channel.id} onClick={this.select(channel.id)}>
+                                        <div className="channel-item">
+                                            <strong>#{channel.name}</strong>
+                                            <p>Created by {channel.owner_id}</p>
+                                        </div>
+                                </li>
+                            )}
+                        </ul>
+                        <p className="subscribed-channels-label">Channels you belong to</p>
+                        <ul className="subscribed-channels">
+                            {this.state.subscribed.map(channel =>
+                                <li key={channel.id} onClick={this.select(channel.id)}>
+                                    <div className="channel-item">
+                                        <strong>#{channel.name}</strong>
+                                        <p>Created by {channel.owner_id}</p>
+                                    </div>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
+                </div>
             </div>
         )
     }
