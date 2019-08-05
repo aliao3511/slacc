@@ -88,7 +88,7 @@ class Channel extends React.Component {
                 </div>
                 <div className="message-list">
                     <ul className='messages'>
-                        {/* {messageList} */}
+                        {messageList}
                     </ul>
                 <div ref={this.bottom}></div>
                 </div>

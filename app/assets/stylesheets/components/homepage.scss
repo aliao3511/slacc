@@ -1,20 +1,20 @@
 .channel-container {
-    // padding: 20px;
     display: flex;
     flex-direction: column;
     align-content: center;
-    // position: relative;
+    position: relative;
     height: 100vh;
     max-width: 100%;
 }
 
 .channel-header {
     background-color: white;
-    // position: sticky;
+    position: sticky;
     top: 0;
     border-bottom: 0.8px solid rgb(231, 230, 230);
     padding: 10px;
     padding-left: 20px;
+    z-index: 2;
 }
 
 .channel-header h1 {
@@ -24,14 +24,15 @@
 /* message form */
 
 .message-list {
-    // overflow: scroll;
-    max-height: 754px;
-    // position: fixed;
+    overflow: scroll;
+    max-height: 687px;
+    position: fixed;
+    bottom: 76px;
 }
 
 .message-form {
     background-color: white;
-    // position: fixed;
+    position: fixed;
     // bottom: 148px;
     // left: 242px;
     width: 82%;
@@ -48,7 +49,7 @@
     border: 0.8px solid rgb(168, 168, 168);
     border-radius: 5px;
     background-color: white;
-    // position: absolute;
+    position: absolute;
 }
 
 /* messages */
@@ -74,6 +75,7 @@ div.message {
     display: flex;
     justify-content: flex-start;
     font-size: 15px;
+    min-height: 40px;
 }
 
 .message-header {
@@ -95,8 +97,8 @@ div.message {
 
 .channel-bottom {
     background-color: white;
-    // position: fixed;
-    min-height: 80px;
+    position: fixed;
+    min-height: 8px;
     bottom: 68px;
     top: auto;
     width: 100%;
