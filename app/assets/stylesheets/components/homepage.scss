@@ -24,17 +24,16 @@
 /* message form */
 
 .message-list {
-    overflow: scroll;
-    max-height: 687px;
+    height: 687px;
     position: fixed;
     bottom: 76px;
+    overflow: scroll;
 }
 
 .message-form {
     background-color: white;
     position: fixed;
-    // bottom: 148px;
-    // left: 242px;
+    left: 242px;
     width: 82%;
 }
 
