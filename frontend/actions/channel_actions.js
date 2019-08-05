@@ -59,7 +59,7 @@ export const createChannel = channel => dispatch => {
     return ChannelAPIUtil.createChannel(channel)
         .then(channel => {
             dispatch(receiveChannel(channel));
-            // dispatch(selectChannel(channel.id));
+            dispatch(selectChannel(channel.id));
         },
             errors => dispatch(receiveErrors(errors.responseJSON)));
 };

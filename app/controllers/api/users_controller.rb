@@ -14,12 +14,12 @@ class Api::UsersController < ApplicationController
     end
 
     def index
-        @users = Channel.find(params[:channel_id]).members.includes(:messages)
+        @users = Channel.find(params[:channel_id]).members
         render :index
     end
 
     def show
-        @user = User.find(params[:id]).includes(:channel_ids)
+        @user = User.where(id: params[:id]).first
         render :show
     end
 

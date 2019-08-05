@@ -18,7 +18,7 @@ class Splash extends React.Component {
                 <div className="splash-byline">
                     <h1>Welcome back, {currentUser.username}</h1>
                 </div>
-                <Link to='/home/1'
+                <Link to='/home/channels/1'
                     className="button">
                     Launch Slacc
                 </Link>

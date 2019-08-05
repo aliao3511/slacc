@@ -18,7 +18,7 @@
 }
 
 .channel-header h1 {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .member-info {
@@ -54,7 +54,7 @@ div.member-icon:hover {
 /* message form */
 
 .message-list {
-    height: 683px;
+    height: 681px;
     position: fixed;
     bottom: 76px;
     overflow: scroll;
@@ -79,6 +79,7 @@ div.member-icon:hover {
     border-radius: 5px;
     background-color: white;
     position: absolute;
+    padding-left: 20px;
 }
 
 /* messages */

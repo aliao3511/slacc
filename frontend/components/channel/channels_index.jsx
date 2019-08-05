@@ -6,27 +6,22 @@ import { Link, withRouter } from 'react-router-dom';
 import { merge } from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
-    debugger
     let subscribedChannels = {};
     // state.entities.users[state.session.id].channel_ids.forEach( id => {
     state.entities.users[state.session.id].channel_ids.forEach( id => {
-        debugger
         if (state.entities.channels[id]) {
-            debugger
             subscribedChannels[id] = state.entities.channels[id];
         }
     });
     // if (state.ui.selected.id) {
     if (ownProps.location.pathname.includes('preview')) {
         // const previewedChannels = { [state.ui.selected.id]: state.entities.channels[state.ui.selected.id]};
-        debugger
         let previewedChannels = {};
         if (state.entities.channels[ownProps.match.params.channelId]) {
             previewedChannels = { [ownProps.match.params.channelId]: state.entities.channels[ownProps.match.params.channelId]};
         }
         subscribedChannels = merge(previewedChannels, subscribedChannels);
     }
-    debugger
     return {
         currentUser: state.entities.users[state.session.id],
         channels: Object.values(subscribedChannels),
@@ -56,7 +51,7 @@ class ChannelsIndex extends React.Component {
         return e => {
             // selectChannel(id);
             // if (this.props.location.pathname.includes('preview')) {
-                this.props.history.push(`/home/${id}`);
+                this.props.history.push(`/home/channels/${id}`);
             // } else {
                 // this.props.history.push(`/home/${id}`)
             // }
@@ -65,11 +60,11 @@ class ChannelsIndex extends React.Component {
 
     render() {
         // const { selected } = this.props;
-        debugger
+        const prevPath = this.props.location.pathname;
         return (
             <div className="index-container">
                 <Link to='/add-channel' className="tooltip">Channels</Link>
-                <Link className="create-channel" to='/create-channel'></Link>
+                <Link className="create-channel" to={{ pathname: '/create-channel', state: { prevPath: prevPath}}}></Link>
                 <ul className="channels-index">
                     {this.props.channels.map(channel => 
                         <ChannelsIndexItem key={channel.id} 

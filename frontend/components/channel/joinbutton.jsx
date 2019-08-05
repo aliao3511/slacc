@@ -2,33 +2,26 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state, ownProps) => {
-    debugger
-    return {
-    owner: state.entities.users[ownProps.channel.owner_id],
-
-    }
-};
+const mapStateToProps = (state, ownProps) => ({
+        owner: state.entities.users[ownProps.channel.owner_id],
+});
 
 class JoinButton extends React.Component {
 
     constructor(props) {
-        debugger
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
-        debugger
+        const { updateUser, channel } = this.props;
         this.props.joinChannel()
-        // .then(() => this.props.history.push('/home/'));
-        // .then(() => this.props.updateUser())
+        .then(() => this.props.updateUser())
     }
 
     render() {
         const { channel, owner } = this.props;
         const time = (new Date(channel.created_at)).toLocaleDateString([],{ year: 'numeric', month: 'long', day: 'numeric'});
-        debugger
         if (owner) {
             return (
                 <div className="preview-footer">

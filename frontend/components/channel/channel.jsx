@@ -40,7 +40,6 @@ class Channel extends React.Component {
             App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
         }
         // const { receiveMessage } = this.props;
-        debugger
         const { receiveMessage, channel } = this.props;
         App.cable.subscriptions.create(
             // { channel: 'ChatChannel', id: this.props.id },
@@ -65,9 +64,10 @@ class Channel extends React.Component {
     componentDidMount() {
         // const { id, getChannelMembers, getChannelMessages } = this.props;
         const { channel, getChannelMembers, getChannelMessages } = this.props;
+        const channelId = this.props.match.params.channelId;
         this.getCurrentChannel();
         // getChannelMembers(id).then(() => getChannelMessages(id));
-        getChannelMembers(channel.id).then(() => getChannelMessages(channel.id));
+        getChannelMembers(channelId).then(() => getChannelMessages(channelId));
     }
 
     // loadChat(e) {
@@ -77,21 +77,26 @@ class Channel extends React.Component {
     // }
 
     componentDidUpdate(prevProps) {
-        this.bottom.current.scrollIntoView();
+        if (this.bottom.current) {
+            this.bottom.current.scrollIntoView();
+        }
         // const { id, getChannelMembers, getChannelMessages } = this.props;
         const { channel, getChannelMembers, getChannelMessages } = this.props;
         // if (id !== prevProps.id) {
-        if (channel.id !== prevProps.channel.id) {
+        const channelId = this.props.match.params.channelId;
+        debugger
+        if (!prevProps.channel || channelId != prevProps.channel.id) {
+            debugger
             this.getCurrentChannel();
             // getChannelMembers(id).then(() => getChannelMessages(id));
-            getChannelMembers(channel.id).then(() => getChannelMessages(channel.id));
+            getChannelMembers(channelId).then(() => getChannelMessages(channel.id));
         }
     }
 
     joinChannel(id) {
         const { addChannel } = this.props;
         return e => {
-            return addChannel(id).then(() => this.props.history.push(`/home/${id}`));
+            return addChannel(id).then(() => this.props.history.push(`/home/channels/${id}`));
         }
     }
 
@@ -109,7 +114,6 @@ class Channel extends React.Component {
                     message={message}
                     />
         );
-        debugger
         if (channel) {
             return (
                 <div className="channel-container">
@@ -128,8 +132,8 @@ class Channel extends React.Component {
                     </div>
                     <div className='channel-bottom'>
                         {(this.props.location.pathname.includes('/home') && App.cable.subscriptions.subscriptions.length > 0) 
-                            && <MessageForm />}
-                        {(this.props.location.pathname === `/preview/${channel.id}` && App.cable.subscriptions.subscriptions.length > 0) 
+                            && <MessageForm channel={channel}/>}
+                        {(this.props.location.pathname.includes('/preview') && App.cable.subscriptions.subscriptions.length > 0) 
                             && <JoinButton channel={channel} 
                                         joinChannel={this.joinChannel(channel.id)}
                                         updateUser={this.updateUser()}/>}

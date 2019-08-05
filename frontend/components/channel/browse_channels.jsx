@@ -73,7 +73,7 @@ class BrowseChannels extends React.Component {
         return e => {
             // selectChannel(id)
             if (currentUser.channel_ids.includes(id)) {
-                this.props.history.push(`/home/${id}`);
+                this.props.history.push(`/home/channels/${id}`);
             } else {
                 this.props.history.push(`/preview/${id}`);
             }
@@ -82,14 +82,14 @@ class BrowseChannels extends React.Component {
 
     handleKeypress(e) {
         if (e.keyCode === 27) {
-            this.props.history.push("/home/1");
+            this.props.history.push("/home/channels/1");
         }
     }
     
     render() {
         return (
             <div className="add-channel-container" tabIndex="1" onKeyDown={this.handleKeypress}>
-                <Link to="/home/1" className="escape"></Link>
+                <Link to="/home/channels/1" className="escape"></Link>
                 <div className="add-channel">
                     <h1>Browse Channels</h1>
                     <input type="text" placeholder="Search channels" onChange={this.handleChange}/>

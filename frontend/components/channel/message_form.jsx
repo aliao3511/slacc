@@ -23,13 +23,14 @@ class MessageForm extends React.Component {
     }
 
     render() {
+        const { channel } = this.props;
         return (
             <div className='message-form'>
                 <form>
                     <textarea
                         value={this.state.body}
                         onChange={this.update('body')}
-                        placeholder='Type message here'
+                        placeholder={`Message #${channel.name}`}
                         onKeyDown={this.handleSubmit.bind(this)}
                     />
                 </form>

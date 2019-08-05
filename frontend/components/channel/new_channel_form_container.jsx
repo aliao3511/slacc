@@ -2,10 +2,11 @@ import React from 'react';
 import { createChannel } from '../../actions/channel_actions';
 import { updateCurrentUser } from '../../actions/session_actions';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => ({
     currentUser: state.entities.users[state.session.id],
+    newChannelId: state.ui.selected.id,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,6 +25,7 @@ class NewChannelForm extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleKeypress = this.handleKeypress.bind(this);
+        debugger
     }
 
     handleChange(field) {
@@ -36,25 +38,41 @@ class NewChannelForm extends React.Component {
         if (e) {
             e.preventDefault();
         }
-        const { createChannel, updateCurrentUser, currentUser } = this.props;
+        const { createChannel, updateCurrentUser, currentUser, newChannelId } = this.props;
         const channel = Object.assign({}, this.state);
         this.props.createChannel(channel)
-            .then(() => updateCurrentUser(currentUser.id))
-            // .then(() => this.props.history.push('/home'));
-            .then(() => this.props.history.push('/home/1'));
+        .then(() => {
+            updateCurrentUser(currentUser.id)
+        })
+        .then(() => {
+            this.props.history.push(`/home/channels/${newChannelId}`)
+        });
     }
 
     handleKeypress(e) {
         if (e.keyCode === 27) {
-            this.props.history.push(`/home/1`);
+            if (this.props.location.state.prevPath) {
+                this.props.history.push(this.props.location.state.prevPath);
+            } else {
+                this.props.history.push('/home/channels/1');
+            }
         }
     }
 
+    // componentWillReceiveProps(nextProps) {
+    //     debugger
+    //     if (nextProps.location !== this.props.location) {
+    //         this.setState({ prevPath: this.props.location});
+    //     }
+    // }
+
     render() {
+        const { prevPath } = this.props.location.state;
+        const home = this.props.location.state.prevPath || '/home/channels/1';
         return (
             <div className="new-channel-form-container" tabIndex="1" onKeyDown={this.handleKeypress}>
                 <div className="new-channel-form">
-                    <Link to="/home/1" className="escape"></Link>
+                    <Link to={home} className="escape"></Link>
                     <div className="channel-form-header">
                         <h1>Create a channel</h1>
                         <p>Channels are where your members communicate. They're best when organized around a topic -#marketing, for example.</p>
@@ -81,7 +99,7 @@ class NewChannelForm extends React.Component {
                             </label> */}
                         </div>
                         <div className="buttons">
-                            <Link to='/home/1' className="cancel">Cancel</Link>
+                            <Link to={home} className="cancel">Cancel</Link>
                             <input type="submit" value="Create" className="create"/>
                         </div>
                     </form>
@@ -92,4 +110,4 @@ class NewChannelForm extends React.Component {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewChannelForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewChannelForm));

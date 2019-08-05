@@ -34,7 +34,12 @@ message4 = Message.create!(body: 'RANCH SUCKS', author: demo_user, messageable: 
 channel_member2 = ChannelMember.create!(channel: channel1, user: user2)
 channel_member3 = ChannelMember.create!(channel: channel1, user: user3)
 channel_member4 = ChannelMember.create!(channel: channel2, user: demo_user)
-channel_member4 = ChannelMember.create!(channel: channel2, user: user3)
-channel_member4 = ChannelMember.create!(channel: channel3, user: user2)
-channel_member4 = ChannelMember.create!(channel: channel4, user: demo_user)
+channel_member5 = ChannelMember.create!(channel: channel2, user: user3)
+channel_member6 = ChannelMember.create!(channel: channel3, user: user2)
+channel_member7 = ChannelMember.create!(channel: channel4, user: demo_user)
+channel_member8 = ChannelMember.create!(channel: channel3, user: user3)
+channel_member9 = ChannelMember.create!(channel: channel1, user: demo_user)
+channel_member10 = ChannelMember.create!(channel: channel2, user: user2)
+channel_member11 = ChannelMember.create!(channel: channel4, user: user3)
+
 
