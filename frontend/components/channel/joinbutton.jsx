@@ -2,9 +2,13 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+    debugger
+    return {
     owner: state.entities.users[ownProps.channel.owner_id],
-});
+
+    }
+};
 
 class JoinButton extends React.Component {
 
@@ -17,7 +21,7 @@ class JoinButton extends React.Component {
     handleClick() {
         debugger
         this.props.joinChannel()
-        .then(() => this.props.history.push('/home'));
+        // .then(() => this.props.history.push('/home/'));
         // .then(() => this.props.updateUser())
     }
 

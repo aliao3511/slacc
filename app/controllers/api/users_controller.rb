@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
     end
 
     def index
-        @users = Channel.find(params[:channel_id]).members
+        @users = Channel.find(params[:channel_id]).members.includes(:messages)
         render :index
     end
 

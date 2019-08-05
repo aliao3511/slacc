@@ -8,9 +8,10 @@ import { addChannel } from '../../actions/channel_actions';
 import { withRouter } from 'react-router-dom';
 import JoinButton from './joinbutton';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
     id: state.ui.selected.id,
-    channel: state.entities.channels[state.ui.selected.id],
+    // channel: state.entities.channels[state.ui.selected.id],
+    channel: state.entities.channels[ownProps.match.params.channelId],
     messages: Object.values(state.entities.messages),
     currentUser: state.entities.users[state.session.id],
 })
@@ -38,9 +39,12 @@ class Channel extends React.Component {
         if (App.cable.subscriptions.subscriptions.length > 0) {
             App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
         }
-        const { receiveMessage } = this.props;
+        // const { receiveMessage } = this.props;
+        debugger
+        const { receiveMessage, channel } = this.props;
         App.cable.subscriptions.create(
-            { channel: 'ChatChannel', id: this.props.id },
+            // { channel: 'ChatChannel', id: this.props.id },
+            { channel: 'ChatChannel', id: this.props.match.params.channelId },
             {
                 received: data => {
                     switch (data.type) {
@@ -59,9 +63,11 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-        const { id, getChannelMembers, getChannelMessages } = this.props;
+        // const { id, getChannelMembers, getChannelMessages } = this.props;
+        const { channel, getChannelMembers, getChannelMessages } = this.props;
         this.getCurrentChannel();
-        getChannelMembers(id).then(() => getChannelMessages(id));
+        // getChannelMembers(id).then(() => getChannelMessages(id));
+        getChannelMembers(channel.id).then(() => getChannelMessages(channel.id));
     }
 
     // loadChat(e) {
@@ -72,17 +78,20 @@ class Channel extends React.Component {
 
     componentDidUpdate(prevProps) {
         this.bottom.current.scrollIntoView();
-        const { id, getChannelMembers, getChannelMessages } = this.props;
-        if (id !== prevProps.id) {
+        // const { id, getChannelMembers, getChannelMessages } = this.props;
+        const { channel, getChannelMembers, getChannelMessages } = this.props;
+        // if (id !== prevProps.id) {
+        if (channel.id !== prevProps.channel.id) {
             this.getCurrentChannel();
-            getChannelMembers(id).then(() => getChannelMessages(id));
+            // getChannelMembers(id).then(() => getChannelMessages(id));
+            getChannelMembers(channel.id).then(() => getChannelMessages(channel.id));
         }
     }
 
     joinChannel(id) {
         const { addChannel } = this.props;
         return e => {
-            return addChannel(id);
+            return addChannel(id).then(() => this.props.history.push(`/home/${id}`));
         }
     }
 
@@ -101,31 +110,35 @@ class Channel extends React.Component {
                     />
         );
         debugger
-        return (
-            <div className="channel-container">
-                <div className="channel-header">
-                    <h1>#{channel.name}</h1>
-                    <div className="member-info">
-                        <div className="member-icon"></div>
-                        <a>{channel.member_ids.length}</a>
+        if (channel) {
+            return (
+                <div className="channel-container">
+                    <div className="channel-header">
+                        <h1>#{channel.name}</h1>
+                        <div className="member-info">
+                            <div className="member-icon"></div>
+                            <a>{channel.member_ids.length}</a>
+                        </div>
+                    </div>
+                    <div className="message-list">
+                        <ul className='messages'>
+                            {messageList}
+                        </ul>
+                    <div ref={this.bottom}></div>
+                    </div>
+                    <div className='channel-bottom'>
+                        {(this.props.location.pathname.includes('/home') && App.cable.subscriptions.subscriptions.length > 0) 
+                            && <MessageForm />}
+                        {(this.props.location.pathname === `/preview/${channel.id}` && App.cable.subscriptions.subscriptions.length > 0) 
+                            && <JoinButton channel={channel} 
+                                        joinChannel={this.joinChannel(channel.id)}
+                                        updateUser={this.updateUser()}/>}
                     </div>
                 </div>
-                <div className="message-list">
-                    <ul className='messages'>
-                        {messageList}
-                    </ul>
-                <div ref={this.bottom}></div>
-                </div>
-                <div className='channel-bottom'>
-                    {(this.props.location.pathname === '/home' && App.cable.subscriptions.subscriptions.length > 0) 
-                        && <MessageForm />}
-                    {(this.props.location.pathname === `/preview/${channel.id}` && App.cable.subscriptions.subscriptions.length > 0) 
-                        && <JoinButton channel={channel} 
-                                    joinChannel={this.joinChannel(channel.id)}
-                                    updateUser={this.updateUser()}/>}
-                </div>
-            </div>
-        );
+            );
+        } else {
+            return <></>;
+        }
     }
 
 }

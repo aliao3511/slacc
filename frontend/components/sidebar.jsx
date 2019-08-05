@@ -13,7 +13,7 @@ class Sidebar extends React.Component {
             <div className="sidebar">
                 <div className="header">
                     <h1>WORKSPACE</h1>
-                    <p>{currentUser.username}</p>
+                    <p>{currentUser ? currentUser.username : ''}</p>
                 </div>
                 <div className="channels-index">
                     <ChannelsIndexContainer/>

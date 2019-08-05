@@ -11,7 +11,8 @@ class Homepage extends React.Component {
         return (
             <div className="home-container">
                 <Sidebar />
-                {this.props.selected && <ChannelContainer />}
+                {/* {this.props.selected && <ChannelContainer />} */}
+                {this.props.channels.length > 0 && <ChannelContainer />}
             </div>
         );
     }

@@ -6,6 +6,7 @@ import Root from './components/root';
 import { getChannels, getChannel, createChannel, destroyChannel } from './actions/channel_actions';
 // import { getChannelMessages } from './actions/message_actions';
 // import { getChannelMembers } from './actions/session_actions';
+// import { getChannelMembers } from './actions/session_actions';
 //testing
 
 document.addEventListener('DOMContentLoaded', () => {

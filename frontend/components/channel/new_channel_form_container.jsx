@@ -40,12 +40,13 @@ class NewChannelForm extends React.Component {
         const channel = Object.assign({}, this.state);
         this.props.createChannel(channel)
             .then(() => updateCurrentUser(currentUser.id))
-            .then(() => this.props.history.push('/home'));
+            // .then(() => this.props.history.push('/home'));
+            .then(() => this.props.history.push('/home/1'));
     }
 
     handleKeypress(e) {
         if (e.keyCode === 27) {
-            this.props.history.push("/home");
+            this.props.history.push(`/home/1`);
         }
     }
 
@@ -53,7 +54,7 @@ class NewChannelForm extends React.Component {
         return (
             <div className="new-channel-form-container" tabIndex="1" onKeyDown={this.handleKeypress}>
                 <div className="new-channel-form">
-                    <Link to="/home" className="escape"></Link>
+                    <Link to="/home/1" className="escape"></Link>
                     <div className="channel-form-header">
                         <h1>Create a channel</h1>
                         <p>Channels are where your members communicate. They're best when organized around a topic -#marketing, for example.</p>
@@ -80,7 +81,7 @@ class NewChannelForm extends React.Component {
                             </label> */}
                         </div>
                         <div className="buttons">
-                            <Link to='/home' className="cancel">Cancel</Link>
+                            <Link to='/home/1' className="cancel">Cancel</Link>
                             <input type="submit" value="Create" className="create"/>
                         </div>
                     </form>
