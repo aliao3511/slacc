@@ -1,5 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state, ownProps) => ({
+    owner: state.entities.users[ownProps.channel.owner_id],
+});
 
 class JoinButton extends React.Component {
 
@@ -15,14 +20,22 @@ class JoinButton extends React.Component {
     }
 
     render() {
-        const { channel } = this.props;
-        return (
-            <div className="preview-footer">
-                <p>You are now viewing <strong>{channel.name}</strong></p>
-                <button onClick={this.handleClick}>Join</button>
-            </div>
-        );
+        const { channel, owner } = this.props;
+        const time = (new Date(channel.created_at)).toLocaleDateString([],{ year: 'numeric', month: 'long', day: 'numeric'});
+        if (owner) {
+            return (
+                <div className="preview-footer">
+                    <div className="preview-info">
+                        <p>You are viewing <strong>#{channel.name}</strong></p>
+                        <p>Created by {owner.username} on {time}</p>
+                        <button className="join" onClick={this.handleClick}>Join Channel</button>
+                    </div>
+                </div>
+            );
+        } else {
+            return <></>;
+        }
     }
 }
 
-export default withRouter(JoinButton);
+export default withRouter(connect(mapStateToProps)(JoinButton));

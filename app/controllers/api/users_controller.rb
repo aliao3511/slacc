@@ -19,7 +19,7 @@ class Api::UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        @user = User.find(params[:id]).includes(:channel_ids)
         render :show
     end
 

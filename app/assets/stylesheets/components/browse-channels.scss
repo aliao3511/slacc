@@ -71,3 +71,49 @@ p.subscribed-channels-label {
     padding-bottom: 4px;
     font-size: 14px;
 }
+
+/* preview-button */
+.preview-footer {
+    background-color: rgb(243, 243, 243);
+    position: absolute;
+    bottom: -70px;
+    height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 32%;
+}
+
+.preview-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+div.preview-info p:first-of-type {
+    font-size: 19px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+div.preview-info p:last-of-type {
+    font-size: 15px;
+    color: rgba(29,28,29,.7);
+    font-weight: 200;
+    margin-bottom: 19px;
+}
+
+button.join {
+    background-color: #007a5a;
+    color: white;
+    border-radius: 5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 14px;
+    padding: 10px 10px;
+}
+
+button.join:hover {
+    box-shadow: 2px 1px 4px 1px rgba(122, 122, 122, 0.25);
+}

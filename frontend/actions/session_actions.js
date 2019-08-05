@@ -75,7 +75,6 @@ export const getChannelMembers = channelId => dispatch => {
 };
 
 export const updateCurrentUser = id => dispatch => {
-    debugger
     return SessionAPIUtil.updateCurrentUser(id)
         .then(user => dispatch(receiveCurrentUser(user)))
 };

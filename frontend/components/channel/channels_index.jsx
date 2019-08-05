@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getChannels, selectChannel } from '../../actions/channel_actions';
 import ChannelsIndexItem from './channels_index_item';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { merge } from 'lodash';
 
 const mapStateToProps = state => {
     let subscribedChannels = {};
-    debugger
     state.entities.users[state.session.id].channel_ids.forEach( id => {
         if (state.entities.channels[id]) {
             subscribedChannels[id] = state.entities.channels[id];
@@ -37,23 +36,21 @@ class ChannelsIndex extends React.Component {
 
     componentDidMount() {
         const { currentUser, getChannels, selected, selectChannel } = this.props;
-        // if (currentUser) {
-        //     getChannels(currentUser.id);
-        // } else {
-            getChannels().then(() => selectChannel(selected));
-        // }
+        getChannels().then(() => selectChannel(selected));
     }
 
     select(id) {
         const { selectChannel } = this.props;
         return e => {
             selectChannel(id);
+            if (this.props.location.pathname === '/preview') {
+                this.props.history.push('/home');
+            }
         }
     }
 
     render() {
         const { selected } = this.props;
-        debugger
         return (
             <div className="index-container">
                 <Link to='/add-channel' className="tooltip">Channels</Link>
@@ -72,4 +69,4 @@ class ChannelsIndex extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChannelsIndex);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ChannelsIndex));

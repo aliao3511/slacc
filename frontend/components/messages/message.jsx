@@ -11,7 +11,6 @@ class Message extends React.Component {
         const { message, user } = this.props;
         if (user) {
             const image_url = user.avatar_url.includes("avatar_1") ? avatar1_url : avatar2_url;
-            debugger
             const avatar = {
                 backgroundImage: `url(${image_url})`,
                 backgroundPosition: 'center',
@@ -21,7 +20,6 @@ class Message extends React.Component {
             if (time[0] === "0") {
                 time = time.slice(1);
             }
-            debugger
             return (
                 <li>
                     <div className="message">

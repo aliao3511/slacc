@@ -29,7 +29,6 @@ class BrowseChannels extends React.Component {
         this.props.getChannels().then(() => {
             const channels = [];
             const subscribedChannels = [];
-            debugger
             this.props.channels.forEach(channel => {
                 if (!currentUser.channel_ids.includes(channel.id)) {
                     channels.push(channel);
@@ -70,7 +69,6 @@ class BrowseChannels extends React.Component {
     }
 
     select(id) {
-        debugger
         const { currentUser, selectChannel } = this.props;
         return e => {
             selectChannel(id)

@@ -60,7 +60,6 @@ class Channel extends React.Component {
 
     componentDidMount() {
         const { id, getChannelMembers, getChannelMessages } = this.props;
-        debugger
         this.getCurrentChannel();
         getChannelMembers(id).then(() => getChannelMessages(id));
     }
@@ -95,7 +94,6 @@ class Channel extends React.Component {
     }
 
     render() {
-        debugger
         const { messages, channel, updateCurrentUser } = this.props;
         const messageList = messages.map(message => 
             <MessageContainer key={message.id}
@@ -107,8 +105,10 @@ class Channel extends React.Component {
             <div className="channel-container">
                 <div className="channel-header">
                     <h1>#{channel.name}</h1>
-                    <div className="members"></div>
-                    <a>{channel.member_ids.length}</a>
+                    <div className="member-info">
+                        <div className="member-icon"></div>
+                        <a>{channel.member_ids.length}</a>
+                    </div>
                 </div>
                 <div className="message-list">
                     <ul className='messages'>

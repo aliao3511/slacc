@@ -21,10 +21,40 @@
     font-size: 16px;
 }
 
+.member-info {
+    display: flex;
+    justify-content: flex-start;
+    color: rgba(29,28,29,.7);
+    font-size: 15px;
+    width: 26px;
+}
+
+.member-info a {
+    padding-top: 2px;
+}
+
+.member-info:hover {
+    color: rgb(0, 110, 184);
+}
+
+div.member-icon {
+    background-image: image-url('member.png');
+    background-position: center;
+    background-size: cover;
+    height: 16px;
+    width: 16px;
+    margin-top: 3px;
+    margin-right: 3px;
+}
+
+div.member-icon:hover {
+    background-image: image-url('member_hover.png');
+}
+
 /* message form */
 
 .message-list {
-    height: 687px;
+    height: 636px;
     position: fixed;
     bottom: 76px;
     overflow: scroll;
@@ -55,6 +85,7 @@
 
 .messages li {
     background-color: white;
+    width: 1250px;
 }
 
 .messages li:hover {
