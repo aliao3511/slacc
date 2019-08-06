@@ -8,6 +8,7 @@ import { merge } from 'lodash';
 const mapStateToProps = (state, ownProps) => {
     let subscribedChannels = {};
     // state.entities.users[state.session.id].channel_ids.forEach( id => {
+    debugger
     state.entities.users[state.session.id].channel_ids.forEach( id => {
         if (state.entities.channels[id]) {
             subscribedChannels[id] = state.entities.channels[id];
@@ -15,6 +16,7 @@ const mapStateToProps = (state, ownProps) => {
     });
     // if (state.ui.selected.id) {
     if (ownProps.location.pathname.includes('preview')) {
+        debugger
         // const previewedChannels = { [state.ui.selected.id]: state.entities.channels[state.ui.selected.id]};
         let previewedChannels = {};
         if (state.entities.channels[ownProps.match.params.channelId]) {
@@ -43,6 +45,7 @@ class ChannelsIndex extends React.Component {
     componentDidMount() {
         const { currentUser, getChannels, selected, selectChannel } = this.props;
         // getChannels().then(() => selectChannel(selected));
+        debugger
         getChannels();
     }
 
@@ -61,6 +64,7 @@ class ChannelsIndex extends React.Component {
     render() {
         // const { selected } = this.props;
         const prevPath = this.props.location.pathname;
+        debugger
         return (
             <div className="index-container">
                 <Link to='/add-channel' className="tooltip">Channels</Link>

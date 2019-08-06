@@ -41,10 +41,3 @@ export const getChannelMembers = channelId => (
         url: `api/channels/${channelId}/users`
     })
 );
-
-// export const updateCurrentUser = userId => (
-//     $.ajax({
-//         method: 'GET',
-//         url: `api/users/${userId}`
-//     })
-// );

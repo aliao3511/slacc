@@ -14,13 +14,14 @@ class Channel < ApplicationRecord
 
     validates :name, presence: :true
     validates :name, uniqueness: true
+    validates :name, length: { minimum: 22 }
     validates :is_private, inclusion: { in: [true, false] }
     
     belongs_to :owner, 
     foreign_key: :owner_id,
     class_name: :User
 
-    has_many :channel_members
+    has_many :channel_members, dependent: :destroy
     has_many :members, 
     through: :channel_members, 
     source: :user,

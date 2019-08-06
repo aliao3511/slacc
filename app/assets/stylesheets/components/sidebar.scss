@@ -29,7 +29,7 @@
     display: inline-block;
 }
 
-.user-dropdown > p:hover {
+.dropdown p:hover {
     color: white;
 }
 
@@ -66,11 +66,12 @@
 
 .dropdown-buttons {
     width: 100%;
-    padding-left: 105px;
+    // padding-left: 105px;
     padding-top: 5px;
     padding-bottom: 5px; 
     color: black;
     font-size: 16px;
+    text-align: center;
 }
 
 .dropdown-buttons:hover {

@@ -4,13 +4,11 @@ import MessageContainer from '../messages/message';
 import { connect } from 'react-redux';
 import { getChannelMessages, receiveMessage } from '../../actions/message_actions';
 import { getChannelMembers, updateUserChannels } from '../../actions/session_actions';
-import { addChannel } from '../../actions/channel_actions';
+import { addChannel, leaveChannel} from '../../actions/channel_actions';
 import { withRouter } from 'react-router-dom';
 import JoinButton from './joinbutton';
 
 const mapStateToProps = (state, ownProps) => ({
-    id: state.ui.selected.id,
-    // channel: state.entities.channels[state.ui.selected.id],
     channel: state.entities.channels[ownProps.match.params.channelId],
     messages: Object.values(state.entities.messages),
     currentUser: state.entities.users[state.session.id],
@@ -23,6 +21,7 @@ const mapDispatchToProps = dispatch => ({
     receiveMessage: message => dispatch(receiveMessage(message)),
     addChannel: channelId => dispatch(addChannel(channelId)),
     updateUserChannels: (channelid, userId) => dispatch(updateUserChannels(channelId, userId)),
+    leaveChannel: channelId => dispatch(leaveChannel(channelId)),
 });
 
 class Channel extends React.Component {
@@ -32,7 +31,6 @@ class Channel extends React.Component {
         this.bottom = React.createRef();
         this.getCurrentChannel = this.getCurrentChannel.bind(this);
         this.joinChannel = this.joinChannel.bind(this);
-        // this.updateUser = this.updateUser.bind(this);
 
         this.state = { visible: false };
         this.onFocus = this.onFocus.bind(this);
@@ -82,9 +80,7 @@ class Channel extends React.Component {
         }
         const { channel, getChannelMembers, getChannelMessages } = this.props;
         const channelId = this.props.match.params.channelId;
-        debugger
         if (!prevProps.channel || channelId != prevProps.channel.id) {
-            debugger
             this.getCurrentChannel();
             getChannelMembers(channelId).then(() => getChannelMessages(channel.id));
         }
@@ -93,16 +89,22 @@ class Channel extends React.Component {
     joinChannel(id) {
         const { addChannel } = this.props;
         return e => {
-            return addChannel(id).then(() => this.props.history.push(`/home/channels/${id}`));
+            // return addChannel(id).then(() => this.props.history.push(`/home/channels/${id}`));
+            return addChannel(id);
         }
     }
 
-    // updateUser() {
-    //     const { currentUser, updateUserChannels } = this.props;
-    //     return e => {
-    //         return updateUserChannels(currentUser.id)
-    //     };
-    // }
+    leaveChannel(id) {
+        if (id === 1) {
+            return;
+        }
+        const { leaveChannel } = this.props;
+        debugger
+        return e => {
+            debugger
+            return leaveChannel(id).then(() => this.props.history.push('/home/channels/1'));
+        };
+    }
 
     onFocus() {
         debugger
@@ -126,14 +128,14 @@ class Channel extends React.Component {
             return (
                 <div className="channel-container">
                     <div className="channel-header">
-                        <h1>#{channel.name}</h1>
+                        <h1>{`#${channel.name}`}</h1>
                         <div className="member-info">
                             <div className="member-icon"></div>
                             <a>{channel.member_ids.length}</a>
                         </div>
                         <div className="settings" tabIndex="0" onFocus={this.onFocus} onBlur={this.onBlur}>
                             <div className={`settings-dropdown-content-${visible}`}>
-                                <div className="dropdown-buttons">
+                                <div className="dropdown-buttons settings-dropdown " onClick={this.leaveChannel(channel.id)}>
                                     <p className="leave">Leave #{channel.name}</p>
                                 </div>
                             </div>           
@@ -150,9 +152,7 @@ class Channel extends React.Component {
                             && <MessageForm channel={channel}/>}
                         {(this.props.location.pathname.includes('/preview') && App.cable.subscriptions.subscriptions.length > 0) 
                             && <JoinButton channel={channel} 
-                                        joinChannel={this.joinChannel(channel.id)}
-                                        // updateUser={this.updateUser()}/>}
-                                        />}
+                                        joinChannel={this.joinChannel(channel.id)}/>}
                     </div>
                 </div>
             );

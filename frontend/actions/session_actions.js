@@ -81,8 +81,4 @@ export const getChannelMembers = channelId => dispatch => {
         .then(users => dispatch(receiveUsers(users)))
 };
 
-// export const updateCurrentUser = id => dispatch => {
-//     return SessionAPIUtil.updateCurrentUser(id)
-//         .then(user => dispatch(receiveCurrentUser(user)))
-// };
 

@@ -23,6 +23,7 @@ class JoinButton extends React.Component {
         const { updateUserChannels, channel, currentUser } = this.props;
         this.props.joinChannel()
         .then(() => this.props.updateUserChannels(channel.id, currentUser.id))
+        .then(() => this.props.history.push(`/home/channels/${channel.id}`));
     }
 
     render() {

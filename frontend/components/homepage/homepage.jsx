@@ -7,11 +7,9 @@ class Homepage extends React.Component {
 
     render() {
         document.body.classList.add("no-scroll");
-        // document.documentElement.classList.add("no-scroll");
         return (
             <div className="home-container no-scroll">
                 <Sidebar />
-                {/* {this.props.selected && <ChannelContainer />} */}
                 {this.props.channels.length > 0 && <ChannelContainer />}
             </div>
         );

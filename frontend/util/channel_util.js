@@ -38,3 +38,10 @@ export const addChannel = channelId => (
         url: `api/channels/${channelId}/add_channel`,
     })
 );
+
+export const leaveChannel = channelId => (
+    $.ajax({
+        method: 'GET',
+        url: `api/channels/${channelId}/leave_channel`,
+    })
+);

@@ -47,18 +47,6 @@ class NewChannelForm extends React.Component {
             debugger
             this.props.history.push(`/home/channels/${action.channelId}`);
         });
-        // this.props.createChannel(channel).then(channel => {
-        //     receiveChannel(channel).then((action) => {
-        //         return updateCurrentUser(currentUser.id);
-        //     }).then(() => {
-        //         this.props.history.push(`/home/channels/${channel.id}`);
-        //     })
-        // })
-        // .then(() => {
-        //     debugger
-        //     // this.props.history.push(`/home/channels/${newChannelId}`)
-        //     this.props.history.push(`/home/channels/1`)
-        // });
     }
 
     handleKeypress(e) {
@@ -70,13 +58,6 @@ class NewChannelForm extends React.Component {
             }
         }
     }
-
-    // componentWillReceiveProps(nextProps) {
-    //     debugger
-    //     if (nextProps.location !== this.props.location) {
-    //         this.setState({ prevPath: this.props.location});
-    //     }
-    // }
 
     render() {
         const { prevPath } = this.props.location.state;

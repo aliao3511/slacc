@@ -69,6 +69,10 @@ div.settings:hover {
     background-image: image-url('settings_hover.png');
 }
 
+div.settings-dropdown {
+    text-align: center;
+}
+
 /* settings dropdown */
 
 .settings-dropdown-content- {
@@ -86,18 +90,18 @@ div.settings:hover {
     min-width: 275px;
     min-height: 75px;
     z-index: 5;
-    padding-top: 24px;
+    padding: 24px 0;
     box-shadow: 2px 1px 4px 1px rgba(122, 122, 122, 0.25);
 }
 
 .settings-dropdown-content-visible div.dropdown-buttons {
-    padding-left: 83px;
+    text-align: center;
 }
 
 /* message form */
 
 .message-list {
-    height: 629px;
+    height: 679px;
     position: fixed;
     bottom: 76px;
     overflow: scroll;

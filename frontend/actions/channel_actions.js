@@ -6,6 +6,7 @@ export const RECEIVE_CHANNEL_ERRORS = 'RECEIVE_CHANNEL_ERRORS';
 export const DELETE_CHANNEL = 'DELETE_CHANNEL';
 export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 export const ADD_CHANNEL = 'ADD_CHANNEL';
+export const REMOVE_CHANNEL = 'REMOVE_CHANNEL';
 
 // action creators
 const receiveChannels = channels => ({
@@ -36,7 +37,13 @@ export const clearErrors = errors => ({
 export const selectChannel = id => ({
     type: SELECT_CHANNEL,
     id
-})
+});
+
+export const removeChannel = (channelId, userId) => ({
+    type: REMOVE_CHANNEL,
+    channelId,
+    userId,
+});
 
 // thunk action creators
 export const getChannels = userId => dispatch => {
@@ -63,15 +70,6 @@ export const createChannel = channel => dispatch => {
             errors => dispatch(receiveErrors(errors.responseJSON)));
 };
 
-// export const createChannel = channel => dispatch => {
-//     return ChannelAPIUtil.createChannel(channel)
-//         .then(channel => {
-//             dispatch(receiveChannel(channel));
-//             dispatch(selectChannel(channel.id));
-//         },
-//             errors => dispatch(receiveErrors(errors.responseJSON)));
-// };
-
 export const destroyChannel = id => dispatch => {
     return ChannelAPIUtil.deleteChannel(id)
         .then(channel => dispatch(deleteChannel(channel.id)),
@@ -82,5 +80,13 @@ export const addChannel = id => dispatch => {
     return ChannelAPIUtil.addChannel(id)
         .then(channel => dispatch(receiveChannel(channel.id)),
             errors => dispatch(receiveErrors(errors.responseJSON)))
+};
+
+export const leaveChannel = channelId => dispatch => {
+    return ChannelAPIUtil.leaveChannel(channelId)
+        .then(channelMember => {
+            debugger
+            dispatch(removeChannel(channelMember.channel_id, channelMember.user_id))
+        });
 }
 
