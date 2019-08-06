@@ -16,19 +16,19 @@ user2 = User.create!(username: 'alpalca', email: 'alpal@gmail.com', password: 'a
 user3 = User.create!(username: 'russel sprouts', email: 'rt@yahoo.com', password: 'russelin', avatar_url: 'avatar_1.png')
 
 channel1 = Channel.create!(name: 'general', owner: demo_user, is_private: false)
-channel2 = Channel.create!(name: 'the ~hottest~ takes', owner: user2, is_private: true)
-channel3 = Channel.create!(name: 'mildly hot takes', owner: user3, is_private: false)
-channel4 = Channel.create!(name: 'HOTTER than the HOTTEST takes', owner: user3, is_private: true)
+channel2 = Channel.create!(name: 'yeehaw!!!', owner: user2, is_private: true)
+channel3 = Channel.create!(name: 'salad opinions', owner: user3, is_private: false)
+channel4 = Channel.create!(name: 'hot takes', owner: user3, is_private: true)
 
 # message1 = Message.create!(body: 'burn notice is actually pretty good', messageable: channel1)
 # message2 = Message.create!(body: 'ranch sux', messageable: channel3)
 # message3 = Message.create!(body: 'ranch really sucks', messageable: channel2)
 # message4 = Message.create!(body: 'RANCH SUCKS', messageable: channel4)
 
-message1 = Message.create!(body: 'burn notice is actually pretty good', author: user2, messageable: channel1)
+message1 = Message.create!(body: 'welcome to slacc!', author: user2, messageable: channel1)
 message2 = Message.create!(body: 'ranch sux', author: user2, messageable: channel3)
-message3 = Message.create!(body: 'ranch really sucks', author: user3, messageable: channel2)
-message4 = Message.create!(body: 'RANCH SUCKS', author: demo_user, messageable: channel4)
+message3 = Message.create!(body: "delta dawn what/'s that flower you have on ~", author: user3, messageable: channel2)
+message4 = Message.create!(body: 'burn notice is actually really good', author: demo_user, messageable: channel4)
 
 # channel_member1 = ChannelMember.create!(channel: channel1, user: demo_user)
 channel_member2 = ChannelMember.create!(channel: channel1, user: user2)
