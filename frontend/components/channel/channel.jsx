@@ -111,7 +111,6 @@ class Channel extends React.Component {
     }
 
     render() {
-        debugger
         const { messages, channel } = this.props;
         const messageList = messages.map(message => {
             if (channel.message_ids.includes(message.id)) {
@@ -120,7 +119,6 @@ class Channel extends React.Component {
                         />
             }
         });
-        debugger
         const visible = this.state.visible ? 'visible' : '';
         const general = channel.id == 1 ? 'general' : '';
         if (channel && channel.id == this.props.match.params.channelId) {
