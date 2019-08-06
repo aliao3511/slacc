@@ -29,7 +29,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     getChannels: userId => dispatch(getChannels(userId)),
-    // selectChannel: channelId => dispatch(selectChannel(channelId)),
 });
 
 class ChannelsIndex extends React.Component {
@@ -56,8 +55,14 @@ class ChannelsIndex extends React.Component {
         debugger
         return (
             <div className="index-container">
-                <Link to='/add-channel' className="tooltip">Channels</Link>
-                <Link className="create-channel" to={{ pathname: '/create-channel', state: { prevPath: prevPath}}}></Link>
+                <div className="tooltip">
+                    <Link to='/add-channel'>Channels</Link>
+                    <span className="tooltip-text">Browse all channels</span>
+                </div>
+                <div className="tooltip">
+                    <Link className="create-channel" to={{ pathname: '/create-channel', state: { prevPath: prevPath}}}></Link>
+                    <span className="tooltip-text create">Create a channel</span>
+                </div>
                 <ul className="channels-index">
                     {this.props.channels.map(channel => 
                         <ChannelsIndexItem key={channel.id} 

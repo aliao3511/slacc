@@ -20,6 +20,7 @@
 
 .sidebar div.header {
     padding: 10px 10px;
+    margin-bottom: 30px;
 }
 
 /* workspace/user */
@@ -118,10 +119,10 @@ div.index-container {
     background-position: center;
     background-size: cover;
     position: absolute;
-    top: 3.5px;
+    top: -19.5px;
     height: 19px;
     width: 19px;
-    right: 12px;
+    right: -137px;
 }
 
 .create-channel:hover {
@@ -129,7 +130,6 @@ div.index-container {
 }
 
 .index-container a {
-    padding-left: 10px;
     font-weight: 700;
 }
 
@@ -137,3 +137,45 @@ div.index-container {
     color: white;
 }
 
+div.tooltip {
+    position: relative;
+    width: 65px;
+    margin-left: 10px;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    font-size: 13px;
+    font-weight: 600;
+    background-color: black;
+    color: white;
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    top: -39px;
+    padding: 8px 10px;
+    border-radius: 8%;
+    width: 150px;
+}
+
+span.create {
+    left: 169px;
+    top: -58px;
+    z-index: 10;
+    width: 120px;
+}
+
+div.tooltip:hover > .tooltip-text {
+    visibility: visible;
+}
+
+.tooltip .tooltip-text:after {
+    content: " ";
+  position: absolute;
+  top: 100%;
+  left: 20%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
