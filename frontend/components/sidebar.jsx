@@ -26,20 +26,17 @@ class Sidebar extends React.Component {
     }
 
     onBlur() {
-        debugger
         this.setState({ visible: false });
     }
 
     logout() {
         const { logout } = this.props;
-        debugger
         return e => {
             logout().then(() => this.props.history.push('/'));
         }
     }
 
     render() {
-        debugger
         const { currentUser } = this.props;
         if (currentUser) {
             const image_url = currentUser.avatar_url.includes("avatar_1") ? avatar1_url : avatar2_url;

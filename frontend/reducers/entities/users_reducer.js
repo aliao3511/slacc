@@ -6,7 +6,6 @@ import channel from '../../components/channel/channel';
 const usersReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
-    debugger
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
             newState = merge({}, state, { [action.user.id]: action.user });
@@ -16,7 +15,9 @@ const usersReducer = (state = {}, action) => {
             return newState;
         case UPDATE_USER_CHANNELS:
             newState = merge({}, state);
-            newState[action.userId].channel_ids << action.channelId;
+            if (!newState[action.userId].channel_ids.includes(action.channelId)) {
+                newState[action.userId].channel_ids.push(action.channelId);
+            }
             return newState;
         case REMOVE_CHANNEL:
             newState = merge({}, state);

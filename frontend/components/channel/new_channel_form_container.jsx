@@ -7,7 +7,6 @@ import { Link, withRouter } from 'react-router-dom';
 const mapStateToProps = state => {
     return {
     currentUser: state.entities.users[state.session.id],
-    newChannelId: state.ui.selected.id,
     errors: state.errors.channel,
 }};
 
@@ -28,7 +27,6 @@ class NewChannelForm extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleKeypress = this.handleKeypress.bind(this);
-        debugger
     }
 
     handleChange(field) {
@@ -41,14 +39,12 @@ class NewChannelForm extends React.Component {
         if (e) {
             e.preventDefault();
         }
-        debugger
         const { createChannel, updateUserChannels, currentUser, clearErrors } = this.props;
         clearErrors();
         const channel = Object.assign({}, this.state);
         this.props.createChannel(channel).then(action => {
             return updateUserChannels(action.channel.id, currentUser.id);
         }).then(action => {
-            debugger
             this.props.history.push(`/home/channels/${action.channelId}`);
         });
     }
@@ -64,10 +60,8 @@ class NewChannelForm extends React.Component {
     }
 
     render() {
-        debugger
         const home = this.props.location.state ? this.props.location.state.prevPath : '/home/channels/1';
         const error = this.props.errors.length > 0 ? 'name-error' : 'no-error';
-        debugger
         return (
             <div className="new-channel-form-container" tabIndex="1" onKeyDown={this.handleKeypress}>
                 <div className="new-channel-form">

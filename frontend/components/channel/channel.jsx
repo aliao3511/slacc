@@ -31,7 +31,6 @@ class Channel extends React.Component {
         this.bottom = React.createRef();
         this.getCurrentChannel = this.getCurrentChannel.bind(this);
         this.joinChannel = this.joinChannel.bind(this);
-
         this.state = { visible: false };
         this.onFocus = this.onFocus.bind(this);
         this.onBlur = this.onBlur.bind(this);
@@ -89,7 +88,6 @@ class Channel extends React.Component {
     joinChannel(id) {
         const { addChannel } = this.props;
         return e => {
-            // return addChannel(id).then(() => this.props.history.push(`/home/channels/${id}`));
             return addChannel(id);
         }
     }
@@ -99,33 +97,33 @@ class Channel extends React.Component {
             return;
         }
         const { leaveChannel } = this.props;
-        debugger
         return e => {
-            debugger
             return leaveChannel(id).then(() => this.props.history.push('/home/channels/1'));
         };
     }
 
     onFocus() {
-        debugger
         this.setState({ visible: true });
     }
 
     onBlur() {
-        debugger
         this.setState({ visible: false });
     }
 
     render() {
+        debugger
         const { messages, channel } = this.props;
-        const messageList = messages.map(message => 
-            <MessageContainer key={message.id}
-                    message={message}
-                    />
-        );
+        const messageList = messages.map(message => {
+            if (channel.message_ids.includes(message.id)) {
+                return <MessageContainer key={message.id}
+                        message={message}
+                        />
+            }
+        });
+        debugger
         const visible = this.state.visible ? 'visible' : '';
         const general = channel.id == 1 ? 'general' : '';
-        if (channel) {
+        if (channel && channel.id == this.props.match.params.channelId) {
             return (
                 <div className="channel-container">
                     <div className="channel-header">

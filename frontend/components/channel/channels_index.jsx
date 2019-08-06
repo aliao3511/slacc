@@ -7,14 +7,12 @@ import { merge } from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
     let subscribedChannels = {};
-    debugger
     state.entities.users[state.session.id].channel_ids.forEach( id => {
         if (state.entities.channels[id]) {
             subscribedChannels[id] = state.entities.channels[id];
         }
     });
     if (ownProps.location.pathname.includes('preview')) {
-        debugger
         let previewedChannels = {};
         if (state.entities.channels[ownProps.match.params.channelId]) {
             previewedChannels = { [ownProps.match.params.channelId]: state.entities.channels[ownProps.match.params.channelId]};
@@ -39,7 +37,6 @@ class ChannelsIndex extends React.Component {
 
     componentDidMount() {
         const { currentUser, getChannels, selected, selectChannel } = this.props;
-        debugger
         getChannels();
     }
 
@@ -52,7 +49,6 @@ class ChannelsIndex extends React.Component {
 
     render() {
         const prevPath = this.props.location.pathname;
-        debugger
         return (
             <div className="index-container">
                 <div className="tooltip">

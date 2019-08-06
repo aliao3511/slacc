@@ -78,14 +78,13 @@ export const destroyChannel = id => dispatch => {
 
 export const addChannel = id => dispatch => {
     return ChannelAPIUtil.addChannel(id)
-        .then(channel => dispatch(receiveChannel(channel.id)),
+        .then(channel => dispatch(receiveChannel(channel)),
             errors => dispatch(receiveErrors(errors.responseJSON)))
 };
 
 export const leaveChannel = channelId => dispatch => {
     return ChannelAPIUtil.leaveChannel(channelId)
         .then(channelMember => {
-            debugger
             dispatch(removeChannel(channelMember.channel_id, channelMember.user_id))
         });
 }

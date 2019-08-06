@@ -6,7 +6,6 @@ import { getChannels } from '../../actions/channel_actions';
 const mapStateToProps = state => {
     return {
     currentUser: state.entities.users[state.session.id],
-    selected: state.ui.selected.id,
     channels: Object.values(state.entities.channels),
     }
 };
