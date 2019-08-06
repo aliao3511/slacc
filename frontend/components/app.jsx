@@ -10,7 +10,6 @@ import NewChannelFormContainer from './channel/new_channel_form_container';
 import BrowseChannelsContainer from './channel/browse_channels';
 
 const App = () => {
-    debugger
     return (<>
         <header>
             <Route exact path={['/', '/login', '/signup']} component={HeaderContainer}/>

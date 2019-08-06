@@ -1,6 +1,6 @@
 import React from 'react';
-import { createChannel } from '../../actions/channel_actions';
-import { updateCurrentUser } from '../../actions/session_actions';
+import { createChannel, receiveChannel } from '../../actions/channel_actions';
+import { updateUserChannels } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     createChannel: channel => dispatch(createChannel(channel)),
-    updateCurrentUser: id => dispatch(updateCurrentUser(id)),
+    updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
 });
 
 class NewChannelForm extends React.Component {
@@ -38,17 +38,27 @@ class NewChannelForm extends React.Component {
         if (e) {
             e.preventDefault();
         }
-        const { createChannel, updateCurrentUser, currentUser, newChannelId } = this.props;
+        debugger
+        const { createChannel, updateUserChannels, currentUser } = this.props;
         const channel = Object.assign({}, this.state);
-        this.props.createChannel(channel)
-        .then(() => {
-            updateCurrentUser(currentUser.id)
-        })
-        .then(() => {
+        this.props.createChannel(channel).then(action => {
+            return updateUserChannels(action.channel.id, currentUser.id);
+        }).then(action => {
             debugger
-            // this.props.history.push(`/home/channels/${newChannelId}`)
-            this.props.history.push(`/home/channels/1`)
+            this.props.history.push(`/home/channels/${action.channelId}`);
         });
+        // this.props.createChannel(channel).then(channel => {
+        //     receiveChannel(channel).then((action) => {
+        //         return updateCurrentUser(currentUser.id);
+        //     }).then(() => {
+        //         this.props.history.push(`/home/channels/${channel.id}`);
+        //     })
+        // })
+        // .then(() => {
+        //     debugger
+        //     // this.props.history.push(`/home/channels/${newChannelId}`)
+        //     this.props.history.push(`/home/channels/1`)
+        // });
     }
 
     handleKeypress(e) {

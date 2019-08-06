@@ -1,9 +1,15 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { updateUserChannels } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => ({
-        owner: state.entities.users[ownProps.channel.owner_id],
+    currentUser: state.entities.users[state.session.id],
+    owner: state.entities.users[ownProps.channel.owner_id],
+});
+
+const mapDispatchToProps = dispatch => ({
+    updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
 });
 
 class JoinButton extends React.Component {
@@ -14,9 +20,9 @@ class JoinButton extends React.Component {
     }
 
     handleClick() {
-        const { updateUser, channel } = this.props;
+        const { updateUserChannels, channel, currentUser } = this.props;
         this.props.joinChannel()
-        .then(() => this.props.updateUser())
+        .then(() => this.props.updateUserChannels(channel.id, currentUser.id))
     }
 
     render() {
@@ -38,4 +44,4 @@ class JoinButton extends React.Component {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(JoinButton));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(JoinButton));

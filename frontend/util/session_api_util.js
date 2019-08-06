@@ -42,9 +42,9 @@ export const getChannelMembers = channelId => (
     })
 );
 
-export const updateCurrentUser = userId => (
-    $.ajax({
-        method: 'GET',
-        url: `api/users/${userId}`
-    })
-);
+// export const updateCurrentUser = userId => (
+//     $.ajax({
+//         method: 'GET',
+//         url: `api/users/${userId}`
+//     })
+// );

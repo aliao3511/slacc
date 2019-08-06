@@ -3,7 +3,7 @@ import MessageForm from './message_form';
 import MessageContainer from '../messages/message';
 import { connect } from 'react-redux';
 import { getChannelMessages, receiveMessage } from '../../actions/message_actions';
-import { getChannelMembers, updateCurrentUser } from '../../actions/session_actions';
+import { getChannelMembers, updateUserChannels } from '../../actions/session_actions';
 import { addChannel } from '../../actions/channel_actions';
 import { withRouter } from 'react-router-dom';
 import JoinButton from './joinbutton';
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
     getChannelMessages: channelId => dispatch(getChannelMessages(channelId)),
     receiveMessage: message => dispatch(receiveMessage(message)),
     addChannel: channelId => dispatch(addChannel(channelId)),
-    updateCurrentUser: id => dispatch(updateCurrentUser(id)),
+    updateUserChannels: (channelid, userId) => dispatch(updateUserChannels(channelId, userId)),
 });
 
 class Channel extends React.Component {
@@ -32,17 +32,19 @@ class Channel extends React.Component {
         this.bottom = React.createRef();
         this.getCurrentChannel = this.getCurrentChannel.bind(this);
         this.joinChannel = this.joinChannel.bind(this);
-        this.updateUser = this.updateUser.bind(this);
+        // this.updateUser = this.updateUser.bind(this);
+
+        this.state = { visible: false };
+        this.onFocus = this.onFocus.bind(this);
+        this.onBlur = this.onBlur.bind(this);
     }
 
     getCurrentChannel() {
         if (App.cable.subscriptions.subscriptions.length > 0) {
             App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
         }
-        // const { receiveMessage } = this.props;
         const { receiveMessage, channel } = this.props;
         App.cable.subscriptions.create(
-            // { channel: 'ChatChannel', id: this.props.id },
             { channel: 'ChatChannel', id: this.props.match.params.channelId },
             {
                 received: data => {
@@ -62,11 +64,9 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-        // const { id, getChannelMembers, getChannelMessages } = this.props;
         const { channel, getChannelMembers, getChannelMessages } = this.props;
         const channelId = this.props.match.params.channelId;
         this.getCurrentChannel();
-        // getChannelMembers(id).then(() => getChannelMessages(id));
         getChannelMembers(channelId).then(() => getChannelMessages(channelId));
     }
 
@@ -80,15 +80,12 @@ class Channel extends React.Component {
         if (this.bottom.current) {
             this.bottom.current.scrollIntoView();
         }
-        // const { id, getChannelMembers, getChannelMessages } = this.props;
         const { channel, getChannelMembers, getChannelMessages } = this.props;
-        // if (id !== prevProps.id) {
         const channelId = this.props.match.params.channelId;
         debugger
         if (!prevProps.channel || channelId != prevProps.channel.id) {
             debugger
             this.getCurrentChannel();
-            // getChannelMembers(id).then(() => getChannelMessages(id));
             getChannelMembers(channelId).then(() => getChannelMessages(channel.id));
         }
     }
@@ -100,20 +97,31 @@ class Channel extends React.Component {
         }
     }
 
-    updateUser() {
-        const { currentUser, updateCurrentUser } = this.props;
-        return e => {
-            return updateCurrentUser(currentUser.id);
-        };
+    // updateUser() {
+    //     const { currentUser, updateUserChannels } = this.props;
+    //     return e => {
+    //         return updateUserChannels(currentUser.id)
+    //     };
+    // }
+
+    onFocus() {
+        debugger
+        this.setState({ visible: true });
+    }
+
+    onBlur() {
+        debugger
+        this.setState({ visible: false });
     }
 
     render() {
-        const { messages, channel, updateCurrentUser } = this.props;
+        const { messages, channel } = this.props;
         const messageList = messages.map(message => 
             <MessageContainer key={message.id}
                     message={message}
                     />
         );
+        const visible = this.state.visible ? 'visible' : '';
         if (channel) {
             return (
                 <div className="channel-container">
@@ -122,6 +130,13 @@ class Channel extends React.Component {
                         <div className="member-info">
                             <div className="member-icon"></div>
                             <a>{channel.member_ids.length}</a>
+                        </div>
+                        <div className="settings" tabIndex="0" onFocus={this.onFocus} onBlur={this.onBlur}>
+                            <div className={`settings-dropdown-content-${visible}`}>
+                                <div className="dropdown-buttons">
+                                    <p className="leave">Leave #{channel.name}</p>
+                                </div>
+                            </div>           
                         </div>
                     </div>
                     <div className="message-list">
@@ -136,7 +151,8 @@ class Channel extends React.Component {
                         {(this.props.location.pathname.includes('/preview') && App.cable.subscriptions.subscriptions.length > 0) 
                             && <JoinButton channel={channel} 
                                         joinChannel={this.joinChannel(channel.id)}
-                                        updateUser={this.updateUser()}/>}
+                                        // updateUser={this.updateUser()}/>}
+                                        />}
                     </div>
                 </div>
             );

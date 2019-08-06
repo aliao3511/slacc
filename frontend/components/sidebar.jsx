@@ -47,8 +47,6 @@ class Sidebar extends React.Component {
                 backgroundImage: `url(${image_url})`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
-                // width: '30px',
-                // height: '30px',
                 marginRight: '15px',
             };
             const visible = this.state.visible ? 'visible' : '';
@@ -56,7 +54,7 @@ class Sidebar extends React.Component {
                 <div className="sidebar">
                     <div className="header">
                         <h1>WORKSPACE</h1>
-                        <div className="user-dropdown" tabIndex="0" onFocus={this.onFocus} onBlur={this.onBlur}>
+                        <div className="dropdown" tabIndex="0" onFocus={this.onFocus} onBlur={this.onBlur}>
                             <p>{currentUser ? currentUser.username : ''}</p>
                             <div className={`user-dropdown-content-${visible}`}>
                                 <div className='dropdown-info'>

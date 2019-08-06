@@ -7,6 +7,8 @@
     max-width: 100%;
 }
 
+/* channel header */ 
+
 .channel-header {
     background-color: white;
     position: sticky;
@@ -52,10 +54,50 @@ div.member-icon:hover {
     background-image: image-url('member_hover.png');
 }
 
+div.settings {
+    background-image: image-url('settings.png');
+    background-position: center;
+    background-size: cover;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    right: 40px;
+    top: 20px;
+}
+
+div.settings:hover {
+    background-image: image-url('settings_hover.png');
+}
+
+/* settings dropdown */
+
+.settings-dropdown-content- {
+    display: none;
+}
+
+.settings-dropdown-content-visible {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    background-color: white;
+    border-radius: 5%;
+    border: 0.5px solid rgb(207, 207, 207);
+    min-width: 275px;
+    min-height: 75px;
+    z-index: 5;
+    padding-top: 24px;
+    box-shadow: 2px 1px 4px 1px rgba(122, 122, 122, 0.25);
+}
+
+.settings-dropdown-content-visible div.dropdown-buttons {
+    padding-left: 83px;
+}
+
 /* message form */
 
 .message-list {
-    height: 679px;
+    height: 629px;
     position: fixed;
     bottom: 76px;
     overflow: scroll;

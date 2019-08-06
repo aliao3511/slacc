@@ -24,7 +24,7 @@
 
 /* workspace/user */
 
-.user-dropdown {
+.dropdown {
     position: relative;
     display: inline-block;
 }
@@ -48,6 +48,7 @@
     min-width: 275px;
     min-height: 137px;
     z-index: 5;
+    box-shadow: 2px 1px 4px 1px rgba(122, 122, 122, 0.25);
 }
 
 .dropdown-info {
@@ -76,10 +77,6 @@
     background-color: #1164A3;
     color: white;
 }
-
-// div.user-dropdown: > div.user-dropdown-content {
-//     display: block;
-// }
 
 /* channel-index */
 

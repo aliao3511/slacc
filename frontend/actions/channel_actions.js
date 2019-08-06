@@ -13,7 +13,7 @@ const receiveChannels = channels => ({
     channels
 });
 
-const receiveChannel = channel => ({
+export const receiveChannel = channel => ({
     type: RECEIVE_CHANNEL,
     channel
 });
@@ -58,11 +58,19 @@ export const getChannel = id => dispatch => {
 export const createChannel = channel => dispatch => {
     return ChannelAPIUtil.createChannel(channel)
         .then(channel => {
-            dispatch(receiveChannel(channel));
-            dispatch(selectChannel(channel.id));
+            return dispatch(receiveChannel(channel));
         },
             errors => dispatch(receiveErrors(errors.responseJSON)));
 };
+
+// export const createChannel = channel => dispatch => {
+//     return ChannelAPIUtil.createChannel(channel)
+//         .then(channel => {
+//             dispatch(receiveChannel(channel));
+//             dispatch(selectChannel(channel.id));
+//         },
+//             errors => dispatch(receiveErrors(errors.responseJSON)));
+// };
 
 export const destroyChannel = id => dispatch => {
     return ChannelAPIUtil.deleteChannel(id)

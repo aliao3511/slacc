@@ -8,6 +8,7 @@ export const VERIFY_USER = 'VERIFY_USER';
 export const CLEAR_VERIFIED_USER = 'CLEAR_VERIFIED_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const RECEIVE_USER = 'RECEIVE_USER';
+export const UPDATE_USER_CHANNELS = 'UPDATE_USER_CHANNELS';
 
 // action creators
 const receiveCurrentUser = user => ({
@@ -43,6 +44,12 @@ const receiveUsers = users => ({
     users
 });
 
+export const updateUserChannels = (channelId, userId) => ({
+    type: UPDATE_USER_CHANNELS,
+    channelId,
+    userId
+})
+
 // thunk action creators
 export const login = formUser => dispatch => {
     return SessionAPIUtil.login(formUser)
@@ -74,8 +81,8 @@ export const getChannelMembers = channelId => dispatch => {
         .then(users => dispatch(receiveUsers(users)))
 };
 
-export const updateCurrentUser = id => dispatch => {
-    return SessionAPIUtil.updateCurrentUser(id)
-        .then(user => dispatch(receiveCurrentUser(user)))
-};
+// export const updateCurrentUser = id => dispatch => {
+//     return SessionAPIUtil.updateCurrentUser(id)
+//         .then(user => dispatch(receiveCurrentUser(user)))
+// };
 

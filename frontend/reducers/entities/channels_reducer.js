@@ -1,9 +1,11 @@
 import { RECEIVE_CHANNELS, RECEIVE_CHANNEL, DELETE_CHANNEL, } from '../../actions/channel_actions';
+import { UPDATE_USER_CHANNELS } from '../../actions/session_actions';
 import { merge } from 'lodash';
 
 const channelsReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState;
+    debugger
     switch (action.type) {
         case RECEIVE_CHANNELS:
             newState = merge({}, action.channels);
@@ -14,6 +16,10 @@ const channelsReducer = (state = {}, action) => {
         case DELETE_CHANNEL:
             newState = merge({}, state);
             delete newState[action.id];
+            return newState;
+        case UPDATE_USER_CHANNELS:
+            newState = merge({}, state);
+            newState[action.channelId].member_ids << action.userId;
             return newState;
         default:
             return state;
