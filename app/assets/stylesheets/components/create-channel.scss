@@ -62,7 +62,7 @@
 }
 
 .channel-input-caption strong {
-    margin-bottom: 8px;
+    // margin-bottom: 7px;
     margin-right: 5px;
     font-size: 14px;
 }
@@ -70,10 +70,12 @@
 .channel-input-caption {
     display: flex;
     justify-content: flex-start;
+    height: 20px;
 }
 
 .channel-input-caption p {
     color: rgb(116, 115, 115);
+    font-size: 14px;
 }
 
 .buttons {
@@ -111,5 +113,19 @@
     padding-top: 2.5px;
     background-color: rgb(224, 224, 224);
     color: rgb(68, 68, 68);
+}
+
+/* errors */
+
+div.no-error {
+    display: none;
+}
+
+div.name-error {
+    display: inline-block;
+    color: #e8912d;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 5px;
 }
 

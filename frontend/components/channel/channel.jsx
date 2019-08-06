@@ -124,6 +124,7 @@ class Channel extends React.Component {
                     />
         );
         const visible = this.state.visible ? 'visible' : '';
+        const general = channel.id == 1 ? 'general' : '';
         if (channel) {
             return (
                 <div className="channel-container">
@@ -135,7 +136,7 @@ class Channel extends React.Component {
                         </div>
                         <div className="settings" tabIndex="0" onFocus={this.onFocus} onBlur={this.onBlur}>
                             <div className={`settings-dropdown-content-${visible}`}>
-                                <div className="dropdown-buttons settings-dropdown " onClick={this.leaveChannel(channel.id)}>
+                                <div className={`dropdown-buttons settings-dropdown ${general}`} onClick={this.leaveChannel(channel.id)}>
                                     <p className="leave">Leave #{channel.name}</p>
                                 </div>
                             </div>           

@@ -1,17 +1,20 @@
 import React from 'react';
 import { createChannel, receiveChannel } from '../../actions/channel_actions';
-import { updateUserChannels } from '../../actions/session_actions';
+import { updateUserChannels, clearErrors } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+    return {
     currentUser: state.entities.users[state.session.id],
     newChannelId: state.ui.selected.id,
-});
+    errors: state.errors.channel,
+}};
 
 const mapDispatchToProps = dispatch => ({
     createChannel: channel => dispatch(createChannel(channel)),
     updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
+    clearErrors: () => dispatch(clearErrors()),
 });
 
 class NewChannelForm extends React.Component {
@@ -39,7 +42,8 @@ class NewChannelForm extends React.Component {
             e.preventDefault();
         }
         debugger
-        const { createChannel, updateUserChannels, currentUser } = this.props;
+        const { createChannel, updateUserChannels, currentUser, clearErrors } = this.props;
+        clearErrors();
         const channel = Object.assign({}, this.state);
         this.props.createChannel(channel).then(action => {
             return updateUserChannels(action.channel.id, currentUser.id);
@@ -60,8 +64,10 @@ class NewChannelForm extends React.Component {
     }
 
     render() {
-        const { prevPath } = this.props.location.state;
-        const home = this.props.location.state.prevPath || '/home/channels/1';
+        debugger
+        const home = this.props.location.state ? this.props.location.state.prevPath : '/home/channels/1';
+        const error = this.props.errors.length > 0 ? 'name-error' : 'no-error';
+        debugger
         return (
             <div className="new-channel-form-container" tabIndex="1" onKeyDown={this.handleKeypress}>
                 <div className="new-channel-form">
@@ -75,6 +81,7 @@ class NewChannelForm extends React.Component {
                             <label className="channel-name">
                                 <div className="channel-input-caption">
                                     <strong>Name</strong>
+                                    <div className={error}>Don't forget to name your channel!</div>
                                 </div>
                                 <input type="text" placeholder="e.g. #marketing" value={this.state.name} onChange={this.handleChange('name')} />
                             </label>

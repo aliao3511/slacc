@@ -98,6 +98,24 @@ div.settings-dropdown {
     text-align: center;
 }
 
+div.general {
+    background-color: rgb(175, 175, 175);
+}
+
+div.general:hover {
+    background-color: rgb(175, 175, 175);
+    color: rgb(90, 88, 88);
+    cursor: not-allowed;
+}
+
+div.general > p.leave {
+    color: rgb(90, 88, 88);
+}
+
+div.general:hover > p.leave {
+    color: rgb(90, 88, 88);
+}
+
 /* message form */
 
 .message-list {
