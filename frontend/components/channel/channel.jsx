@@ -113,11 +113,9 @@ class Channel extends React.Component {
     render() {
         const { messages, channel } = this.props;
         const messageList = messages.map(message => {
-            if (channel.message_ids.includes(message.id)) {
-                return <MessageContainer key={message.id}
-                        message={message}
-                        />
-            }
+            return <MessageContainer key={message.id}
+                    message={message}
+                    />
         });
         const visible = this.state.visible ? 'visible' : '';
         const general = channel.id == 1 ? 'general' : '';
