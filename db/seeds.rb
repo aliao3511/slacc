@@ -10,7 +10,7 @@ User.destroy_all
 Channel.destroy_all
 Message.destroy_all
 ChannelMember.destroy_all
-DmMember.destroy_all
+# DmMember.destroy_all
 
 demo_user = User.create!(username: 'Demo User', email: 'demo@slacc.com', password: 'password', avatar_url: 'avatar_1.png')
 user2 = User.create!(username: 'alpalca', email: 'alpal@gmail.com', password: 'alpaca', avatar_url: 'avatar_2.png')
