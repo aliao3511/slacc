@@ -112,7 +112,7 @@ class NewChannelForm extends React.Component {
                                 <input type="text" value={this.state.purpose} onChange={this.handleChange('purpose')} />
                                 <p className="specs">What's this channel about?</p>
                             </label>
-                            <div className="channel-input-caption">
+                            <div className="channel-input-caption add-members">
                                 <strong>Add members</strong>
                                 <p>(optional)</p>
                             </div>
