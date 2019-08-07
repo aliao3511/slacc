@@ -14,7 +14,7 @@ class Channel < ApplicationRecord
 
     validates :name, presence: :true
     validates :name, uniqueness: true
-    validates :name, length: { maximum: 25 }
+    validates :name, length: { maximum: 25, message: 'must be less than 25 characters' }
     validates :is_private, inclusion: { in: [true, false] }
     
     belongs_to :owner, 

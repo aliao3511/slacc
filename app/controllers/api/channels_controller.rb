@@ -14,7 +14,7 @@ class Api::ChannelsController < ApplicationController
     def create
         @channel = Channel.new(channel_params)
         @channel.owner_id = current_user.id
-        @channel.member_ids = [@channel.owner_id]
+        @channel.member_ids <<= @channel.owner_id
         if @channel.save
             render :show
         else
@@ -24,7 +24,9 @@ class Api::ChannelsController < ApplicationController
 
     def add_channel
         @channel = Channel.find_by(id: params[:channel_id])
-        @channel.member_ids <<= current_user.id unless @channel.member_ids.include?(current_user.id)
+        params[:userIds].each do |userId|
+            @channel.member_ids <<= userId unless @channel.member_ids.include?(params[:userId])
+        end
         render :show
     end
 

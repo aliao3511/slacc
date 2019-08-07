@@ -1,5 +1,5 @@
 import React from 'react';
-import { addChannel, selectChannel, getChannels } from '../../actions/channel_actions';
+import { getChannels } from '../../actions/channel_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -9,8 +9,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // addChannel: channelId => dispatch(addChannel(channelId)),
-    // selectChannel: channelId => dispatch(selectChannel(channelId)),
     getChannels: () => dispatch(getChannels()),
 });
 
@@ -18,7 +16,7 @@ class BrowseChannels extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { filtered: [], subscribed: [] }
+        this.state = { filtered: [], subscribed: [] };
         this.handleChange = this.handleChange.bind(this);
         this.select = this.select.bind(this);
         this.handleKeypress = this.handleKeypress.bind(this);
@@ -71,7 +69,6 @@ class BrowseChannels extends React.Component {
     select(id) {
         const { currentUser, selectChannel } = this.props;
         return e => {
-            // selectChannel(id)
             if (currentUser.channel_ids.includes(id)) {
                 this.props.history.push(`/home/channels/${id}`);
             } else {

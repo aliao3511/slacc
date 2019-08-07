@@ -33,9 +33,11 @@ class ChannelsIndex extends React.Component {
 
     constructor(props) {
         super(props);
+        this.bottom = React.createRef();
     }
 
     componentDidMount() {
+        this.bottom.current.scrollIntoView();
         const { currentUser, getChannels, selected, selectChannel } = this.props;
         getChannels();
     }
@@ -45,6 +47,10 @@ class ChannelsIndex extends React.Component {
         return e => {
             this.props.history.push(`/home/channels/${id}`);
         }
+    }
+
+    componentDidUpdate() {
+        this.bottom.current.scrollIntoView();
     }
 
     render() {
@@ -66,8 +72,8 @@ class ChannelsIndex extends React.Component {
                             select={this.select(channel.id)}
                             className={(channel.id == this.props.match.params.channelId) ? 'selected-channel' : 'unselected'}
                         />)}
+                    <div ref={this.bottom}></div>
                 </ul>
-
             </div>
         )
     }

@@ -81,4 +81,9 @@ export const getChannelMembers = channelId => dispatch => {
         .then(users => dispatch(receiveUsers(users)))
 };
 
+export const getAllMembers = () => dispatch => {
+    return SessionAPIUtil.getAllMembers()
+        .then(users => dispatch(receiveUsers(users)))
+};
+
 

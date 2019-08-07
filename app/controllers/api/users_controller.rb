@@ -14,7 +14,11 @@ class Api::UsersController < ApplicationController
     end
 
     def index
-        @users = Channel.find(params[:channel_id]).members
+        if (params[:channelId]) 
+            @users = Channel.find(params[:channelId]).members
+        else 
+            @users = User.all
+        end
         render :index
     end
 

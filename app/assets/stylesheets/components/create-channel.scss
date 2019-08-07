@@ -50,7 +50,7 @@
     background-color: white;
     border: 1px solid rgb(116, 115, 115);
     border-radius: 5px;
-    padding: 18px;
+    padding: 10px;
     font-size: 16px;
     letter-spacing: 0.5px;
     width: 100%;
@@ -61,8 +61,20 @@
     box-shadow: 0 0 0 3px lightblue;
 }
 
+.channel-invites {
+    background-color: white;
+    border: 1px solid rgb(116, 115, 115);
+    border-radius: 5px;
+    padding: 18px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    width: 100%;
+    border: 0.8px solid rgb(18, 18, 128);
+    box-shadow: 0 0 0 3px lightblue;
+}
+
 .channel-input-caption strong {
-    // margin-bottom: 7px;
+    margin-bottom: 7px;
     margin-right: 5px;
     font-size: 14px;
 }
@@ -71,11 +83,18 @@
     display: flex;
     justify-content: flex-start;
     height: 20px;
+    margin-bottom: 4px;
 }
 
 .channel-input-caption p {
     color: rgb(116, 115, 115);
     font-size: 14px;
+}
+
+p.specs {
+    color: rgb(116, 115, 115);
+    font-size: 12px;
+    margin-top: 6px;
 }
 
 .buttons {
@@ -128,4 +147,149 @@ div.name-error {
     font-weight: 700;
     margin-left: 5px;
 }
+
+/* invite users */
+div.channel-invites {
+    padding: 8px;
+    box-shadow: none;
+    border: 1px solid rgb(116, 115, 115);
+    min-height: 45px;
+}
+
+div.channel-invites:focus-within {
+    border: 0.8px solid rgb(18, 18, 128);
+    box-shadow: 0 0 0 3px lightblue;
+}
+
+.channel-invites-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+div.channel-invites-bottom {
+    position: relative;
+}
+
+.invites-dropdown- {
+    display: none;
+}
+
+.invites-dropdown-visible {
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: -5%;
+    background-color: white;
+    border-radius: 5px;
+    border: 0.5px solid rgb(207, 207, 207);
+    width: 110%;
+    min-height: 50px;
+    z-index: 5;
+    padding: 10px 0;
+    box-shadow: 2px 1px 4px 1px rgba(122, 122, 122, 0.25);
+}
+
+li.first-result {
+    padding: 8px 0px;
+    background-color: rgb(0, 110, 184);
+    color: white;
+}
+
+li.result:hover {
+    padding: 8px 0px;
+    background-color: rgb(0, 110, 184);
+    color: white;
+}
+
+li.result {
+    padding: 8px 0px;
+}
+
+div.no-results {
+    text-align: center;
+    letter-spacing: 0px;
+    padding-top: 5px;
+}
+
+.user-item-content {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.user-item-content strong {
+    padding-top: 2px;
+}
+
+input.hidden {
+    border: none;
+    box-shadow: none;
+    display: flex;
+    flex-basis: auto;
+    height: 40px;
+    padding: 5px;
+    width: auto;
+    flex: 1 1 auto;
+    // flex-grow: 1;
+    // flex-shrink: 1;
+}
+
+input.hidden:hover {
+    border: none;
+    box-shadow: none;
+}
+
+input.hidden:focus {
+    border: none;
+    box-shadow: none;
+}
+
+// list items //
+.invited-item-content {
+    display: flex;
+    flex-basis: auto;
+    width: auto;
+    background-color: #e8f5fa;
+    border-radius: 5px;
+}
+
+.invited-item-content > strong {
+    padding-top: 4px;
+    padding-right: 5px;
+}
+
+div.x {
+    background-image: image-url('x.png');
+    background-position: center;
+    background-size: cover;
+    background-color: #e8f5fa;
+    border: 3px solid #e8f5fa;
+    height: 15px;
+    width: 15px;
+    border-radius: 3px;
+    margin-top: 8px;
+    margin-right: 5px;
+}
+
+ div.invited-item-content:hover > div.x {
+    background-image: image-url('x_hover.png');
+    background-position: center;
+    height: 15px;
+    width: 15px;
+    background-color: rgb(224, 224, 224);
+    border: 3px solid rgb(224, 224, 224);
+    margin-top: 8px;
+    margin-right: 5px;
+    border-radius: 3px;
+}
+
+li.invited-item {
+    padding: 5px;
+}
+
 

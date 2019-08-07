@@ -32,10 +32,13 @@ export const deleteChannel = id => (
     })
 );
 
-export const addChannel = channelId => (
+export const addChannel = (channelId, userIds) => (
     $.ajax({
         method: 'GET',
         url: `api/channels/${channelId}/add_channel`,
+        data: {
+            userIds,
+        }
     })
 );
 

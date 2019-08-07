@@ -1,19 +1,23 @@
 import React from 'react';
-import { createChannel, receiveChannel } from '../../actions/channel_actions';
-import { updateUserChannels, clearErrors } from '../../actions/session_actions';
+import { createChannel, receiveChannel, addChannel } from '../../actions/channel_actions';
+import { updateUserChannels, clearErrors, getAllMembers } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import ChannelInvites from './channel_invites';
 
 const mapStateToProps = state => {
     return {
     currentUser: state.entities.users[state.session.id],
     errors: state.errors.channel,
+    users: Object.values(state.entities.users).filter(user => user.id != state.session.id),
 }};
 
 const mapDispatchToProps = dispatch => ({
     createChannel: channel => dispatch(createChannel(channel)),
     updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
     clearErrors: () => dispatch(clearErrors()),
+    getAllMembers: () => dispatch(getAllMembers()),
+    addChannel: (channelId, userIds) => dispatch(addChannel(channelId, userIds)),
 });
 
 class NewChannelForm extends React.Component {
@@ -24,6 +28,7 @@ class NewChannelForm extends React.Component {
             name: '',
             purpose: '',
             is_private: false,
+            memberIds: [],
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleKeypress = this.handleKeypress.bind(this);
@@ -39,24 +44,43 @@ class NewChannelForm extends React.Component {
         if (e) {
             e.preventDefault();
         }
-        const { createChannel, updateUserChannels, currentUser, clearErrors } = this.props;
+        const { createChannel, updateUserChannels, currentUser, clearErrors, addChannel } = this.props;
         clearErrors();
         const channel = Object.assign({}, this.state);
-        this.props.createChannel(channel).then(action => {
+        const { memberIds } = this.state;
+        createChannel(channel).then(action => {
             return updateUserChannels(action.channel.id, currentUser.id);
         }).then(action => {
-            this.props.history.push(`/home/channels/${action.channelId}`);
+            return addChannel(action.channelId, memberIds);
+        }).then(action => {
+            this.props.history.push(`/home/channels/${action.channel.id}`);
         });
     }
 
     handleKeypress(e) {
         if (e.keyCode === 27) {
-            if (this.props.location.state.prevPath) {
+            if (this.props.location.state) {
                 this.props.history.push(this.props.location.state.prevPath);
             } else {
                 this.props.history.push('/home/channels/1');
             }
         }
+    }
+
+    addMember() {
+        return userId => {
+            const oldState = this.state.memberIds;
+            oldState.push(userId);
+            return this.setState({ memberIds: oldState });
+        };
+    }
+
+    unaddMember() {
+        return userId => {
+            const oldState = this.state.memberIds;
+            const newState = oldState.filter(id => id != userId);
+            return this.setState({ memberIds: newState });
+        };
     }
 
     render() {
@@ -75,17 +99,27 @@ class NewChannelForm extends React.Component {
                             <label className="channel-name">
                                 <div className="channel-input-caption">
                                     <strong>Name</strong>
-                                    <div className={error}>Don't forget to name your channel!</div>
+                                    <div className={error}>{this.props.errors[0]}!</div>
                                 </div>
                                 <input type="text" placeholder="e.g. #marketing" value={this.state.name} onChange={this.handleChange('name')} />
+                                <p className="specs">Names cannot be longer than 25 characters.</p>
                             </label>
                             <label className="channel-purpose">
                                 <div className="channel-input-caption">
                                     <strong>Purpose</strong>
                                     <p>(optional)</p>
                                 </div>
-                                <input type="purpose" value={this.state.purpose} onChange={this.handleChange('purpose')} />
+                                <input type="text" value={this.state.purpose} onChange={this.handleChange('purpose')} />
+                                <p className="specs">What's this channel about?</p>
                             </label>
+                            <div className="channel-input-caption">
+                                <strong>Add members</strong>
+                                <p>(optional)</p>
+                            </div>
+                            {/* <div className="channel-invites"> */}
+                                <ChannelInvites invite={this.addMember()} uninvite={this.unaddMember()} invited={this.state.memberIds}/>
+                                {/* <input type="text" value={this.state.members} onChange={this.handleChange('purpose')} /> */}
+                            {/* </div> */}
                             {/* <label className="is-private">
                                 <strong>Make private</strong>
                                 <input type="checkbox" />

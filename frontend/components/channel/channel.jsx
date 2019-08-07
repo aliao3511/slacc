@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
     getChannelMembers: channelId => dispatch(getChannelMembers(channelId)),
     getChannelMessages: channelId => dispatch(getChannelMessages(channelId)),
     receiveMessage: message => dispatch(receiveMessage(message)),
-    addChannel: channelId => dispatch(addChannel(channelId)),
+    addChannel: (channelId, userIds) => dispatch(addChannel(channelId, userIds)),
     updateUserChannels: (channelid, userId) => dispatch(updateUserChannels(channelId, userId)),
     leaveChannel: channelId => dispatch(leaveChannel(channelId)),
 });
@@ -85,10 +85,10 @@ class Channel extends React.Component {
         }
     }
 
-    joinChannel(id) {
-        const { addChannel } = this.props;
+    joinChannel(channelId) {
+        const { addChannel, currentUser } = this.props;
         return e => {
-            return addChannel(id);
+            return addChannel(channelId, [currentUser.id]);
         }
     }
 

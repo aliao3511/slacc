@@ -38,6 +38,16 @@ export const verifyEmail = email => (
 export const getChannelMembers = channelId => (
     $.ajax({
         method: 'GET',
-        url: `api/channels/${channelId}/users`
+        url: `api/users`,
+        data: {
+            channelId
+        },
     })
 );
+
+export const getAllMembers = () => (
+    $.ajax({
+        method: 'GET',
+        url: `api/users`,
+    })
+)
