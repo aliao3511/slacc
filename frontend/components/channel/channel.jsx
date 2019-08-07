@@ -81,7 +81,7 @@ class Channel extends React.Component {
         const channelId = this.props.match.params.channelId;
         if (!prevProps.channel || channelId != prevProps.channel.id) {
             this.getCurrentChannel();
-            getChannelMembers(channelId).then(() => getChannelMessages(channel.id));
+            getChannelMembers(channelId).then(() => getChannelMessages(channelId));
         }
     }
 
@@ -114,18 +114,19 @@ class Channel extends React.Component {
 
     render() {
         const { messages, channel } = this.props;
-        const messageList = messages.map(message => {
-            if (message.messageable_id == channel.id) {
-                return <MessageContainer key={message.id}
-                    message={message}
-                    />;
-            } else {
-                return <></>;
-            }
-        });
-        const visible = this.state.visible ? 'visible' : '';
-        const general = (channel.id == 1 || this.props.location.pathname.includes('preview')) ? 'general' : '';
+        debugger
         if (channel && channel.id == this.props.match.params.channelId) {
+            const messageList = messages.map(message => {
+                if (message.messageable_id == channel.id) {
+                    return <MessageContainer key={message.id}
+                        message={message}
+                        />;
+                } else {
+                    return <></>;
+                }
+            });
+            const visible = this.state.visible ? 'visible' : '';
+            const general = (channel.id == 1 || this.props.location.pathname.includes('preview')) ? 'general' : '';
             return (
                 <div className="channel-container">
                     <div className="channel-header">

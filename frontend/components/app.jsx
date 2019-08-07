@@ -19,7 +19,7 @@ const App = () => {
         <AuthRoute exact path='/signup' component={SignupFormContainer}/>
         <Route exact path='/' component={SplashContainer}/>
         
-        <ProtectedRoute path={['/home/channels/:channelId', '/preview/:channelId']} component={HomepageContainer}/>
+        <ProtectedRoute path={['/home', '/preview']} component={HomepageContainer}/>
         <ProtectedRoute exact path='/create-channel' component={NewChannelFormContainer}/>
         <ProtectedRoute exact path='/add-channel' component={BrowseChannelsContainer}/>
 

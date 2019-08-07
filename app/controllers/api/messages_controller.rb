@@ -3,7 +3,11 @@ class Api::MessagesController < ApplicationController
     before_action :ensure_logged_in
 
     def index
-        @messages = Message.where(messageable_id: params[:channel_id], messageable_type: 'Channel')
+        if (params[:channelId]) 
+            @messages = Message.where(messageable_id: params[:channelId], messageable_type: 'Channel')
+        elsif (params[:dmId])
+            @messages = Message.where(messageable_id: params[:dmId], messageable_type: 'Dm')
+        end
         render :index
     end
 

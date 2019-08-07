@@ -21,3 +21,10 @@ export const getChannelMessages = channelId => dispatch => {
             dispatch(receiveMessages(messages))
         });
 };
+
+export const getDmMessages = dmId => dispatch => {
+    return MessageAPIUtil.getDmMessages(dmId)
+        .then(messages => {
+            dispatch(receiveMessages(messages))
+        });
+};

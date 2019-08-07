@@ -1,5 +1,6 @@
 import React from 'react';
 import ChannelsIndexContainer from './channel/channels_index';
+import DmsIndexContainer from './dms/dms_index';
 import { connect } from 'react-redux';
 import { logout } from '../actions/session_actions';
 import { withRouter } from 'react-router-dom';
@@ -68,7 +69,7 @@ class Sidebar extends React.Component {
                         <ChannelsIndexContainer/>
                     </div>
                     <div className="dms-index">
-                        DIRECT MESSAGES
+                        <DmsIndexContainer />
                     </div>
                 </div>)
         } else {

@@ -5,8 +5,9 @@ import { getChannels } from '../../actions/channel_actions';
 
 const mapStateToProps = state => {
     return {
-    currentUser: state.entities.users[state.session.id],
-    channels: Object.values(state.entities.channels),
+        currentUser: state.entities.users[state.session.id],
+        channels: Object.values(state.entities.channels),
+        dms: Object.values(state.entities.dms)
     }
 };
 

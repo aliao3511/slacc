@@ -1,4 +1,5 @@
 import * as DmApiUtil from '../util/dm_util';
+import { getUsersById } from '../actions/session_actions';
 
 export const RECEIVE_DMS = 'RECEIVE_DMS';
 export const RECEIVE_DM = 'RECEIVE_DM';
@@ -24,8 +25,19 @@ const receiveDmErrors = errors => ({
 
 export const getDms = userId => dispatch => {
     return DmApiUtil.getDms(userId)
-        .then(dms => dispatch(receiveDms(dms), 
-            errors => dispatch(receiveErrors(errors.responseJSON))));
+        .then(dms => {
+            dispatch(receiveDms(dms));
+            const member_ids = [];
+            Object.keys(dms).forEach(dm => {
+                dms[dm].member_ids.forEach(id => {
+                    if (!member_ids.includes(id)) {
+                        member_ids.push(id);
+                    }
+                })
+            });
+            dispatch(getUsersById(member_ids));
+        }, 
+            errors => dispatch(receiveErrors(errors.responseJSON)));
 };
 
 export const getDm = (senderId, recipientId) => dispatch => {

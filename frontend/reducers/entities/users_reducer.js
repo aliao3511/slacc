@@ -10,8 +10,12 @@ const usersReducer = (state = {}, action) => {
         case RECEIVE_CURRENT_USER:
             newState = merge({}, state, { [action.user.id]: action.user });
             return newState;
+        // case RECEIVE_USERS:
+        //     newState = merge({}, action.users)
+        //     return newState;
         case RECEIVE_USERS:
-            newState = merge({}, action.users)
+            newState = merge({}, state);
+            Object.keys(action.users).forEach(userId => newState[userId] = action.users[userId]);
             return newState;
         case UPDATE_USER_CHANNELS:
             newState = merge({}, state);
