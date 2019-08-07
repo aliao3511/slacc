@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_04_210118) do
+ActiveRecord::Schema.define(version: 2019_08_07_051311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,12 @@ ActiveRecord::Schema.define(version: 2019_08_04_210118) do
     t.datetime "updated_at", null: false
     t.string "purpose"
     t.index ["owner_id"], name: "index_channels_on_owner_id"
+  end
+
+  create_table "dms", force: :cascade do |t|
+    t.string "body", null: false
+    t.integer "owner_id"
+    t.string "timestamps"
   end
 
   create_table "messages", force: :cascade do |t|

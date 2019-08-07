@@ -1,5 +1,6 @@
 import React from 'react';
 import { getChannels } from '../../actions/channel_actions';
+// import { getChannelMembers } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getChannels: () => dispatch(getChannels()),
+    // getChannelMembers: channelId => dispatch(getChannelMembers(channelId)),
 });
 
 class BrowseChannels extends React.Component {

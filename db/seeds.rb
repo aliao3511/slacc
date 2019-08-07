@@ -10,6 +10,7 @@ User.destroy_all
 Channel.destroy_all
 Message.destroy_all
 ChannelMember.destroy_all
+DmMember.destroy_all
 
 demo_user = User.create!(username: 'Demo User', email: 'demo@slacc.com', password: 'password', avatar_url: 'avatar_1.png')
 user2 = User.create!(username: 'alpalca', email: 'alpal@gmail.com', password: 'alpaca', avatar_url: 'avatar_2.png')
@@ -20,17 +21,11 @@ channel2 = Channel.create!(name: 'yeehaw!!!', owner: user2, is_private: true)
 channel3 = Channel.create!(name: 'salad opinions', owner: user3, is_private: false)
 channel4 = Channel.create!(name: 'hot takes', owner: user3, is_private: true)
 
-# message1 = Message.create!(body: 'burn notice is actually pretty good', messageable: channel1)
-# message2 = Message.create!(body: 'ranch sux', messageable: channel3)
-# message3 = Message.create!(body: 'ranch really sucks', messageable: channel2)
-# message4 = Message.create!(body: 'RANCH SUCKS', messageable: channel4)
-
 message1 = Message.create!(body: 'welcome to slacc!', author: user2, messageable: channel1)
 message2 = Message.create!(body: 'ranch sux', author: user2, messageable: channel3)
 message3 = Message.create!(body: "delta dawn what/'s that flower you have on ~", author: user3, messageable: channel2)
 message4 = Message.create!(body: 'burn notice is actually really good', author: demo_user, messageable: channel4)
 
-# channel_member1 = ChannelMember.create!(channel: channel1, user: demo_user)
 channel_member2 = ChannelMember.create!(channel: channel1, user: user2)
 channel_member3 = ChannelMember.create!(channel: channel1, user: user3)
 channel_member4 = ChannelMember.create!(channel: channel2, user: demo_user)
@@ -41,5 +36,7 @@ channel_member8 = ChannelMember.create!(channel: channel3, user: user3)
 channel_member9 = ChannelMember.create!(channel: channel1, user: demo_user)
 channel_member10 = ChannelMember.create!(channel: channel2, user: user2)
 channel_member11 = ChannelMember.create!(channel: channel4, user: user3)
+
+
 
 

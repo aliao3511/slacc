@@ -19,7 +19,7 @@ class Api::MessagesController < ApplicationController
         # end
     end
 
-    def destroy
+    def destroy     
         message = current_user.messages.find_by(id: params[:id])
         if message
             @message = message
