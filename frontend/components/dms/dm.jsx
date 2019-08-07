@@ -3,7 +3,7 @@ import MessageForm from '../channel/message_form';
 import MessageContainer from '../messages/message';
 import { connect } from 'react-redux';
 import { getDmMessages, receiveMessage } from '../../actions/message_actions';
-import { getUsersById } from '../../actions/session_actions';
+// import { getUsersById } from '../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -15,9 +15,9 @@ const mapStateToProps = (state, ownProps) => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    getUsersById: userIds => dispatch(getUsersById(userIds)),
+    // getUsersById: userIds => dispatch(getUsersById(userIds)),
     getDmMessages: dmId => dispatch(getDmMessages(dmId)),
-    // receiveMessage: message => dispatch(receiveMessage(message)),
+    receiveMessage: message => dispatch(receiveMessage(message)),
     // addChannel: (channelId, userIds) => dispatch(addChannel(channelId, userIds)),
     // updateUserChannels: (channelid, userId) => dispatch(updateUserChannels(channelId, userId)),
     // leaveChannel: channelId => dispatch(leaveChannel(channelId)),
@@ -63,9 +63,7 @@ class Dm extends React.Component {
         const { dm, getUsersById, getDmMessages, users, currentUser } = this.props;
         const dmId = this.props.match.params.dmId;
         debugger
-        // const recipients = dm.member_ids.filter(id => id != currentUser.id);
         this.getCurrentDM();
-        // getUsersById(recipients).then(() => getDmMessages(dmId));
         getDmMessages(dmId);
     }
 
