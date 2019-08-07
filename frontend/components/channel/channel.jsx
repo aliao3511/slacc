@@ -98,7 +98,9 @@ class Channel extends React.Component {
         }
         const { leaveChannel } = this.props;
         return e => {
-            return leaveChannel(id).then(() => this.props.history.push('/home/channels/1'));
+            return leaveChannel(id)
+            .then(() => this.setState({ visible: false }))
+            .then(() => this.props.history.push('/home/channels/1'));
         };
     }
 

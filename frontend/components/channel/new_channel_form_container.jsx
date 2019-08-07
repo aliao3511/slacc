@@ -116,10 +116,7 @@ class NewChannelForm extends React.Component {
                                 <strong>Add members</strong>
                                 <p>(optional)</p>
                             </div>
-                            {/* <div className="channel-invites"> */}
                                 <ChannelInvites invite={this.addMember()} uninvite={this.unaddMember()} invited={this.state.memberIds}/>
-                                {/* <input type="text" value={this.state.members} onChange={this.handleChange('purpose')} /> */}
-                            {/* </div> */}
                             {/* <label className="is-private">
                                 <strong>Make private</strong>
                                 <input type="checkbox" />
