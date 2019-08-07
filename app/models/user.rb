@@ -30,6 +30,19 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: :Message
 
+    has_many :dm_members, dependent: :destroy
+    has_many :dms, through: :dm_members
+
+    # dms
+    def preexisting_chats
+        preexisting_chats = []
+        self.dms.each do |dm|
+            preexisting_chats.concat(dm.dm_members.where.not(user_id: self.id))
+        end
+        preexisting_chats.uniq
+    end
+
+    # backend auth
     attr_reader :password
 
     def self.find_by_credentials(email, password)

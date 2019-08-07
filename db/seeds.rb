@@ -10,7 +10,7 @@ User.destroy_all
 Channel.destroy_all
 Message.destroy_all
 ChannelMember.destroy_all
-# DmMember.destroy_all
+DmMember.destroy_all
 
 demo_user = User.create!(username: 'Demo User', email: 'demo@slacc.com', password: 'password', avatar_url: 'avatar_1.png')
 user2 = User.create!(username: 'alpalca', email: 'alpal@gmail.com', password: 'alpaca', avatar_url: 'avatar_2.png')
@@ -23,7 +23,7 @@ channel4 = Channel.create!(name: 'hot takes', owner: user3, is_private: true)
 
 message1 = Message.create!(body: 'welcome to slacc!', author: user2, messageable: channel1)
 message2 = Message.create!(body: 'ranch sux', author: user2, messageable: channel3)
-message3 = Message.create!(body: "delta dawn what/'s that flower you have on ~", author: user3, messageable: channel2)
+message3 = Message.create!(body: "delta dawn what\'s that flower you have on ~", author: user3, messageable: channel2)
 message4 = Message.create!(body: 'burn notice is actually really good', author: demo_user, messageable: channel4)
 
 channel_member2 = ChannelMember.create!(channel: channel1, user: user2)
@@ -36,6 +36,22 @@ channel_member8 = ChannelMember.create!(channel: channel3, user: user3)
 channel_member9 = ChannelMember.create!(channel: channel1, user: demo_user)
 channel_member10 = ChannelMember.create!(channel: channel2, user: user2)
 channel_member11 = ChannelMember.create!(channel: channel4, user: user3)
+
+# dms
+dm_1 = Dm.create!()
+dm_2 = Dm.create!()
+dm_3 = Dm.create!()
+
+dm_member1 = DmMember.create!(dm: dm_1, user: demo_user)
+dm_member1 = DmMember.create!(dm: dm_1, user: user2)
+dm_member1 = DmMember.create!(dm: dm_2, user: demo_user)
+dm_member1 = DmMember.create!(dm: dm_2, user: user3)
+
+message5 = Message.create!(body: 'nyc fruits suck', author: user3, messageable: channel3)
+message6 = Message.create!(body: "you\'re not wrong", author: user2, messageable: channel1)
+message7 = Message.create!(body: "delta dawn what/'s that flower you have on ~", author: user3, messageable: channel2)
+message8 = Message.create!(body: 'burn notice is actually really good', author: demo_user, messageable: channel4)
+
 
 
 

@@ -1,13 +1,13 @@
 class DmChannel < ApplicationCable::Channel
 
     def subscribed
-        @dm_channel = DmChannel.find(params[:id])
+        @dm_channel = Dm.find(params[:id])
         stream_for @dm_channel
     end
 
     def speak(data)
         message = @dm_channel.messages.new(body: data['message'])
-        message.messageable_type = 'DMChannel'
+        message.messageable_type = 'Dm'
         message.messageable_id = @dm_channel.id
         message.author_id = current_user.id
         if message.save!
@@ -15,4 +15,6 @@ class DmChannel < ApplicationCable::Channel
             DmChannel.broadcast_to(@dm_channel, socket)
         end
     end
+
+    def unsubscribed; end
 end

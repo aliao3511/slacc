@@ -13,7 +13,7 @@
 
 class Message < ApplicationRecord
 
-    validates :messageable_type, inclusion: { in: ["Channel", "DM"] }
+    validates :messageable_type, inclusion: { in: ["Channel", "Dm"] }
 
     belongs_to :author,
     foreign_key: :author_id,

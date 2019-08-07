@@ -1,10 +1,8 @@
 class Dm < ApplicationRecord
 
-    validates :body, presence: true
-
-    belongs_to :owner,
-    foreign_key: :owner_id,
-    class_name: :User
+    # belongs_to :owner,
+    # foreign_key: :owner_id,
+    # class_name: :User
 
     has_many :dm_members, dependent: :destroy
     has_many :members, 
