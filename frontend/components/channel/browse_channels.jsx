@@ -1,17 +1,18 @@
 import React from 'react';
 import { getChannels } from '../../actions/channel_actions';
-// import { getChannelMembers } from '../../actions/session_actions';
+import { getUsersById } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => ({
     currentUser: state.entities.users[state.session.id],
     channels: Object.values(state.entities.channels),
+    users: state.entities.users,
 });
 
 const mapDispatchToProps = dispatch => ({
     getChannels: () => dispatch(getChannels()),
-    // getChannelMembers: channelId => dispatch(getChannelMembers(channelId)),
+    getUsersById: userIds => dispatch(getUsersById(userIds)),
 });
 
 class BrowseChannels extends React.Component {
@@ -25,8 +26,9 @@ class BrowseChannels extends React.Component {
     }
 
     componentDidMount() {
-        const { currentUser, getChannels } = this.props;
-        this.props.getChannels().then(() => {
+        const { currentUser, getChannels, getUsersById } = this.props;
+        getChannels()
+        .then(() => {
             const channels = [];
             const subscribedChannels = [];
             this.props.channels.forEach(channel => {
@@ -36,7 +38,12 @@ class BrowseChannels extends React.Component {
                     subscribedChannels.push(channel);
                 }
             });
-            this.setState({ filtered: channels, subscribed: subscribedChannels })
+            return this.setState({ filtered: channels, subscribed: subscribedChannels })
+        })
+        .then(() => {
+            const ownerIds = [];
+            this.props.channels.forEach(channel => ownerIds.push(channel.owner_id));
+            getUsersById(ownerIds);
         });
     }
 
@@ -86,6 +93,7 @@ class BrowseChannels extends React.Component {
     }
     
     render() {
+        const { users } = this.props;
         return (
             <div className="add-channel-container" tabIndex="1" onKeyDown={this.handleKeypress}>
                 <Link to="/home/channels/1" className="escape"></Link>
@@ -98,7 +106,7 @@ class BrowseChannels extends React.Component {
                                 <li key={channel.id} onClick={this.select(channel.id)}>
                                         <div className="channel-item">
                                             <strong>#{channel.name}</strong>
-                                            <p>Created by {channel.owner_id}</p>
+                                        <p>Created by {users[channel.owner_id] ? users[channel.owner_id].username : ''}</p>
                                         </div>
                                 </li>
                             )}
@@ -109,7 +117,7 @@ class BrowseChannels extends React.Component {
                                 <li key={channel.id} onClick={this.select(channel.id)}>
                                     <div className="channel-item">
                                         <strong>#{channel.name}</strong>
-                                        <p>Created by {channel.owner_id}</p>
+                                        <p>Created by {users[channel.owner_id] ? users[channel.owner_id].username : ''}</p>
                                     </div>
                                 </li>
                             )}

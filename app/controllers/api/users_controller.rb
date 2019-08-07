@@ -27,6 +27,11 @@ class Api::UsersController < ApplicationController
         render :show
     end
 
+    def get_users
+        @users = params[:userIds].map {|userId| User.find_by_id(userId)}
+        render :index 
+    end
+
     private
     def user_params
         params.require(:user).permit(:email, :password, :username)

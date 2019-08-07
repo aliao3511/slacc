@@ -93,7 +93,6 @@ class Channel extends React.Component {
     }
 
     leaveChannel(id) {
-        debugger
         if (id === 1 || this.props.location.pathname.includes('preview')) {
             return;
         }
@@ -125,7 +124,6 @@ class Channel extends React.Component {
             }
         });
         const visible = this.state.visible ? 'visible' : '';
-        debugger
         const general = (channel.id == 1 || this.props.location.pathname.includes('preview')) ? 'general' : '';
         if (channel && channel.id == this.props.match.params.channelId) {
             return (

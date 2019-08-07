@@ -50,4 +50,14 @@ export const getAllMembers = () => (
         method: 'GET',
         url: `api/users`,
     })
-)
+);
+
+export const getUsersById = userIds => (
+    $.ajax({
+        method: 'GET',
+        url: `api/get_users`,
+        data: {
+            userIds,
+        },
+    })
+);

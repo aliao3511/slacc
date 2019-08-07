@@ -86,4 +86,9 @@ export const getAllMembers = () => dispatch => {
         .then(users => dispatch(receiveUsers(users)))
 };
 
+export const getUsersById = userIds => dispatch => {
+    return SessionAPIUtil.getUsersById(userIds)
+        .then(users => dispatch(receiveUsers(users)))
+}
+
 

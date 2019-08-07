@@ -7,6 +7,7 @@ import { getChannels, getChannel, createChannel, destroyChannel } from './action
 // import { getChannelMessages } from './actions/message_actions';
 // import { getChannelMembers } from './actions/session_actions';
 // import { getChannelMembers } from './actions/session_actions';
+import { getUsersById } from './actions/session_actions';
 //testing
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,7 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // window.getChannels = getChannels;
     // window.getChannel = getChannel;
     // window.destroyChannel = destroyChannel;
-    window.createChannel = createChannel;
+    // window.createChannel = createChannel;
+    window.getUsersById = getUsersById;
     // window.getChannelMessages = getChannelMessages;
     // window.getChannelMembers = getChannelMembers;
     //testing
