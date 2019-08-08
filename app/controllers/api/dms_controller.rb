@@ -34,16 +34,6 @@ class Api::DmsController < ApplicationController
 
     private
 
-    # def find_dm(recipient_id) 
-    #     dms = current_user.dms;
-    #     dms.each do |dm|
-    #         dm.dm_members.each do |dm_member|
-    #             return dm if dm_member.user_id == recipient_id.to_i
-    #         end
-    #     end
-    #     nil
-    # end
-
     def find_dm(recipient_ids) 
         dms = current_user.dms;
         dms.each do |dm|

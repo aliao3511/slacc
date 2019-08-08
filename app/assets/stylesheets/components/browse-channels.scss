@@ -78,19 +78,16 @@ p.subscribed-channels-label {
 /* preview-button */
 .preview-footer {
     background-color: rgb(243, 243, 243);
-    position: absolute;
-    bottom: -70px;
-    height: 150px;
+    bottom: 0px;
+    height: 115px;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    padding-left: 32%;
 }
 
 .preview-info {
-    margin-top: 20px;
     text-align: center;
 }
 
@@ -104,7 +101,7 @@ div.preview-info p:last-of-type {
     font-size: 15px;
     color: rgba(29,28,29,.7);
     font-weight: 200;
-    margin-bottom: 19px;
+    margin-bottom: 10px;
 }
 
 button.join {
