@@ -15,12 +15,12 @@ export const getDm = (senderId, recipientId) => (
     }) 
 );
 
-export const createDm = (senderId, recipientId) => (
+export const createDm = (senderId, recipientIds) => (
     $.ajax({
         method: 'POST',
         url: `api/users/${senderId}/dms`,
         data: {
-            recipientId
+            recipientIds
         },
     })
 );

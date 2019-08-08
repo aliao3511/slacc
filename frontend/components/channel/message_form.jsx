@@ -5,7 +5,6 @@ class MessageForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { body: '' };
-
     }
 
     update(field) {
@@ -23,14 +22,15 @@ class MessageForm extends React.Component {
     }
 
     render() {
-        const { channel, dm } = this.props;
+        const { channel, dm, recipients } = this.props;
+        const placeholder = channel ? `Message #${channel.name}` : `Message ${recipients}`
         return (
             <div className='message-form'>
                 <form>
                     <textarea
                         value={this.state.body}
                         onChange={this.update('body')}
-                        placeholder={channel ? `Message #${channel.name}` : `Message ${dm.name}`}
+                        placeholder={placeholder}
                         onKeyDown={this.handleSubmit.bind(this)}
                     />
                 </form>

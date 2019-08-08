@@ -8,13 +8,6 @@ export const getChannelMessages = channelId => (
     })
 );
 
-// export const getChannelMessages = channelId => (
-//     $.ajax({
-//         method: 'GET',
-//         url: `/api/channels/${channelId}/messages`,
-//     })
-// );
-
 export const getDmMessages = dmId => (
     $.ajax({
         method: 'GET',

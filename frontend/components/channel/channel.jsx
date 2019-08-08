@@ -114,7 +114,6 @@ class Channel extends React.Component {
 
     render() {
         const { messages, channel } = this.props;
-        debugger
         if (channel && channel.id == this.props.match.params.channelId) {
             const messageList = messages.map(message => {
                 if (message.messageable_id == channel.id) {

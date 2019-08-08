@@ -4,7 +4,7 @@ import { getUsersById } from '../actions/session_actions';
 export const RECEIVE_DMS = 'RECEIVE_DMS';
 export const RECEIVE_DM = 'RECEIVE_DM';
 export const RECEIVE_DM_ERRORS = 'RECEIVE_DM_ERRORS';
-
+export const UPDATE_USER_DMS = 'UPDATE_USER_DMS';
 
 const receiveDms = dms => ({
     type: RECEIVE_DMS,
@@ -19,6 +19,12 @@ const receiveDm = dm => ({
 const receiveDmErrors = errors => ({
     type: RECEIVE_DM_ERRORS,
     errors
+});
+
+export const updateUserDms = (dmId, userId) => ({
+    type: UPDATE_USER_DMS,
+    dmId,
+    userId
 })
 
 // thunk action creators
@@ -46,8 +52,8 @@ export const getDm = (senderId, recipientId) => dispatch => {
             errors => dispatch(receiveErrors(errors.responseJSON))));
 };
 
-export const createDm = (senderId, recipientId) => dispatch => {
-    return DmApiUtil.createDm(senderId, recipientId)
+export const createDm = (senderId, recipientIds) => dispatch => {
+    return DmApiUtil.createDm(senderId, recipientIds)
         .then(dm => dispatch(receiveDm(dm), 
             errors => dispatch(receiveErrors(errors.responseJSON))));
 };

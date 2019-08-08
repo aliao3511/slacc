@@ -8,6 +8,7 @@ import { Route, Switch } from 'react-router-dom';
 import HomepageContainer from './homepage/homepage_container';
 import NewChannelFormContainer from './channel/new_channel_form_container';
 import BrowseChannelsContainer from './channel/browse_channels';
+import NewDmFormContainer from './dms/new_dm_form_container';
 
 const App = () => {
     return (<>
@@ -22,6 +23,7 @@ const App = () => {
         <ProtectedRoute path={['/home', '/preview']} component={HomepageContainer}/>
         <ProtectedRoute exact path='/create-channel' component={NewChannelFormContainer}/>
         <ProtectedRoute exact path='/add-channel' component={BrowseChannelsContainer}/>
+        <ProtectedRoute exact path='/create-dm' component={NewDmFormContainer}/>
 
 
         <Route exact path={['/', '/login', '/signup']} render={() => 

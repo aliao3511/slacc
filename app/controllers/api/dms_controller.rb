@@ -23,22 +23,33 @@ class Api::DmsController < ApplicationController
     # end
 
     def create
-        @dm = find_dm(params[:recipientId]) || Dm.new()
+        @dm = find_dm(params[:recipientIds]) || Dm.new()
         if (!@dm.persisted?)
             @dm.save
             @dm.dm_members.create({ user_id: current_user.id })
-            @dm.dm_members.create({ user_id: params[:recipientId] })
+            params[:recipientIds].each {|id| @dm.dm_members.create({ user_id: id.to_i })}
+            # @dm.dm_members.create({ user_id: params[:recipientId] })
         end
         render :show
     end
 
     private
 
-    def find_dm(recipient_id) 
+    # def find_dm(recipient_id) 
+    #     dms = current_user.dms;
+    #     dms.each do |dm|
+    #         dm.dm_members.each do |dm_member|
+    #             return dm if dm_member.user_id == recipient_id.to_i
+    #         end
+    #     end
+    #     nil
+    # end
+
+    def find_dm(recipient_ids) 
         dms = current_user.dms;
         dms.each do |dm|
-            dm.dm_members.each do |dm_member|
-                return dm if dm_member.user_id == recipient_id.to_i
+            if recipient_ids.all? {|id| dm.member_ids.include?(id.to_i)}
+                return dm
             end
         end
         nil

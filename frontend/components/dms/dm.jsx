@@ -28,14 +28,14 @@ class Dm extends React.Component {
     constructor(props) {
         super(props);
         this.bottom = React.createRef();
-        this.getCurrentDM = this.getCurrentDM.bind(this);
+        this.getCurrentDm = this.getCurrentDm.bind(this);
         // this.joinChannel = this.joinChannel.bind(this);
         // this.state = { visible: false };
         // this.onFocus = this.onFocus.bind(this);
         // this.onBlur = this.onBlur.bind(this);
     }
 
-    getCurrentDM() {
+    getCurrentDm() {
         if (App.cable.subscriptions.subscriptions.length > 0) {
             App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
         }
@@ -60,10 +60,9 @@ class Dm extends React.Component {
     }
 
     componentDidMount() {
-        const { dm, getUsersById, getDmMessages, users, currentUser } = this.props;
+        const { dm, getDmMessages, users, currentUser } = this.props;
         const dmId = this.props.match.params.dmId;
-        debugger
-        this.getCurrentDM();
+        this.getCurrentDm();
         getDmMessages(dmId);
     }
 
@@ -73,17 +72,18 @@ class Dm extends React.Component {
 //     //     App.cable.subscriptions.subscriptions[0].load();
 //     // }
 
-//     componentDidUpdate(prevProps) {
-//         if (this.bottom.current) {
-//             this.bottom.current.scrollIntoView();
-//         }
-//         const { channel, getChannelMembers, getChannelMessages } = this.props;
-//         const channelId = this.props.match.params.channelId;
-//         if (!prevProps.channel || channelId != prevProps.channel.id) {
-//             this.getCurrentChannel();
-//             getChannelMembers(channelId).then(() => getChannelMessages(channel.id));
-//         }
-//     }
+    componentDidUpdate(prevProps) {
+        if (this.bottom.current) {
+            this.bottom.current.scrollIntoView();
+        }
+        const { dm, getDmMessages, users, currentUser } = this.props;
+        // debugger
+        const dmId = this.props.match.params.dmId;
+        if (!prevProps.dm || dmId != prevProps.dm.id) {
+            this.getCurrentDm();
+            getDmMessages(dmId);
+        }
+    }
 
 //     joinChannel(channelId) {
 //         const { addChannel, currentUser } = this.props;
@@ -151,20 +151,15 @@ class Dm extends React.Component {
                         </div>
                         <div className='channel-bottom'>
                             {App.cable.subscriptions.subscriptions.length > 0
-                                && <MessageForm dm={dm} />}
-                            {/* {(this.props.location.pathname.includes('/preview') && App.cable.subscriptions.subscriptions.length > 0)
-                                && <JoinButton channel={channel}
-                                    joinChannel={this.joinChannel(channel.id)} />} */}
+                                && <MessageForm dm={dm} recipients={recipients}/>}
                         </div>
                     </div>
                 );
             } else {
                 return <></>;
             }
-        // return <h1>I'M SICK</h1>;
     }
 
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Dm));
-// export default Dm;

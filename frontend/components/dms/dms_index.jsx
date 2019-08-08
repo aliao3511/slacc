@@ -7,19 +7,6 @@ import { Link, withRouter } from 'react-router-dom';
 import { merge } from 'lodash';
 
 const mapStateToProps = (state, ownProps) => {
-    // let subscribedChannels = {};
-    // state.entities.users[state.session.id].channel_ids.forEach(id => {
-    //     if (state.entities.channels[id]) {
-    //         subscribedChannels[id] = state.entities.channels[id];
-    //     }
-    // });
-    // if (ownProps.location.pathname.includes('preview')) {
-    //     let previewedChannels = {};
-    //     if (state.entities.channels[ownProps.match.params.channelId]) {
-    //         previewedChannels = { [ownProps.match.params.channelId]: state.entities.channels[ownProps.match.params.channelId] };
-    //     }
-    //     subscribedChannels = merge(previewedChannels, subscribedChannels);
-    // }
     return {
         currentUser: state.entities.users[state.session.id],
         dms: Object.values(state.entities.dms),
@@ -39,7 +26,6 @@ class DmsIndex extends React.Component {
     }
 
     componentDidMount() {
-        debugger
         this.bottom.current.scrollIntoView();
         const { currentUser, getDms } = this.props;
         getDms(currentUser.id)
@@ -56,17 +42,16 @@ class DmsIndex extends React.Component {
     }
 
     render() {
-        debugger
         const prevPath = this.props.location.pathname;
         const { currentUser, users } = this.props;
         return (
             <div className="index-container">
                 <div className="tooltip">
-                    <Link to='/add-dm'>Direct Messages</Link>
+                    <Link to='/create-dm'>Direct Messages</Link>
                     <span className="tooltip-text open1">Open a direct message</span>
                 </div>
                 <div className="tooltip">
-                    <Link className="create-channel" to={{ pathname: '/add-dm', state: { prevPath: prevPath } }}></Link>
+                    <Link className="create-channel" to={{ pathname: '/create-dm', state: { prevPath: prevPath } }}></Link>
                     <span className="tooltip-text open2">Open a direct message</span>
                 </div>
                 <ul className="channels-index">
