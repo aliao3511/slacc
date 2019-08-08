@@ -28,8 +28,12 @@ class Api::UsersController < ApplicationController
     end
 
     def get_users
-        @users = params[:userIds].map {|userId| User.find_by_id(userId)}
-        render :index 
+        if (params[:userIds]) 
+            @users = params[:userIds].map {|userId| User.find_by_id(userId)}
+            render :index 
+        else
+            render json: {}
+        end
     end
 
     private

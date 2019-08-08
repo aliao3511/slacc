@@ -4,7 +4,7 @@ import ChannelContainer from '../channel/channel';
 import DmContainer from '../dms/dm';
 import SideBar from '../channel/channels_index';
 import { Route, Switch } from 'react-router-dom';
-import { MemberRoute } from '../../util/route_util';
+import { MemberRoute, PrivateRoute } from '../../util/route_util';
 
 class Homepage extends React.Component {
 
@@ -16,7 +16,7 @@ class Homepage extends React.Component {
                     {/* <Route path='/home/channels/:channelId' component={ChannelContainer}/> */}
                     <MemberRoute path='/home/channels/:channelId' component={ChannelContainer}/>
                     <Route path='/preview/:channelId' component={ChannelContainer}/>
-                    <Route path='/home/dms/:dmId' component={DmContainer}/>
+                    <PrivateRoute path='/home/dms/:dmId' component={DmContainer}/>
                 </Switch>
             </div>
         );

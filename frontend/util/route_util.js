@@ -34,6 +34,18 @@ const Member = ({ component: Component, path, currentUser, exact }) => {
     );
 }
 
+// render dm only if member, o.w. redirect to general
+const Private = ({ component: Component, path, currentUser, exact }) => {
+    return (
+        <Route path={path} exact={exact} render={props => {
+            return (
+                currentUser.dm_ids.includes(parseInt(props.match.params.dmId)) ?
+                    <Component {...props} /> : <Redirect to='/home/channels/1'/>
+            )
+        }}/>
+    );
+}
+
 const mapStateToProps = state => {
     debugger
     return { 
@@ -45,3 +57,4 @@ const mapStateToProps = state => {
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
 export const ProtectedRoute = withRouter(connect(mapStateToProps)(Protected));
 export const MemberRoute = withRouter(connect(mapStateToProps)(Member));
+export const PrivateRoute = withRouter(connect(mapStateToProps)(Private));
