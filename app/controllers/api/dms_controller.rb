@@ -28,7 +28,6 @@ class Api::DmsController < ApplicationController
             @dm.save
             @dm.dm_members.create({ user_id: current_user.id })
             params[:recipientIds].each {|id| @dm.dm_members.create({ user_id: id.to_i })}
-            # @dm.dm_members.create({ user_id: params[:recipientId] })
         end
         render :show
     end

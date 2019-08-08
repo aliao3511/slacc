@@ -26,9 +26,12 @@ class NewDmForm extends React.Component {
         const { createDm, updateUserDms, currentUser } = this.props;
         const { senderId, recipientIds } = this.state;
         debugger
+        // createDm(senderId, recipientIds).then(action => {
+        //     return updateUserDms(action.dm.id, currentUser.id);
+        // }).then(action => {
+        //     this.props.history.push(`/home/dms/${action.dm.id}`);
+        // });
         createDm(senderId, recipientIds).then(action => {
-            return updateUserDms(action.dm.id, currentUser.id);
-        }).then(action => {
             this.props.history.push(`/home/dms/${action.dm.id}`);
         });
     }

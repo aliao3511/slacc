@@ -15,12 +15,12 @@ const dmsReducer = (state = {}, action) => {
         //     newState = merge({}, state);
         //     delete newState[action.id];
         //     return newState;
-        case UPDATE_USER_DMS:
-            newState = merge({}, state);
-            if (!newState[action.dmId].member_ids.includes(action.userId)) {
-                newState[action.dmId].member_ids.push(action.userId);
-            }
-            return newState;
+        // case UPDATE_USER_DMS:
+        //     newState = merge({}, state);
+        //     if (!newState[action.dmId].member_ids.includes(action.userId)) {
+        //         newState[action.dmId].member_ids.push(action.userId);
+        //     }
+        //     return newState;
         default:
             return state;
     }
