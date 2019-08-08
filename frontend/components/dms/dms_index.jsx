@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getDms } from '../../actions/dm_actions';
-// import { getUsersById } from '../../actions/session_actions';
 import DmsIndexItem from './dms_index_item';
 import { Link, withRouter } from 'react-router-dom';
 import { merge } from 'lodash';
@@ -44,6 +43,7 @@ class DmsIndex extends React.Component {
     render() {
         const prevPath = this.props.location.pathname;
         const { currentUser, users } = this.props;
+        debugger
         return (
             <div className="index-container">
                 <div className="tooltip">

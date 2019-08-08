@@ -15,12 +15,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    // getUsersById: userIds => dispatch(getUsersById(userIds)),
     getDmMessages: dmId => dispatch(getDmMessages(dmId)),
     receiveMessage: message => dispatch(receiveMessage(message)),
-    // addChannel: (channelId, userIds) => dispatch(addChannel(channelId, userIds)),
-    // updateUserChannels: (channelid, userId) => dispatch(updateUserChannels(channelId, userId)),
-    // leaveChannel: channelId => dispatch(leaveChannel(channelId)),
 });
 
 class Dm extends React.Component {
@@ -29,10 +25,6 @@ class Dm extends React.Component {
         super(props);
         this.bottom = React.createRef();
         this.getCurrentDm = this.getCurrentDm.bind(this);
-        // this.joinChannel = this.joinChannel.bind(this);
-        // this.state = { visible: false };
-        // this.onFocus = this.onFocus.bind(this);
-        // this.onBlur = this.onBlur.bind(this);
     }
 
     getCurrentDm() {
@@ -85,33 +77,6 @@ class Dm extends React.Component {
         }
     }
 
-//     joinChannel(channelId) {
-//         const { addChannel, currentUser } = this.props;
-//         return e => {
-//             return addChannel(channelId, [currentUser.id]);
-//         }
-//     }
-
-//     leaveChannel(id) {
-//         if (id === 1 || this.props.location.pathname.includes('preview')) {
-//             return;
-//         }
-//         const { leaveChannel } = this.props;
-//         return e => {
-//             return leaveChannel(id)
-//                 .then(() => this.setState({ visible: false }))
-//                 .then(() => this.props.history.push('/home/channels/1'));
-//         };
-//     }
-
-//     onFocus() {
-//         this.setState({ visible: true });
-//     }
-
-//     onBlur() {
-//         this.setState({ visible: false });
-//     }
-
     render() {
         const { messages, dm, users, currentUser } = this.props;
         if (dm && dm.id == this.props.match.params.dmId) {
@@ -124,7 +89,7 @@ class Dm extends React.Component {
                     return <></>;
                 }
             });
-            const recipients = dm.member_ids.filter(id => id != currentUser.id).map(id => users[id] ? users[id].username : '')
+            const recipients = dm.member_ids.filter(id => id != currentUser.id).map(id => users[id] ? users[id].username : '').join(', ')
             // const visible = this.state.visible ? 'visible' : '';
             // const general = (dm.id == 1 || this.props.location.pathname.includes('preview')) ? 'general' : '';
                 return (
@@ -132,8 +97,8 @@ class Dm extends React.Component {
                         <div className="channel-header">
                             <h1>{recipients}</h1>
                             <div className="member-info">
-                                {recipients.length > 1 && <div className="member-icon"></div>}
-                                <a>{recipients.length > 1 ? recipients.length + 1 : ''}</a>
+                                {dm.member_ids.length > 2 && <div className="member-icon"></div>}
+                                <a>{dm.member_ids.length > 2 ? dm.member_ids.length : ''}</a>
                             </div>
                             {/* <div className="settings" tabIndex="0" onFocus={this.onFocus} onBlur={this.onBlur}>
                                 <div className={`settings-dropdown-content-${visible}`}>

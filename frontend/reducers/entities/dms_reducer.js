@@ -9,7 +9,7 @@ const dmsReducer = (state = {}, action) => {
             newState = merge({}, action.dms);
             return newState;
         case RECEIVE_DM:
-            newState = merge({}, state, { [action.dm.id]: action.dms });
+            newState = merge({}, state, { [action.dm.id]: action.dm });
             return newState;
         // case DELETE_DM:
         //     newState = merge({}, state);
