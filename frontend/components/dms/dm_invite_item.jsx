@@ -1,12 +1,10 @@
 import React from 'react';
 
 const DmInviteItem = props => {
-        debugger
         const { username, avatar, handleClick } = props;
         let image_url;
         if (typeof avatar === 'string') {
             image_url = avatar.includes("avatar_1") ? avatar1_url : avatar2_url;
-            debugger
         } else {
             image_url = avatar;
         }

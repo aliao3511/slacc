@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createDm } from '../../actions/dm_actions';
+import { createDm, updateUserDms } from '../../actions/dm_actions';
 import DmInvites from './dm_invites';
 import { Link } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     createDm: (senderId, recipientId) => dispatch(createDm(senderId, recipientId)),
+    updateUserDms: (dmId, userId) => dispatch(updateUserDms(dmId, userId)),
 });
 
 class NewDmForm extends React.Component {
@@ -25,14 +26,10 @@ class NewDmForm extends React.Component {
         e.preventDefault();
         const { createDm, updateUserDms, currentUser } = this.props;
         const { senderId, recipientIds } = this.state;
-        debugger
-        // createDm(senderId, recipientIds).then(action => {
-        //     return updateUserDms(action.dm.id, currentUser.id);
-        // }).then(action => {
-        //     this.props.history.push(`/home/dms/${action.dm.id}`);
-        // });
         createDm(senderId, recipientIds).then(action => {
-            this.props.history.push(`/home/dms/${action.dm.id}`);
+            return updateUserDms(action.dm.id, currentUser.id);
+        }).then(action => {
+            this.props.history.push(`/home/dms/${action.dmId}`);
         });
     }
 

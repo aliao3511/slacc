@@ -260,10 +260,12 @@
 }
 
 .splash-slideshow .slide {
-    height: auto;
+    height: 75%;
     width: 75%;
     box-shadow: 0 1px 5px rgba(77, 75, 75, 0.25);
     background-image: asset-url('slacc_homepage.png');
+    background-position: center;
+    background-size: cover;
 }
 
 /* slideshow nav bar */

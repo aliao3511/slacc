@@ -69,7 +69,6 @@ class Dm extends React.Component {
             this.bottom.current.scrollIntoView();
         }
         const { dm, getDmMessages, users, currentUser } = this.props;
-        // debugger
         const dmId = this.props.match.params.dmId;
         if (!prevProps.dm || dmId != prevProps.dm.id) {
             this.getCurrentDm();

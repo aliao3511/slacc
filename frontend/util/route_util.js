@@ -47,7 +47,6 @@ const Private = ({ component: Component, path, currentUser, exact }) => {
 }
 
 const mapStateToProps = state => {
-    debugger
     return { 
         loggedIn: Boolean(state.session.id),
         currentUser: state.entities.users[state.session.id],

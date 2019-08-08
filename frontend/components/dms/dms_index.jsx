@@ -43,7 +43,6 @@ class DmsIndex extends React.Component {
     render() {
         const prevPath = this.props.location.pathname;
         const { currentUser, users } = this.props;
-        debugger
         return (
             <div className="index-container">
                 <div className="tooltip">

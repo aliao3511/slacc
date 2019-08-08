@@ -28,14 +28,12 @@ class DmInvites extends React.Component {
 
     constructor(props) {
         super(props);
-        // debugger
         this.state = { filtered: [], searchTerm: '', recent: [] };
         this.handleChange = this.handleChange.bind(this);
         this.getUsernames = this.getUsernames.bind(this);
     }
 
     componentDidMount() {
-        // debugger
         const { currentUser, getDms, getAllMembers } = this.props;
         getDms(currentUser.id)
         .then(() => {
@@ -45,15 +43,9 @@ class DmInvites extends React.Component {
         .then(() => this.setState({ filtered: this.props.users }))
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     // debugger
-    //     // this.setState({ filtered: Object.values(nextProps.users), });
-    // }
-
     handleChange(e) {
         const currentList = Object.values(this.props.users);
         const searchTerm = e.target.value;
-        // debugger
         let newList = [];
         if (searchTerm !== '') {
             newList = currentList.filter(user => {
@@ -66,21 +58,12 @@ class DmInvites extends React.Component {
         } else {
             newList = Object.values(this.props.users);
         }
-        // debugger
         this.setState({ filtered: newList, searchTerm: searchTerm });
     }
     
     invite(userId) {
         const { invite, dms } = this.props;
         invite(userId);
-        // const recentDms = this.state.recent;
-        // recentDms.forEach(dm => {
-        //     if (dm.member_ids.includes(userId)) {
-        //         this.setState({ searchTerm: '', recent:  });
-        //     } else {
-
-        //     }
-        // })
         this.setState({ searchTerm: '', recent: dms });
     }
 
@@ -106,7 +89,6 @@ class DmInvites extends React.Component {
     getUsernames(dm) {
         const { currentUser, users, invited } = this.props;
         const usernames = [];
-        // debugger
         dm.member_ids.forEach(id => {
             if (id != currentUser.id && !invited.includes(id)) {
                 usernames.push(users[id].username);
@@ -128,7 +110,7 @@ class DmInvites extends React.Component {
             if (!dm.member_ids.some(id => this.props.invited.includes(id))) {
                 return <DmInviteItem key={dm.id} username={this.getUsernames(dm)} avatar={avatar} handleClick={this.select(dm)}/>
             }
-        }) : <></>;
+        }) : [];
 
         const invited = this.props.invited.length > 0 ? this.props.invited.map(userId =>
             <Invited key={userId} user={this.props.users[userId]} handleClick={this.uninvite.bind(this, userId)} />
@@ -149,7 +131,7 @@ class DmInvites extends React.Component {
                 </div>
                 {this.state.searchTerm == '' ? (
                     <div className="channels-list">
-                        {recent.length > 0 && <p className="subscribed-channels-label">Recent conversations</p>}
+                        {!recent.includes(undefined) && <p className="subscribed-channels-label">Recent conversations</p>}
                         <ul className="subscribed-channels">
                             {recent}
                         </ul>

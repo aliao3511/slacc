@@ -4,7 +4,7 @@ import { getUsersById } from '../actions/session_actions';
 export const RECEIVE_DMS = 'RECEIVE_DMS';
 export const RECEIVE_DM = 'RECEIVE_DM';
 export const RECEIVE_DM_ERRORS = 'RECEIVE_DM_ERRORS';
-// export const UPDATE_USER_DMS = 'UPDATE_USER_DMS';
+export const UPDATE_USER_DMS = 'UPDATE_USER_DMS';
 
 const receiveDms = dms => ({
     type: RECEIVE_DMS,

@@ -1,5 +1,6 @@
 import { RECEIVE_CURRENT_USER, RECEIVE_USERS, UPDATE_USER_CHANNELS } from '../../actions/session_actions';
 import { REMOVE_CHANNEL } from '../../actions/channel_actions';
+import { UPDATE_USER_DMS } from '../../actions/dm_actions';
 import { merge } from 'lodash';
 import channel from '../../components/channel/channel';
 
@@ -10,9 +11,6 @@ const usersReducer = (state = {}, action) => {
         case RECEIVE_CURRENT_USER:
             newState = merge({}, state, { [action.user.id]: action.user });
             return newState;
-        // case RECEIVE_USERS:
-        //     newState = merge({}, action.users)
-        //     return newState;
         case RECEIVE_USERS:
             newState = merge({}, state);
             Object.keys(action.users).forEach(userId => newState[userId] = action.users[userId]);
@@ -21,6 +19,12 @@ const usersReducer = (state = {}, action) => {
             newState = merge({}, state);
             if (!newState[action.userId].channel_ids.includes(action.channelId)) {
                 newState[action.userId].channel_ids.push(action.channelId);
+            }
+            return newState;
+        case UPDATE_USER_DMS:
+            newState = merge({}, state);
+            if (!newState[action.userId].dm_ids.includes(action.dmId)) {
+                newState[action.userId].dm_ids.push(action.dmId);
             }
             return newState;
         case REMOVE_CHANNEL:
