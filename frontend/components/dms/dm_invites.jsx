@@ -105,7 +105,7 @@ class DmInvites extends React.Component {
             }
         }) : <div className="no-results">No one found matching <strong>{this.state.searchTerm}</strong></div>
 
-        const recent = Object.keys(this.props.users).length > 0 ? this.state.recent.map(dm => {
+        const recent = Object.keys(this.props.users).length > 1 ? this.state.recent.map(dm => {
             const avatar = dm.member_ids.length > 2 ? avatar3_url : users[dm.member_ids[0]].avatar_url;
             if (!dm.member_ids.some(id => this.props.invited.includes(id))) {
                 return <DmInviteItem key={dm.id} username={this.getUsernames(dm)} avatar={avatar} handleClick={this.select(dm)}/>
@@ -115,7 +115,7 @@ class DmInvites extends React.Component {
         const invited = this.props.invited.length > 0 ? this.props.invited.map(userId =>
             <Invited key={userId} user={this.props.users[userId]} handleClick={this.uninvite.bind(this, userId)} />
         ) : '';
-
+        
         return (
             <>
                 <div className="dm-form-inputs">
