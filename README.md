@@ -1,24 +1,7 @@
-# README
+# slacc
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+slacc is a messaging application based on Slack. Users can message each other through channels or direct messages.
+slacc was implemented using React and Redux on the client side and Ruby on Rails and Postgresql on the server side. Messaging is implemented using Rails Action Cables.
 
-Things you may want to cover:
+Check out [the site](https://slacc.herokuapp.com/)!
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
