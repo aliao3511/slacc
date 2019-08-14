@@ -4,7 +4,7 @@ import MessageContainer from '../messages/message';
 import { connect } from 'react-redux';
 import { getChannelMessages, receiveMessage } from '../../actions/message_actions';
 import { getChannelMembers, updateUserChannels } from '../../actions/session_actions';
-import { addChannel, leaveChannel} from '../../actions/channel_actions';
+import { addChannel, leaveChannel, receiveChannel} from '../../actions/channel_actions';
 import { withRouter } from 'react-router-dom';
 import JoinButton from './joinbutton';
 
@@ -51,6 +51,8 @@ class Channel extends React.Component {
                         case 'message':
                             receiveMessage(JSON.parse(data.message));
                             break;
+                        // case 'addMembers':
+                            
                         case 'messages':
                             // this.setState({ messages: data.messages });
                             break;

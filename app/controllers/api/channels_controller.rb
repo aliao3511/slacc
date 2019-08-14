@@ -12,9 +12,22 @@ class Api::ChannelsController < ApplicationController
     end
 
     def create
-        @channel = Channel.new(channel_params)
+        debugger
+        filtered_channel_params = {
+            name: channel_params[:name], 
+            purpose: channel_params[:purpose], 
+            is_private: channel_params[:is_private]
+        }
+        @channel = Channel.new(filtered_channel_params)
+        debugger
+        # @channel = Channel.new(channel_params)
         @channel.owner_id = current_user.id
         @channel.member_ids <<= @channel.owner_id
+        channel_params[:memberIds].each do |id|
+            debugger
+            @channel.member_ids <<= id
+        end
+        debugger
         if @channel.save
             render :show
         else
@@ -61,7 +74,7 @@ class Api::ChannelsController < ApplicationController
 
     private
     def channel_params
-        params.require(:channel).permit(:name, :is_private, :purpose)
+        params.require(:channel).permit(:name, :is_private, :purpose, :memberIds => [])
     end
 
 end

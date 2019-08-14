@@ -15,15 +15,25 @@ export const getChannel = id => (
     })
 );
 
-export const createChannel = channel => (
+export const createChannel = (channel, memberIds) => (
     $.ajax({
         method: 'POST',
         url: 'api/channels',
         data: {
-            channel
+            channel,
+            memberIds
         },
     })
 );
+// export const createChannel = channel => (
+//     $.ajax({
+//         method: 'POST',
+//         url: 'api/channels',
+//         data: {
+//             channel
+//         },
+//     })
+// );
 
 export const deleteChannel = id => (
     $.ajax({
