@@ -62,21 +62,13 @@ export const getChannel = id => dispatch => {
             errors => dispatch(receiveErrors(errors.responseJSON)));
 };
 
-export const createChannel = (channel, memberIds) => dispatch => {
-    debugger
-    return ChannelAPIUtil.createChannel(channel, memberIds)
+export const createChannel = channel => dispatch => {
+    return ChannelAPIUtil.createChannel(channel)
         .then(channel => {
             return dispatch(receiveChannel(channel));
         },
             errors => dispatch(receiveErrors(errors.responseJSON)));
 };
-// export const createChannel = channel => dispatch => {
-//     return ChannelAPIUtil.createChannel(channel)
-//         .then(channel => {
-//             return dispatch(receiveChannel(channel));
-//         },
-//             errors => dispatch(receiveErrors(errors.responseJSON)));
-// };
 
 export const destroyChannel = id => dispatch => {
     return ChannelAPIUtil.deleteChannel(id)

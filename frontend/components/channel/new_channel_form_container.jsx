@@ -47,14 +47,11 @@ class NewChannelForm extends React.Component {
         const { createChannel, updateUserChannels, currentUser, clearErrors, addChannel } = this.props;
         clearErrors();
         const channel = Object.assign({}, this.state);
-        const { memberIds } = this.state;
-        debugger
-        createChannel(channel, memberIds).then(action => {
+        createChannel(channel).then(action => {
             return updateUserChannels(action.channel.id, currentUser.id);
-        }).then(action => {
-            return addChannel(action.channelId, memberIds);
-        }).then(action => {
-            this.props.history.push(`/home/channels/${action.channel.id}`);
+        })
+        .then(action => {
+            this.props.history.push(`/home/channels/${action.channelId}`);
         });
         // createChannel(channel).then(action => {
         //     return updateUserChannels(action.channel.id, currentUser.id);
