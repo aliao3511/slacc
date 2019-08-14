@@ -21,5 +21,9 @@ class ChatChannel < ApplicationCable::Channel
   #   ChatChannel.broadcast_to(@chat_channel, socket)
   # end
 
+  # def newChannel(channel)
+  #   # ChatChannel.broadcast_to(@chat_channel, )
+  # end
+
   def unsubscribed; end
 end
