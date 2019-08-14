@@ -38,8 +38,10 @@ class Channel extends React.Component {
 
     getCurrentChannel() {
         if (App.cable.subscriptions.subscriptions.length > 0) {
-            App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
+            debugger
+            App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(0);
         }
+        debugger
         const { receiveMessage, channel } = this.props;
         App.cable.subscriptions.create(
             { channel: 'ChatChannel', id: this.props.match.params.channelId },
@@ -58,6 +60,7 @@ class Channel extends React.Component {
                 load: function () { return this.perform('load') }
             }
         );
+        debugger
     }
 
     componentDidMount() {
@@ -80,6 +83,7 @@ class Channel extends React.Component {
         const { channel, getChannelMembers, getChannelMessages } = this.props;
         const channelId = this.props.match.params.channelId;
         if (!prevProps.channel || channelId != prevProps.channel.id) {
+            debugger
             this.getCurrentChannel();
             getChannelMembers(channelId).then(() => getChannelMessages(channelId));
         }
