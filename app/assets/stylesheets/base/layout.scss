@@ -58,8 +58,8 @@ footer a.credits:hover {
 
 .no-scroll {
     overflow: hidden;
-    margin: 0;
-    height: 100vh;
+    margin-bottom: 0;
+    max-height: 821px;
     position: relative;
 }
 
