@@ -125,9 +125,9 @@ class Channel extends React.Component {
                 if (message.messageable_id == channel.id) {
                     return <MessageContainer key={message.id}
                         message={message}
-                        />;
+                        />
                 } else {
-                    return <></>;
+                    return <></>
                 }
             });
             const visible = this.state.visible ? 'visible' : '';

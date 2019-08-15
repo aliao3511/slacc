@@ -50,3 +50,6 @@ dm_channel.rb - backend
     parallel add_members in dmchannel
 
 N+1 QUERIES
+
+EDITING/DELETING MESSAGES
+add edit/delete message cases to dm_form, etc.

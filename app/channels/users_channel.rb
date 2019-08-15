@@ -1,7 +1,7 @@
-class UsersChannel < ApplicationCable::Channel
+class NotifChannel < ApplicationCable::Channel
 
     def subscribed
-        stream_from "users_channel_#{current_user.id}"
+        stream_from "notif_channel_#{current_user.id}"
     end
 
     def speak(data)
