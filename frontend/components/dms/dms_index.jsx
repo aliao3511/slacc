@@ -46,11 +46,11 @@ class DmsIndex extends React.Component {
         return (
             <div className="index-container">
                 <div className="tooltip">
-                    <Link to='/create-dm'>Direct Messages</Link>
+                    <Link to='/home/create-dm'>Direct Messages</Link>
                     <span className="tooltip-text open1">Open a direct message</span>
                 </div>
                 <div className="tooltip">
-                    <Link className="create-channel" to={{ pathname: '/create-dm', state: { prevPath: prevPath } }}></Link>
+                    <Link className="create-channel" to={{ pathname: '/home/create-dm', state: { prevPath: prevPath } }}></Link>
                     <span className="tooltip-text open2">Open a direct message</span>
                 </div>
                 <ul className="channels-index">

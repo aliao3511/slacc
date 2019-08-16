@@ -76,10 +76,16 @@ p.subscribed-channels-label {
 }
 
 /* preview-button */
+.channel-bottom-preview {
+    background-color: white;
+    height: 150px;
+    width: 100%;
+}
+
 .preview-footer {
     background-color: rgb(243, 243, 243);
-    bottom: 0px;
-    height: 115px;
+    // bottom: 0px;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;

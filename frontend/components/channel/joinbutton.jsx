@@ -31,11 +31,13 @@ class JoinButton extends React.Component {
         const time = (new Date(channel.created_at)).toLocaleDateString([],{ year: 'numeric', month: 'long', day: 'numeric'});
         if (owner) {
             return (
-                <div className="preview-footer">
-                    <div className="preview-info">
-                        <p>You are viewing <strong>#{channel.name}</strong></p>
-                        <p>Created by {owner.username} on {time}</p>
-                        <button className="join" onClick={this.handleClick}>Join Channel</button>
+                <div className="channel-bottom-preview">
+                    <div className="preview-footer">
+                        <div className="preview-info">
+                            <p>You are viewing <strong>#{channel.name}</strong></p>
+                            <p>Created by {owner.username} on {time}</p>
+                            <button className="join" onClick={this.handleClick}>Join Channel</button>
+                        </div>
                     </div>
                 </div>
             );

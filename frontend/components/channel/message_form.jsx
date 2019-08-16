@@ -25,15 +25,17 @@ class MessageForm extends React.Component {
         const { channel, dm, recipients } = this.props;
         const placeholder = channel ? `Message #${channel.name}` : `Message ${recipients}`
         return (
-            <div className='message-form'>
-                <form>
-                    <textarea
-                        value={this.state.body}
-                        onChange={this.update('body')}
-                        placeholder={placeholder}
-                        onKeyDown={this.handleSubmit.bind(this)}
-                    />
-                </form>
+            <div className="channel-bottom">
+                <div className='message-form'>
+                    <form>
+                        <textarea
+                            value={this.state.body}
+                            onChange={this.update('body')}
+                            placeholder={placeholder}
+                            onKeyDown={this.handleSubmit.bind(this)}
+                        />
+                    </form>
+                </div>
             </div>
         );
     }

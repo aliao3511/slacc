@@ -53,3 +53,7 @@ N+1 QUERIES
 
 EDITING/DELETING MESSAGES
 add edit/delete message cases to dm_form, etc.
+
+REFACTORING PATHS:
+right now: ndf/bc/ncf in App.jsx
+need to move to homepage.jsx => routes now include home

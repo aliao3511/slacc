@@ -52,11 +52,11 @@ class ChannelsIndex extends React.Component {
         return (
             <div className="index-container">
                 <div className="tooltip">
-                    <Link to='/add-channel'>Channels</Link>
+                    <Link to='/home/add-channel'>Channels</Link>
                     <span className="tooltip-text">Browse all channels</span>
                 </div>
                 <div className="tooltip">
-                    <Link className="create-channel" to={{ pathname: '/create-channel', state: { prevPath: prevPath}}}></Link>
+                    <Link className="create-channel" to={{ pathname: '/home/create-channel', state: { prevPath: prevPath}}}></Link>
                     <span className="tooltip-text create">Create a channel</span>
                 </div>
                 <ul className="channels-index">

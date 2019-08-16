@@ -72,12 +72,6 @@ class Channel extends React.Component {
         getChannelMembers(channelId).then(() => getChannelMessages(channelId));
     }
 
-    // loadChat(e) {
-    //     e.preventDefault();
-    //     // may have to change to key into specific index
-    //     App.cable.subscriptions.subscriptions[0].load();
-    // }
-
     componentDidUpdate(prevProps) {
         if (this.bottom.current) {
             this.bottom.current.scrollIntoView();
@@ -154,13 +148,11 @@ class Channel extends React.Component {
                         </ul>
                     <div ref={this.bottom}></div>
                     </div>
-                    <div className='channel-bottom'>
-                        {(this.props.location.pathname.includes('/home') && App.cable.subscriptions.subscriptions.length > 0) 
-                            && <MessageForm channel={channel}/>}
-                        {(this.props.location.pathname.includes('/preview') && App.cable.subscriptions.subscriptions.length > 0) 
-                            && <JoinButton channel={channel} 
-                                        joinChannel={this.joinChannel(channel.id)}/>}
-                    </div>
+                    {(this.props.location.pathname.includes('/home') && App.cable.subscriptions.subscriptions.length > 0) 
+                        && <MessageForm channel={channel}/>}
+                    {(this.props.location.pathname.includes('/preview') && App.cable.subscriptions.subscriptions.length > 0) 
+                        && <JoinButton channel={channel} 
+                                    joinChannel={this.joinChannel(channel.id)}/>}
                 </div>
             );
         } else {
