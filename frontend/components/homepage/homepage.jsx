@@ -11,28 +11,27 @@ import BrowseChannelsContainer from '../channel/browse_channels';
 
 class Homepage extends React.Component {
 
-    // componentDidMount() {
-    //     App.notifChannel = App.cable.subscriptions.create(
-    //         { channel: 'NotifChannel' },
-    //         {
-    //             received: data => {
-    //                 switch (data.type) {
-    //                     case 'addMembers':
-    //                         /* update channels/users/etc*/
-    //                         break;
-    //                 }
-    //             },
-    //             add_members: function (data) { return this.perform('add_members', data) },
-    //         }
-    //     );
+    componentDidMount() {
+        debugger
+        App.notifChannel = App.cable.subscriptions.create(
+            { channel: 'NotifChannel' },
+            {
+                received: data => {
+                    switch (data.type) {
+                        case 'addMembers':
+                            /* update channels/users/etc*/
+                            break;
+                    }
+                },
+                add_members: function (data) { return this.perform('add_members', data) },
+            }
+        );
 
-    // }
-    // component unmounting onlyl works if add_channel/other things are overlays
-    // maybe should put in another container?
+    }
 
-    // componentWillUnmount() {
-    //     App.notifChannel.unsubscribe();
-    // }
+    componentWillUnmount() {
+        App.notifChannel.unsubscribe();
+    }
 
     render() {
         return (

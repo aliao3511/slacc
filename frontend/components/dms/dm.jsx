@@ -28,11 +28,15 @@ class Dm extends React.Component {
     }
 
     getCurrentDm() {
-        if (App.cable.subscriptions.subscriptions.length > 0) {
-            App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
+        if (App.currentChannel) {
+            debugger
+            App.currentChannel.unsubscribe();
         }
+        // if (App.cable.subscriptions.subscriptions.length > 0) {
+        //     App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
+        // }
         const { receiveMessage, dm } = this.props;
-        App.cable.subscriptions.create(
+        App.currentChannel = App.cable.subscriptions.create(
             { channel: 'DmChannel', id: this.props.match.params.dmId },
             {
                 received: data => {

@@ -16,7 +16,8 @@ class MessageForm extends React.Component {
     handleSubmit(e) {
         if (e.keyCode == 13 && e.shiftKey == false) {
             e.preventDefault();
-            App.cable.subscriptions.subscriptions[0].speak({ message: this.state.body });
+            App.currentChannel.speak({ message: this.state.body });
+            // App.cable.subscriptions.subscriptions[0].speak({ message: this.state.body });
             this.setState({ body: '' });
         }
     }

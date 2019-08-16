@@ -6,9 +6,6 @@ import SplashContainer from './splash/splash_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util'; 
 import { Route, Switch } from 'react-router-dom';
 import HomepageContainer from './homepage/homepage_container';
-// import NewDmFormContainer from './dms/new_dm_form_container';
-// import NewChannelFormContainer from './channel/new_channel_form_container';
-// import BrowseChannelsContainer from './channel/browse_channels';
 
 const App = () => {
     return (<>
