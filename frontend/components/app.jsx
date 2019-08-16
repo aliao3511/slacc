@@ -6,6 +6,9 @@ import SplashContainer from './splash/splash_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util'; 
 import { Route, Switch } from 'react-router-dom';
 import HomepageContainer from './homepage/homepage_container';
+import NewDmFormContainer from './dms/new_dm_form_container';
+import NewChannelFormContainer from './channel/new_channel_form_container';
+import BrowseChannelsContainer from './channel/browse_channels';
 
 const App = () => {
     return (<>
@@ -18,6 +21,9 @@ const App = () => {
         <Route exact path='/' component={SplashContainer}/>
         
         <ProtectedRoute path={['/home', '/preview']} component={HomepageContainer}/>
+        <Route path='/create-dm' component={NewDmFormContainer} />
+        <Route exact path='/add-channel' component={BrowseChannelsContainer} />
+        <Route exact path='/create-channel' component={NewChannelFormContainer} />
 
         <Route exact path={['/', '/login', '/signup']} render={() => 
             <footer>

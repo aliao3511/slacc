@@ -93,6 +93,7 @@ class BrowseChannels extends React.Component {
     }
     
     render() {
+        debugger
         const { users } = this.props;
         return (
             <div className="add-channel-container" tabIndex="1" onKeyDown={this.handleKeypress}>
