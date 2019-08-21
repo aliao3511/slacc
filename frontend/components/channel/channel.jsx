@@ -41,7 +41,6 @@ class Channel extends React.Component {
         if (App.currentChannel) {
             App.currentChannel.unsubscribe();
         }
-        debugger
         const { receiveMessage, channel } = this.props;
         App.currentChannel = App.cable.subscriptions.create(
             { channel: 'ChatChannel', id: this.props.match.params.channelId },
@@ -68,7 +67,6 @@ class Channel extends React.Component {
         const { channel, getChannelMembers, getChannelMessages } = this.props;
         const channelId = this.props.match.params.channelId;
         this.getCurrentChannel();
-        debugger
         getChannelMembers(channelId).then(() => getChannelMessages(channelId));
     }
 

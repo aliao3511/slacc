@@ -104,9 +104,9 @@ class DmInvites extends React.Component {
                 return <DmInviteItem key={user.id} username={user.username} avatar={user.avatar_url} handleClick={this.invite.bind(this, user.id)} />
             }
         }) : <div className="no-results">No one found matching <strong>{this.state.searchTerm}</strong></div>
-
         const recent = Object.keys(this.props.users).length > 0 ? this.state.recent.map(dm => {
-            const avatar = dm.member_ids.length > 2 ? avatar3_url : users[dm.member_ids[0]].avatar_url;
+            const avatar = dm.member_ids.length > 2 ? avatar3_url : 
+                (dm.member_ids[0] == currentUser.id ? users[dm.member_ids[1]].avatar_url : users[dm.member_ids[0]].avatar_url);
             if (!dm.member_ids.some(id => this.props.invited.includes(id))) {
                 return <DmInviteItem key={dm.id} username={this.getUsernames(dm)} avatar={avatar} handleClick={this.select(dm)}/>
             }

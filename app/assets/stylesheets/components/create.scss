@@ -225,6 +225,7 @@ div.no-results {
     display: flex;
     justify-content: flex-start;
     align-content: center;
+    align-items: center;
 }
 
 .user-item-content strong {
@@ -261,10 +262,11 @@ input.hidden:focus {
     width: auto;
     background-color: #e8f5fa;
     border-radius: 5px;
+    align-items: center;
 }
 
 .invited-item-content > strong {
-    padding-top: 4px;
+    // padding-top: 4px;
     padding-right: 5px;
 }
 
@@ -277,8 +279,8 @@ div.x {
     height: 15px;
     width: 15px;
     border-radius: 3px;
-    margin-top: 8px;
     margin-right: 5px;
+    margin-top: 2.5px;
 }
 
  div.invited-item-content:hover > div.x {
@@ -288,8 +290,8 @@ div.x {
     width: 15px;
     background-color: rgb(224, 224, 224);
     border: 3px solid rgb(224, 224, 224);
-    margin-top: 8px;
     margin-right: 5px;
+    margin-top: 2.5px;
     border-radius: 3px;
 }
 
@@ -306,7 +308,8 @@ div.dm-form-inputs {
 }
 
 div.dm-invites {
-    height: 35px;
+    min-height: 50px;
+    height: auto;
     padding: 0px;
 }
 
