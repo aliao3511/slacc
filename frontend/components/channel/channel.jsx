@@ -38,15 +38,9 @@ class Channel extends React.Component {
     }
 
     getCurrentChannel() {
-        debugger
         if (App.currentChannel) {
-            debugger
             App.currentChannel.unsubscribe();
         }
-        // if (App.cable.subscriptions.subscriptions.length > 0) {
-        //     debugger
-        //     App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(0);
-        // }
         debugger
         const { receiveMessage, channel } = this.props;
         App.currentChannel = App.cable.subscriptions.create(
@@ -68,13 +62,13 @@ class Channel extends React.Component {
                 load: function () { return this.perform('load') }
             }
         );
-        debugger
     }
 
     componentDidMount() {
         const { channel, getChannelMembers, getChannelMessages } = this.props;
         const channelId = this.props.match.params.channelId;
         this.getCurrentChannel();
+        debugger
         getChannelMembers(channelId).then(() => getChannelMessages(channelId));
     }
 
@@ -85,7 +79,6 @@ class Channel extends React.Component {
         const { channel, getChannelMembers, getChannelMessages } = this.props;
         const channelId = this.props.match.params.channelId;
         if (!prevProps.channel || channelId != prevProps.channel.id) {
-            debugger
             this.getCurrentChannel();
             getChannelMembers(channelId).then(() => getChannelMessages(channelId));
         }
@@ -154,9 +147,9 @@ class Channel extends React.Component {
                         </ul>
                     <div ref={this.bottom}></div>
                     </div>
-                    {(this.props.location.pathname.includes('/home') && App.cable.subscriptions.subscriptions.length > 0) 
+                    {(this.props.location.pathname.includes('/home') && App.currentChannel) 
                         && <MessageForm channel={channel}/>}
-                    {(this.props.location.pathname.includes('/preview') && App.cable.subscriptions.subscriptions.length > 0) 
+                    {(this.props.location.pathname.includes('/preview') && App.currentChannel) 
                         && <JoinButton channel={channel} 
                                     joinChannel={this.joinChannel(channel.id)}/>}
                 </div>

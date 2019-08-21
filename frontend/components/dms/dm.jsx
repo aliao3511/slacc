@@ -3,7 +3,6 @@ import MessageForm from '../channel/message_form';
 import MessageContainer from '../messages/message';
 import { connect } from 'react-redux';
 import { getDmMessages, receiveMessage } from '../../actions/message_actions';
-// import { getUsersById } from '../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -29,12 +28,8 @@ class Dm extends React.Component {
 
     getCurrentDm() {
         if (App.currentChannel) {
-            debugger
             App.currentChannel.unsubscribe();
         }
-        // if (App.cable.subscriptions.subscriptions.length > 0) {
-        //     App.cable.subscriptions.subscriptions = App.cable.subscriptions.subscriptions.slice(1);
-        // }
         const { receiveMessage, dm } = this.props;
         App.currentChannel = App.cable.subscriptions.create(
             { channel: 'DmChannel', id: this.props.match.params.dmId },
@@ -61,12 +56,6 @@ class Dm extends React.Component {
         this.getCurrentDm();
         getDmMessages(dmId);
     }
-
-//     // loadChat(e) {
-//     //     e.preventDefault();
-//     //     // may have to change to key into specific index
-//     //     App.cable.subscriptions.subscriptions[0].load();
-//     // }
 
     componentDidUpdate(prevProps) {
         if (this.bottom.current) {

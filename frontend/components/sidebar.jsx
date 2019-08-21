@@ -15,40 +15,6 @@ const mapDispatchToProps = dispatch => ({
 
 class Sidebar extends React.Component {
 
-    // componentDidMount() {
-    //     debugger
-    //     const { currentUser } = this.props;
-    //     if (!App.usersChannel) {
-    //         App.usersChannel = App.cable.subscriptions.create(
-    //             // { channel: 'UsersChannel', id: currentUser.id },
-    //             { channel: 'UsersChannel' },
-    //             {
-    //                 received: data => {
-    //                     switch(data.type) {
-    //                         case 'channel':
-    //                             debugger
-    //                             console.log("im a channel");
-    //                             break;
-    //                         case 'dm':
-    //                             debugger
-    //                             console.log("im a dm");
-    //                             break;
-    //                     }
-    //                 },
-    //                 speak: function (data) { return this.perform('speak', data) },
-    //                 load: function () { return this.perform('load') }
-    //             }
-    //         );
-    //         debugger
-    //     }
-    // }
-
-    // componentWillUnmount() {
-    //     debugger
-    //     App.usersChannel.unsubscribe();
-    //     // delete App.usersChannel;
-    // }
-
     constructor(props) {
         super(props);
         this.state = { visible: false };
