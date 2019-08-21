@@ -29,7 +29,7 @@ class Api::UsersController < ApplicationController
 
     def get_users
         if (params[:userIds]) 
-            @users = params[:userIds].map {|userId| User.includes(:channels, :dms).find(userId)}
+            @users = User.includes(:channels, :dms).where(id: params[:userIds])
             render :index 
         else
             render json: {}

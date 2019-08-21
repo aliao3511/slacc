@@ -57,7 +57,7 @@ class Api::ChannelsController < ApplicationController
     end
 
     def destroy
-        channel = current_user.owned_channels.find_by(id: params[:id])
+        channel = current_user.owned_channels.includes(:members, :messages).find(params[:id])
         if channel 
             @channel = channel
             channel.destroy
