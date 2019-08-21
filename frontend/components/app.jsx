@@ -5,7 +5,7 @@ import SignupFormContainer from './session/signup_form_container';
 import SplashContainer from './splash/splash_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util'; 
 import { Route, Switch } from 'react-router-dom';
-import HomepageContainer from './homepage/homepage_container';
+import HomepageContainer from './homepage/homepage';
 
 const App = () => {
     return (<>

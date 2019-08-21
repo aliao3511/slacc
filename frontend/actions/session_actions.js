@@ -48,7 +48,13 @@ export const updateUserChannels = (channelId, userId) => ({
     type: UPDATE_USER_CHANNELS,
     channelId,
     userId
-})
+});
+
+// export const updateUserChannels = (channelId, userIds) => ({
+//     type: UPDATE_USER_CHANNELS,
+//     channelId,
+//     userIds
+// });
 
 // thunk action creators
 export const login = formUser => dispatch => {

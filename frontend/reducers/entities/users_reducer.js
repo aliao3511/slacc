@@ -21,6 +21,14 @@ const usersReducer = (state = {}, action) => {
                 newState[action.userId].channel_ids.push(action.channelId);
             }
             return newState;
+        // case UPDATE_USER_CHANNELS:
+        //     newState = merge({}, state);
+        //     action.userIds.forEach(userId => {
+        //         if (!newState[action.userId].channel_ids.includes(action.channelId)) {
+        //             newState[action.userId].channel_ids.push(action.channelId);
+        //         }
+        //     });
+        //     return newState;
         case UPDATE_USER_DMS:
             newState = merge({}, state);
             if (!newState[action.userId].dm_ids.includes(action.dmId)) {

@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
     updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
+    // updateUserChannels: (channelId, userIds) => dispatch(updateUserChannels(channelId, userIds)),
 });
 
 class JoinButton extends React.Component {
@@ -23,6 +24,7 @@ class JoinButton extends React.Component {
         const { updateUserChannels, channel, currentUser } = this.props;
         this.props.joinChannel()
         .then(() => this.props.updateUserChannels(channel.id, currentUser.id))
+        // .then(() => this.props.updateUserChannels(channel.id, [currentUser.id]))
         .then(() => this.props.history.push(`/home/channels/${channel.id}`));
     }
 

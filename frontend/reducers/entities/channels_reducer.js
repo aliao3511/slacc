@@ -22,6 +22,14 @@ const channelsReducer = (state = {}, action) => {
                 newState[action.channelId].member_ids.push(action.userId);
             }
             return newState;
+        // case UPDATE_USER_CHANNELS:
+        //     newState = merge({}, state);
+        //     action.userIds.forEach(userId => {
+        //         if (!newState[action.channelId].member_ids.includes(userId)) {
+        //             newState[action.channelId].member_ids.push(action.userId);
+        //         }
+        //     });
+        //     return newState;
         case REMOVE_CHANNEL:
             newState = merge({}, state);
             newState[action.channelId].member_ids = newState[action.channelId].member_ids.filter(id => id != action.userId);

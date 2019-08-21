@@ -25,7 +25,13 @@ export const updateUserDms = (dmId, userId) => ({
     type: UPDATE_USER_DMS,
     dmId,
     userId
-})
+});
+
+// export const updateUserDms = (dmId, userIds) => ({
+//     type: UPDATE_USER_DMS,
+//     dmId,
+//     userIds
+// });
 
 // thunk action creators
 

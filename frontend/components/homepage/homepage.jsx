@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Sidebar from '../sidebar';
 import ChannelContainer from '../channel/channel';
 import DmContainer from '../dms/dm';
@@ -8,6 +9,19 @@ import { MemberRoute, PrivateRoute } from '../../util/route_util';
 import NewDmFormContainer from '../dms/new_dm_form_container';
 import NewChannelFormContainer from '../channel/new_channel_form_container';
 import BrowseChannelsContainer from '../channel/browse_channels';
+import { getChannel } from '../../actions/channel_actions';
+
+const mapStateToProps = state => {
+    return {
+        currentUser: state.entities.users[state.session.id],
+        channels: Object.values(state.entities.channels),
+        dms: Object.values(state.entities.dms)
+    }
+};
+
+const mapDispatchToProps = dispatch => ({
+    getChannels: dispatch => getChannels(),
+});
 
 class Homepage extends React.Component {
 
@@ -18,12 +32,16 @@ class Homepage extends React.Component {
             {
                 received: data => {
                     switch (data.type) {
-                        case 'addMembers':
+                        case 'channel':
                             /* update channels/users/etc*/
+                            
+                            break;
+                        case 'dm':
+
                             break;
                     }
                 },
-                add_members: function (data) { return this.perform('add_members', data) },
+                notify: function (data) { return this.perform('notify', data) },
             }
         );
 
@@ -50,4 +68,4 @@ class Homepage extends React.Component {
     }
 }
 
-export default Homepage;
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

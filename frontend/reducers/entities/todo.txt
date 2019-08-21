@@ -26,7 +26,8 @@ remove from anywhere except component did mount
 CHANNEL REFACTORING
 new_channel_form.jsx
 chat_channel.rb -backend
-    add method add_members which takes in an array of member_ids
+    add method notify which takes in an array of member_ids
+    notify can work for either messages or channels
 channel.jsx - frontend
     add_method in App.cable.subscriptions.subscriptions.create
     add_members which takes in an array of member_ids
@@ -54,6 +55,11 @@ N+1 QUERIES
 EDITING/DELETING MESSAGES
 add edit/delete message cases to dm_form, etc.
 
-REFACTORING PATHS:
-right now: ndf/bc/ncf in App.jsx
-need to move to homepage.jsx => routes now include home
+CHANNEL INFO
+
+should I just have one notifChannel for everyone
+each user has notifChannel:
+after channel creation call notifChannel method
+notifChannel method broadcasts to each memberId that they've been added
+have session action/reducer that updates the users and channels slice of state
+modify updateUserChannels to take in an array of memberIds instead of just one userId

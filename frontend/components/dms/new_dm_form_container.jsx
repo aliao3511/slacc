@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     createDm: (senderId, recipientId) => dispatch(createDm(senderId, recipientId)),
     updateUserDms: (dmId, userId) => dispatch(updateUserDms(dmId, userId)),
+    // updateUserDms: (dmId, userIds) => dispatch(updateUserDms(dmId, userIds)),
 });
 
 class NewDmForm extends React.Component {
@@ -28,6 +29,7 @@ class NewDmForm extends React.Component {
         const { senderId, recipientIds } = this.state;
         createDm(senderId, recipientIds).then(action => {
             return updateUserDms(action.dm.id, currentUser.id);
+            // return updateUserDms(action.dm.id, [currentUser.id]);
         }).then(action => {
             this.props.history.push(`/home/dms/${action.dmId}`);
         });

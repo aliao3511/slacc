@@ -15,6 +15,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     createChannel: channel => dispatch(createChannel(channel)),
     updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
+    // updateUserChannels: (channelId, userIds) => dispatch(updateUserChannels(channelId, userIds)),
     clearErrors: () => dispatch(clearErrors()),
     getAllMembers: () => dispatch(getAllMembers()),
     addChannel: (channelId, userIds) => dispatch(addChannel(channelId, userIds)),
@@ -48,19 +49,14 @@ class NewChannelForm extends React.Component {
         clearErrors();
         const channel = Object.assign({}, this.state);
         createChannel(channel).then(action => {
+            // channel.memberIds.forEach(id => App.notifChannel.notify({ channelId: action.channel.id, memberId: id }))
+            // App.notifChannel.notify({ channelId: action.channel.id, memberIds: channel.memberIds });
             return updateUserChannels(action.channel.id, currentUser.id);
+            // return updateUserChannels(action.channel.id, [currentUser.id]);
         })
         .then(action => {
             this.props.history.push(`/home/channels/${action.channelId}`);
         });
-        // createChannel(channel).then(action => {
-        //     return updateUserChannels(action.channel.id, currentUser.id);
-        // }).then(action => {
-        //     // App.cable.subscriptions.subscriptions[0].speak({ addMembers: memberIds });
-        //     return addChannel(action.channelId, memberIds);
-        // }).then(action => {
-        //     this.props.history.push(`/home/channels/${action.channel.id}`);
-        // });
     }
 
     handleKeypress(e) {
