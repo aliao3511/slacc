@@ -32,13 +32,18 @@ class Api::DmsController < ApplicationController
         render :show
     end
 
+    def show
+        @dm = Dm.includes(:members, :messages).find(params[:id])
+        render :show
+    end
+
     private
 
     def find_dm(recipient_ids) 
         dms = current_user.dms;
         dms.each do |dm|
-            if recipient_ids.all? {|id| dm.member_ids.include?(id.to_i)}
-                return dm.includes(:members, :messages)
+            if recipient_ids.map(&:to_i) == dm.member_ids
+                return dm
             end
         end
         nil

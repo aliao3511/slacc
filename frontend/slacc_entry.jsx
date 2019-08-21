@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 //testing
-import { getDms, getDm, createDm } from './actions/dm_actions';
+import { getDms, createDm } from './actions/dm_actions';
 //testing
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -23,8 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // testing
     window.getState = store.getState;
     window.dispatch = store.dispatch;
-    window.getDms = getDms;
-    window.getDm = getDm;
     window.createDm = createDm;
     //testing
 

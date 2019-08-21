@@ -46,11 +46,17 @@ export const getDms = userId => dispatch => {
             errors => dispatch(receiveErrors(errors.responseJSON)));
 };
 
-export const getDm = (senderId, recipientId) => dispatch => {
-    return DmApiUtil.getDm(senderId, recipientId)
+export const getDm = dmId => dispatch => {
+    return DmApiUtil.getDm(dmId)
         .then(dm => dispatch(receiveDm(dm), 
             errors => dispatch(receiveErrors(errors.responseJSON))));
 };
+
+// export const getDm = (senderId, recipientId) => dispatch => {
+//     return DmApiUtil.getDm(senderId, recipientId)
+//         .then(dm => dispatch(receiveDm(dm), 
+//             errors => dispatch(receiveErrors(errors.responseJSON))));
+// };
 
 export const createDm = (senderId, recipientIds) => dispatch => {
     return DmApiUtil.createDm(senderId, recipientIds)

@@ -12,7 +12,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     createDm: (senderId, recipientId) => dispatch(createDm(senderId, recipientId)),
     updateUserDms: (dmId, userId) => dispatch(updateUserDms(dmId, userId)),
-    // updateUserDms: (dmId, userIds) => dispatch(updateUserDms(dmId, userIds)),
 });
 
 class NewDmForm extends React.Component {
@@ -28,7 +27,7 @@ class NewDmForm extends React.Component {
         const { createDm, updateUserDms, currentUser } = this.props;
         const { senderId, recipientIds } = this.state;
         createDm(senderId, recipientIds).then(action => {
-            // App.notifChannel.notify({ dmId: action.dm.id, memberIds: dm.memberIds });
+            App.notifChannel.notify({ dmId: action.dm.id, memberIds: recipientIds });
             return updateUserDms(action.dm.id, currentUser.id);
             // return updateUserDms(action.dm.id, [currentUser.id]);
         }).then(action => {

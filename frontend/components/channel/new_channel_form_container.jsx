@@ -15,7 +15,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     createChannel: channel => dispatch(createChannel(channel)),
     updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
-    // updateUserChannels: (channelId, userIds) => dispatch(updateUserChannels(channelId, userIds)),
     clearErrors: () => dispatch(clearErrors()),
     getAllMembers: () => dispatch(getAllMembers()),
     addChannel: (channelId, userIds) => dispatch(addChannel(channelId, userIds)),

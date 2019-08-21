@@ -11,7 +11,7 @@ import NewChannelFormContainer from '../channel/new_channel_form_container';
 import BrowseChannelsContainer from '../channel/browse_channels';
 import { getChannel } from '../../actions/channel_actions';
 import { updateUserChannels } from '../../actions/session_actions';
-import { updateUserDms } from '../../actions/dm_actions';
+import { updateUserDms, getDm } from '../../actions/dm_actions';
 
 const mapStateToProps = state => {
     return {
@@ -23,6 +23,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     getChannel: channelId => dispatch(getChannel(channelId)),
+    getDm: dmId => dispatch(getDm(dmId)),
     updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
     updateUserDms: (dmId, userId) => dispatch(updateUserDms(dmId, userId)),
 });
@@ -30,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
 class Homepage extends React.Component {
 
     componentDidMount() {
-        const { updateUserChannels, getChannel } = this.props;
+        const { updateUserChannels, getChannel, getDm } = this.props;
         App.notifChannel = App.cable.subscriptions.create(
             { channel: 'NotifChannel' },
             {
