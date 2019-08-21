@@ -27,12 +27,6 @@ export const updateUserDms = (dmId, userId) => ({
     userId
 });
 
-// export const updateUserDms = (dmId, userIds) => ({
-//     type: UPDATE_USER_DMS,
-//     dmId,
-//     userIds
-// });
-
 // thunk action creators
 
 export const getDms = userId => dispatch => {

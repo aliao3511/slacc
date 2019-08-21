@@ -6,7 +6,7 @@ class Api::DmsController < ApplicationController
         if (params[:user_id].to_i != current_user.id)
             render json: ["Unauthorized user"], status: 401
         else
-            @dms = current_user.dms
+            @dms = current_user.dms.includes(:members, :messages)
             render :index
         end
     end
@@ -38,7 +38,7 @@ class Api::DmsController < ApplicationController
         dms = current_user.dms;
         dms.each do |dm|
             if recipient_ids.all? {|id| dm.member_ids.include?(id.to_i)}
-                return dm
+                return dm.includes(:members, :messages)
             end
         end
         nil

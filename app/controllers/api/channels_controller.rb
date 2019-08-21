@@ -4,9 +4,9 @@ class Api::ChannelsController < ApplicationController
     
     def index
         if params[:userId]
-            @channels = User.find(params[:userId]).channels.includes(:members).includes(:messages)
+            @channels = User.find(params[:userId]).channels.includes(:members, :messages)
         else
-            @channels = Channel.all.includes(:members).includes(:messages)
+            @channels = Channel.all.includes(:members, :messages)
         end
         render :index
     end
@@ -31,7 +31,7 @@ class Api::ChannelsController < ApplicationController
     end
 
     def add_channel
-        @channel = Channel.find_by(id: params[:channel_id])
+        @channel = Channel.includes(:members, :messages).find(params[:channel_id])
         params[:userIds].each do |userId|
             @channel.member_ids <<= userId unless @channel.member_ids.include?(params[:userId])
         end
@@ -39,7 +39,7 @@ class Api::ChannelsController < ApplicationController
     end
 
     def show
-        @channel = Channel.find_by(id: params[:id])
+        @channel = Channel.includes(:members, :messages).find(params[:id])
         if @channel
             render :show
         else
@@ -48,7 +48,7 @@ class Api::ChannelsController < ApplicationController
     end
 
     def update
-        @channel = current_user.owned_channels.find_by(id: params[:id])
+        @channel = current_user.owned_channels.includes(:members, :messages).find(params[:id])
         if @channel.update(channel_params)
             render :show
         else

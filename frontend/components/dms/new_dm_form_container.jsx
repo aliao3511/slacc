@@ -28,6 +28,7 @@ class NewDmForm extends React.Component {
         const { createDm, updateUserDms, currentUser } = this.props;
         const { senderId, recipientIds } = this.state;
         createDm(senderId, recipientIds).then(action => {
+            // App.notifChannel.notify({ dmId: action.dm.id, memberIds: dm.memberIds });
             return updateUserDms(action.dm.id, currentUser.id);
             // return updateUserDms(action.dm.id, [currentUser.id]);
         }).then(action => {

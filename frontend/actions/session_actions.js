@@ -50,12 +50,6 @@ export const updateUserChannels = (channelId, userId) => ({
     userId
 });
 
-// export const updateUserChannels = (channelId, userIds) => ({
-//     type: UPDATE_USER_CHANNELS,
-//     channelId,
-//     userIds
-// });
-
 // thunk action creators
 export const login = formUser => dispatch => {
     return SessionAPIUtil.login(formUser)

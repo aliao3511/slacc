@@ -11,6 +11,7 @@ import NewChannelFormContainer from '../channel/new_channel_form_container';
 import BrowseChannelsContainer from '../channel/browse_channels';
 import { getChannel } from '../../actions/channel_actions';
 import { updateUserChannels } from '../../actions/session_actions';
+import { updateUserDms } from '../../actions/dm_actions';
 
 const mapStateToProps = state => {
     return {
@@ -23,6 +24,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     getChannel: channelId => dispatch(getChannel(channelId)),
     updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
+    updateUserDms: (dmId, userId) => dispatch(updateUserDms(dmId, userId)),
 });
 
 class Homepage extends React.Component {
@@ -38,7 +40,7 @@ class Homepage extends React.Component {
                             getChannel(data.channelId).then(() => updateUserChannels(data.channelId, data.userId));
                             break;
                         case 'dm':
-
+                            getDm(data.dmId).then(() => updateUserDms(data.dmId, data.userId));
                             break;
                     }
                 },
