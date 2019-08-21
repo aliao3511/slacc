@@ -9,23 +9,27 @@ import { MemberRoute, PrivateRoute } from '../../util/route_util';
 import NewDmFormContainer from '../dms/new_dm_form_container';
 import NewChannelFormContainer from '../channel/new_channel_form_container';
 import BrowseChannelsContainer from '../channel/browse_channels';
-import { getChannel } from '../../actions/channel_actions';
+import { getChannel, getChannels } from '../../actions/channel_actions';
+import { updateUserChannels } from '../../actions/session_actions';
 
 const mapStateToProps = state => {
     return {
         currentUser: state.entities.users[state.session.id],
         channels: Object.values(state.entities.channels),
-        dms: Object.values(state.entities.dms)
+        dms: Object.values(state.entities.dms),
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    getChannels: dispatch => getChannels(),
+    getChannel: channelId => dispatch(getChannel(channelId)),
+    getChannels: () => dispatch(getChannels()),
+    updateUserChannels: (channelId, userId) => dispatch(updateUserChannels(channelId, userId)),
 });
 
 class Homepage extends React.Component {
 
     componentDidMount() {
+        const { updateUserChannels, getChannel } = this.props;
         debugger
         App.notifChannel = App.cable.subscriptions.create(
             { channel: 'NotifChannel' },
@@ -34,7 +38,9 @@ class Homepage extends React.Component {
                     switch (data.type) {
                         case 'channel':
                             /* update channels/users/etc*/
-                            
+                            debugger
+                            getChannel(data.channelId).then(() => updateUserChannels(data.channelId, data.userId));
+                            debugger
                             break;
                         case 'dm':
 

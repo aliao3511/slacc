@@ -18,6 +18,7 @@ const channelsReducer = (state = {}, action) => {
             return newState;
         case UPDATE_USER_CHANNELS:
             newState = merge({}, state);
+            debugger
             if (!newState[action.channelId].member_ids.includes(action.userId)) {
                 newState[action.channelId].member_ids.push(action.userId);
             }

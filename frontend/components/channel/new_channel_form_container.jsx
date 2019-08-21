@@ -49,12 +49,17 @@ class NewChannelForm extends React.Component {
         clearErrors();
         const channel = Object.assign({}, this.state);
         createChannel(channel).then(action => {
-            // channel.memberIds.forEach(id => App.notifChannel.notify({ channelId: action.channel.id, memberId: id }))
-            // App.notifChannel.notify({ channelId: action.channel.id, memberIds: channel.memberIds });
+            debugger
+            App.notifChannel.notify({ channelId: action.channel.id, memberIds: channel.memberIds });
+            // return action.channel.id;
             return updateUserChannels(action.channel.id, currentUser.id);
-            // return updateUserChannels(action.channel.id, [currentUser.id]);
         })
+        // .then(channelId => {
+        //     debugger
+        //     this.props.history.push(`/home/channels/${channelId}`);
+        // });
         .then(action => {
+            debugger
             this.props.history.push(`/home/channels/${action.channelId}`);
         });
     }
