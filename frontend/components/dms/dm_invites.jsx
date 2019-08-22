@@ -115,7 +115,7 @@ class DmInvites extends React.Component {
         const invited = this.props.invited.length > 0 ? this.props.invited.map(userId =>
             <Invited key={userId} user={this.props.users[userId]} handleClick={this.uninvite.bind(this, userId)} />
         ) : '';
-
+        
         return (
             <>
                 <div className="dm-form-inputs">
