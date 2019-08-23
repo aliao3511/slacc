@@ -1,11 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import EditMessageForm from './edit_message_form';
 
 const mapStateToProps = (state, ownProps) => ({
     user: state.entities.users[ownProps.message.author_id],
-})
+});
 
 class Message extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { edit: false, selected: null };
+        this.edit = this.edit.bind(this);
+    }
+
+    select(messageId) {
+        return e => {
+            this.setState( { selected: messageId });
+        };
+    }
+
+    edit() {
+        this.setState({ edit: true });
+    }
 
     render() {
         const { message, user } = this.props;
@@ -31,6 +48,11 @@ class Message extends React.Component {
                             </div>
                             <p>{message.body}</p>
                         </div>
+                        {/* {this.state.edit ? <EditMessageForm dm={selected}/> : } */}
+                        {/* insert edit message button here (dropdown or?) */}
+                    </div>
+                    <div className="edit">
+                        
                     </div>
                 </li>
             );

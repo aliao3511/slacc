@@ -15,6 +15,11 @@ class ChatChannel < ApplicationCable::Channel
     end
   end
 
+  def edit(data)
+    # message = @chat_channel.messages.find(data['dmId'])
+    # if message.update(message_params)
+  end
+
   # def load
   #   messages = @chat_channel.messages.all.collect(&:body)
   #   socket = { messages: messages, type: 'messages' }

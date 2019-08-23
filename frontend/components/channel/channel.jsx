@@ -49,16 +49,16 @@ class Channel extends React.Component {
                     switch (data.type) {
                         case 'message':
                             receiveMessage(JSON.parse(data.message));
-                            break;
-                        // case 'addMembers':
+                            break;                        
+                        case 'edit':
                             
-                        case 'messages':
                             // this.setState({ messages: data.messages });
                             break;
                     }
                 },
                 speak: function (data) { return this.perform('speak', data) },
-                load: function () { return this.perform('load') }
+                load: function () { return this.perform('load') },
+                edit: function (data) { return this.perform('edit', data) }
             }
         );
     }
