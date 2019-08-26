@@ -13,7 +13,7 @@ class EditMessageForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { body: '' };
+        this.state = { body: this.props.dm.body };
         this.update = this.update.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -23,25 +23,38 @@ class EditMessageForm extends React.Component {
     }
 
     handleSubmit(e) {
-        if (e.keyCode == 13 && e.shiftKey == false) {
-            e.preventDefault();
-            App.currentChannel.edit({ message: this.state.body });
-            this.setState({ body: '' });
-        }
+        const { dm } = this.props;
+        e.preventDefault();
+        debugger
+        App.currentChannel.edit({ message: this.state.body, dmId: dm.id });
+        this.props.exit();
     }
 
     render() {
-        return (
-            <div>
-                <form>
-                    <textarea
-                        value={this.state.body}
-                        onChange={this.update}
-                        onKeyDown={this.handleSubmit}
-                    />
-                </form>
-            </div>
-        );
+        const { avatar, exit } = this.props;
+        debugger
+        if (App.currentChannel) {
+            return (
+                <div className="edit-message-container">
+                    <div className="edit-message">
+                        <div className="avatar" style={avatar}></div>
+                        <form className="edit-message-form" id="edit-message-form">
+                            <textarea
+                                value={this.state.body}
+                                onChange={this.update}
+                                placeholder={this.state.body}
+                            />
+                        </form>
+                    </div>
+                    <div className="edit-message-buttons">
+                        <button className="cancel" onClick={exit}>Cancel</button>
+                        <button className="submit-edit" onClick={this.handleSubmit}>Save Changes</button>
+                    </div>
+                </div>
+            );
+        } else {
+            return <></>;
+        }
     }
 }
 

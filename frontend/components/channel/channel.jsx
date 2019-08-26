@@ -21,7 +21,6 @@ const mapDispatchToProps = dispatch => ({
     receiveMessage: message => dispatch(receiveMessage(message)),
     addChannel: (channelId, userIds) => dispatch(addChannel(channelId, userIds)),
     updateUserChannels: (channelid, userId) => dispatch(updateUserChannels(channelId, userId)),
-    // updateUserChannels: (channelid, userIds) => dispatch(updateUserChannels(channelId, userIds)),
     leaveChannel: channelId => dispatch(leaveChannel(channelId)),
 });
 
@@ -51,8 +50,8 @@ class Channel extends React.Component {
                             receiveMessage(JSON.parse(data.message));
                             break;                        
                         case 'edit':
-                            
-                            // this.setState({ messages: data.messages });
+                            debugger
+                            receiveMessage(JSON.parse(data.message));
                             break;
                     }
                 },
