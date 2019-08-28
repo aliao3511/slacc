@@ -7,7 +7,7 @@
     float: left;
     /* for text */
     font-weight: 100;
-    font-size: 15px;
+    font-size: 17px;
     position: relative;
 }
 
@@ -120,7 +120,7 @@ div.index-container {
     top: -19.5px;
     height: 19px;
     width: 19px;
-    right: -90px;
+    right: -75px;
 }
 
 .create-channel:hover {
@@ -137,7 +137,8 @@ div.index-container {
 
 div.tooltip {
     position: relative;
-    width: 112px;
+    width: 127px;
+    // width: 112px;
     margin-left: 10px;
 }
 
