@@ -16,12 +16,9 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def edit(data)
-    debugger
     message = @chat_channel.messages.find(data['dmId'])
-    debugger
-    if message.update(message_params)
+    if message.update(body: data['message'])
       socket = { message: message.to_json, type: 'edit' }
-      debugger
       ChatChannel.broadcast_to(@chat_channel, socket)
     end
   end
