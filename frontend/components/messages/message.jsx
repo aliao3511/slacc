@@ -32,7 +32,7 @@ class Message extends React.Component {
     render() {
         const { message, user, currentUser } = this.props;
         const { visible } = this.state;
-        if (user) {
+        if (App.currentChannel && user) {
             const image_url = user.avatar_url.includes("avatar_1") ? avatar1_url : avatar2_url;
             const avatar = {
                 backgroundImage: `url(${image_url})`,

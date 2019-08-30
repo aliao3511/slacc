@@ -29,6 +29,7 @@ class Dm extends React.Component {
     getCurrentDm() {
        if (App.currentChannel) {
             App.currentChannel.unsubscribe();
+            // App.currentChannel = null;
         }
         const { receiveMessage, dm } = this.props;
         App.currentChannel = App.cable.subscriptions.create(

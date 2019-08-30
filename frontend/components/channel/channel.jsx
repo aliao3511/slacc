@@ -37,7 +37,7 @@ class Channel extends React.Component {
     }
 
     getCurrentChannel() {
-        if (App.currentChannel) {
+        if (App.cable.subscriptions.subscriptions.includes(App.currentChannel)) {
             App.currentChannel.unsubscribe();
         }
         const { receiveMessage, channel } = this.props;
@@ -50,7 +50,6 @@ class Channel extends React.Component {
                             receiveMessage(JSON.parse(data.message));
                             break;                        
                         case 'edit':
-                            debugger
                             receiveMessage(JSON.parse(data.message));
                             break;
                     }
@@ -79,6 +78,10 @@ class Channel extends React.Component {
             this.getCurrentChannel();
             getChannelMembers(channelId).then(() => getChannelMessages(channelId));
         }
+    }
+
+    componentWillUnmount() {
+        App.currentChannel.unsubscribe();
     }
 
     joinChannel(channelId) {
@@ -110,7 +113,7 @@ class Channel extends React.Component {
 
     render() {
         const { messages, channel } = this.props;
-        if (channel && channel.id == this.props.match.params.channelId) {
+        if ((channel && channel.id == this.props.match.params.channelId)) {
             const messageList = messages.map(message => {
                 if (message.messageable_id == channel.id) {
                     return <MessageContainer key={message.id}

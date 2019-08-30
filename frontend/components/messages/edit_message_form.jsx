@@ -23,19 +23,15 @@ class EditMessageForm extends React.Component {
     }
 
     handleSubmit(e) {
-        debugger
         const { dm } = this.props;
         e.preventDefault();
-        debugger
         App.currentChannel.edit({ message: this.state.body, dmId: dm.id });
         this.props.exit();
     }
 
     render() {
         const { avatar, exit } = this.props;
-        debugger
         if (App.currentChannel) {
-            debugger
             return (
                 <div className="edit-message-container">
                     <div className="edit-message">
@@ -55,7 +51,6 @@ class EditMessageForm extends React.Component {
                 </div>
             );
         } else {
-            debugger
             return <></>;
         }
     }
