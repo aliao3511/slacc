@@ -1,6 +1,6 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    debugger
+    # debugger
     @chat_channel = Channel.find(params[:id])
     stream_for @chat_channel
   end
@@ -10,21 +10,21 @@ class ChatChannel < ApplicationCable::Channel
     message.messageable_type = 'Channel'
     message.messageable_id = @chat_channel.id
     message.author_id = current_user.id
-    debugger
+    # debugger
     if message.save!
       socket = { message: message.to_json, type: 'message' }
-      debugger
+      # debugger
       ChatChannel.broadcast_to(@chat_channel, socket)
     end
   end
 
   def edit(data)
     message = @chat_channel.messages.find(data['dmId'])
-    debugger
+    # debugger
     if message.update(body: data['message'])
-      debugger
+      # debugger
       socket = { message: message.to_json, type: 'edit' }
-      debugger
+      # debugger
       ChatChannel.broadcast_to(@chat_channel, socket)
     end
   end

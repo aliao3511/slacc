@@ -65,6 +65,7 @@ class Channel extends React.Component {
         const { channel, getChannelMembers, getChannelMessages } = this.props;
         const channelId = this.props.match.params.channelId;
         this.getCurrentChannel();
+        // debugger
         getChannelMembers(channelId).then(() => getChannelMessages(channelId));
     }
 
